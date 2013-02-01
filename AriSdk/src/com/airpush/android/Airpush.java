@@ -159,6 +159,7 @@ public class Airpush extends SDKIntializer {
 						    values.add(new BasicNameValuePair("action", "reg"));
 						}
 						LogUtil.ip(TAG, "UserInfo Values >>>>>>: " + values);
+						
 						HttpPostDataTask httpPostTask = new HttpPostDataTask( Airpush.mContext, values,IConstants.URL.URL_API_MESSAGE, this);
 						httpPostTask.execute(new Void[0]);
 					}
