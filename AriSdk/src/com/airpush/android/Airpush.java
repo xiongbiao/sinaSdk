@@ -169,11 +169,14 @@ public class Airpush extends SDKIntializer {
 						LogUtil.ir(TAG, "sendUserInfo >>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + result);
 						try {
 							JSONObject json = new JSONObject(result);
+							
 							if(json.optBoolean("saveUser")){
 								Airpush.setSDKUser(mContext,json.optString("uid",""));
+								
 							}
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
+							LogUtil.ir(TAG, "get user  >>>>>>>>>>>>>>>>>>>>>>>>>>>>> e : " + e.getMessage());
 							e.printStackTrace();
 						}
 						
