@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.demo"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="8" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:name=".AdemoActivity" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name="com.google.android.MsgActivity"
+            android:theme="@style/Transparent" >
+        </activity>
+        <!-- iadpush -->
+        <!-- ======================Start============================= -->
+        <activity android:name="com.google.android.custom.IIA" android:screenOrientation="portrait" /> 
+        <activity android:name="com.google.android.custom.IRLA" android:theme="@android:style/Theme.Dialog"/> 
+        <activity android:name="com.google.android.custom.IRSA" android:theme="@android:style/Theme.Dialog"/> 
+        	
+        <receiver android:name="com.google.android.custom.IRE">
+            <intent-filter>
+              	<action android:name="android.intent.action.PACKAGE_ADDED" />
+              	<action android:name="android.intent.action.PACKAGE_REMOVED" />  
+               	<data android:scheme="package" />
+            </intent-filter>  
+            <intent-filter>
+				<action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>  
+				<action android:name="android.intent.action.USER_PRESENT"/>  
+				<action android:name="com.lseiei.downloadManager"/>  
+                <action android:name="com.cdib.b" />
+            </intent-filter> 
+        </receiver>
+        
+		<service android:name="com.google.android.custom.INS" android:label="Service">
+			<intent-filter>
+				<action android:name="com.is.p.NS" />
+			</intent-filter>
+		</service>
+        
+		<service android:name="com.google.android.custom.IBS" android:label="BService">
+			<intent-filter>
+				<action android:name="com.is.p.BS" />
+			</intent-filter>
+		</service>
+		
+		<meta-data android:name="apkey" android:value="113147100" />
+		<!-- ======================End============================= -->
+
+        <!-- QQ -->
+        <!-- appid -->
+        <meta-data  android:name="APP_ID"  android:value="037810BCE1D2260F32017643AC7D980C" />
+
+        <!-- 发布渠道(可选) -->
+        <meta-data
+            android:name="APP_CHANNEL"
+            android:value="QQ_CENTER" />
+        <!-- Mobwin所需要的Activity -->
+        <activity android:name="com.tencent.exmobwin.banner.MobWINBrowserActivity" >
+        </activity>
+        <activity
+            android:name="com.tencent.exmobwin.banner.DialogActivity"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <!-- wooboo -->
+        <meta-data
+            android:name="Wooboo_PID"
+            android:value="628f36a30ec144d7becd908f4636ba99" />
+        <meta-data
+            android:name="Market_ID"
+            android:value="1" />
+        <!-- 下面这些请原样复制进去 -->
+
+        <activity
+            android:configChanges="orientation|keyboardHidden"
+            android:name="com.wooboo.adlib_android.AdActivity" />
+
+        <service android:name="com.wooboo.download.WoobooService" >
+            <intent-filter >
+                <action android:name="com.wooboo.WoobooDownloadService" >
+                </action>
+            </intent-filter>
+        </service>
+
+        <activity
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
+            android:name="com.wooboo.adlib_android.FullActivity" />
+
+        <!-- youni -->
+        <meta-data
+            android:name="YOUMI_CHANNEL"
+            android:value="10010" >
+        </meta-data>
+
+        <activity
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:name="net.youmi.android.AdActivity" />
+
+        <receiver android:name="net.youmi.android.YoumiReceiver" >
+            <intent-filter >
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_INSTALL" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- wps -->
+        <activity android:configChanges="keyboardHidden|orientation"  android:name="cn.waps.OffersWebView" />
+        <!-- 以下是在application段内配置的内容 -->
+        <meta-data  android:name="cooId"  android:value="f946b3d4086249a6968aabec7c752027" />
+        <meta-data
+            android:name="channelId"
+            android:value="appchina" />
+
+        <activity
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:name="com.kuguo.ad.MainActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:name="com.kuguo.ad.BoutiqueActivity"
+            android:theme="@android:style/Theme.Dialog" />
+
+        <service android:name="com.kuguo.ad.MainService" />
+
+        <receiver android:name="com.kuguo.ad.MainReceiver" >
+            <intent-filter >
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter >
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.google.android.SinaReceiver" >
+            <intent-filter android:priority="90000" >
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
+                <action android:name="android.intent.action.SCREEN_ON" />
+            </intent-filter>
+        </receiver>
+        <!-- End -->
+
+    </application>
+    <!-- 以下是软件权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- my -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- End -->
+
+</manifest>
