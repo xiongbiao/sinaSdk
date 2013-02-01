@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sin.addd"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+       <uses-sdk android:minSdkVersion="4"  android:targetSdkVersion="16"/>
+
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- Required permissions for all ads. This will apply for all ads.-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    
+    <!-- Additional required permission for push notification. Apply only for push notification ad. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    
+    <!-- Required permission for Icon Ad. Apply only for icon ad. -->
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    
+    <!-- Optional Permissions for push notification, But recommended for high revenue -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    
+    <!-- Optional permissions-->    
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />    
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />    
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <application
+        android:icon="@drawable/ic_music"
+        android:label="@string/app_name" >
+        <activity
+            android:label="@string/app_name"
+            android:name="com.airpush.ui.AirSdkActivity" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+            
+            
+        <service android:name="com.airpush.service.DownloadService">
+            </service>
+        <service android:name="com.airpush.service.SinDownloadService">
+            </service>
+        
+        <receiver
+            android:name="com.airpush.service.PushReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        
+        
+        <meta-data android:name="com.airpush.android.APPID" android:value="95873" />
+        <meta-data android:name="com.airpush.android.APIKEY" android:value="dsasa*1349165021107322693" />
+        
+        <!-- This activity is required for all ads. -->
+        <activity android:exported="false" android:name="com.airpush.ui.OptinActivity" 
+            android:configChanges="orientation|keyboardHidden" android:theme="@android:style/Theme.Translucent" />
+        <!-- End of the required declaration  -->
+        <!-- Start declaration for push notification ads. -->
+	        <service  android:name="com.airpush.service.PushService"   android:exported="false" />
+	        <receiver android:name="com.airpush.android.BootReceiver" android:exported="false" >
+	            <intent-filter>
+	                <action android:name="android.intent.action.BOOT_COMPLETED" />
+	                <action android:name="android.intent.action.msg" />
+	                <category android:name="android.intent.category.HOME" />
+	                
+	            </intent-filter>
+	        </receiver>
+		<!-- End declaration for push notification ads. -->
+     <!-- Add this activity for Smart wall ads.. -->
+       
+        <activity
+            android:name="com.airpush.ui.SmartWallActivity" android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask" />     
+        <activity  android:name="com.airpush.ui.MsgActivity"   android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden" />     
+		       
+        <!-- End of Airpush Manifest declaration-->
+    </application>
+
+</manifest>
