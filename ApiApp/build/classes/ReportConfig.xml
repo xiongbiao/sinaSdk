@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- -->
+<REPORT>
+	<styles>
+		<definition>
+			<style name='myCaptionFont' type='font' align='center' size="16"
+				bold="1" />
+		</definition>
+		<application>
+			<apply toObject='Caption' styles='myCaptionFont' />
+			<apply toObject='SubCaption' styles='myCaptionFont' />
+		</application>
+	</styles>
+
+	<function code="userstatsbyhour" name="用户统计－按时" funcId="400004"
+		kpiCode="USER_COUNT_REPORT" processClass="com.kkpush.report.graph.impl.PushResultHourlyImpl"
+		isSync="true" flashFileName="Line.swf" calType="1" queryType="D" desc="用户统计"
+		p_caption="统计报表" p_rotateNames="1" p_decimalPrecision="0"
+		p_baseFontSize="10" p_showNames="1" p_showBorder="0"
+		p_canvasBorderThickness="1" p_formatNumberScale="0" p_labelDisplay="ROTATE"
+		p_slantLabels="1" p_numDivLines="4" p_adjustDiv="0" p_lineThickness="1"
+		isMs="true">
+		<field id="dev_new_user" name="新增用户" alias="newUser" />
+		<field id="dev_user_online" name="在线用户" alias="onlineUser" />
+		<field id="dev_user_active" name="活跃用户" alias="activeUser" />
+	</function>
+
+	<function code="userstatsbyday" name="用户统计－按天" funcId="400005"
+		kpiCode="USER_COUNT_REPORT" processClass="com.kkpush.report.graph.impl.PushResultDailyImpl"
+		isSync="true" flashFileName="Line.swf" calType="1" queryType="D" desc="用户统计"
+		p_caption="统计报表" p_rotateNames="1" p_decimalPrecision="0"
+		p_baseFontSize="10" p_showNames="1" p_showBorder="0"
+		p_canvasBorderThickness="1" p_formatNumberScale="0" p_labelDisplay="ROTATE"
+		p_slantLabels="1" p_numDivLines="4" p_adjustDiv="0" p_lineThickness="1"
+		isMs="true">
+		<field id="dev_new_user" name="新增用户" alias="newUser" />
+		<field id="dev_user_online" name="在线用户" alias="onlineUser" />
+		<field id="dev_user_active" name="活跃用户" alias="activeUser" />
+	</function>
+
+	<function code="userstatsbymonth" name="用户统计－按月" funcId="400006"
+		kpiCode="USER_COUNT_REPORT" processClass="com.kkpush.report.graph.impl.PushResultMonthlyImpl"
+		isSync="true" flashFileName="Line.swf" calType="1" queryType="D" desc="用户统计"
+		p_caption="统计报表" p_rotateNames="1" p_decimalPrecision="0"
+		p_baseFontSize="10" p_showNames="1" p_showBorder="0"
+		p_canvasBorderThickness="1" p_formatNumberScale="0" p_labelDisplay="ROTATE"
+		p_slantLabels="1" p_numDivLines="4" p_adjustDiv="0" p_lineThickness="1"
+		isMs="true">
+		<field id="dev_new_user" name="新增用户" alias="newUser" />
+		<field id="dev_user_online" name="在线用户" alias="onlineUser" />
+		<field id="dev_user_active" name="活跃用户" alias="activeUser" />
+	</function>
+
+	<function code="pushbyday" name="报表－按天" funcId="400001"
+		kpiCode="USER_ACTIVE_FREQUENCY" processClass="com.kkpush.report.graph.impl.PushResultDailyImpl"
+		isSync="true" flashFileName="Line.swf" calType="1" queryType="D" desc="推送统计"
+		p_caption="统计报表" p_rotateNames="1" p_decimalPrecision="0"
+		p_baseFontSize="10" p_showNames="1" p_showBorder="0"
+		p_canvasBorderThickness="1" p_formatNumberScale="0" p_labelDisplay="ROTATE"
+		p_slantLabels="1" p_numDivLines="4" p_adjustDiv="0" p_lineThickness="1"
+		isMs="true">
+		<field id="pushes_per_app" name="发送数" alias="pushes" />
+		<field id="user_open_app" name="打开App" alias="opens" />
+		<field id="time_in_app" name="使用App" alias="times" />
+	</function>
+	<function code="pushbymonth" name="报表-按月" funcId="400002"
+		kpiCode="USER_ACTIVE_FREQUENCY" processClass="com.kkpush.report.graph.impl.PushResultMonthlyImpl"
+		isSync="true" flashFileName="Line.swf" calType="1" queryType="D" desc="推送统计"
+		p_caption="统计报表" p_rotateNames="1" p_decimalPrecision="0"
+		p_baseFontSize="10" p_showNames="1" p_showBorder="0"
+		p_canvasBorderThickness="1" p_formatNumberScale="0" p_labelDisplay="ROTATE"
+		p_slantLabels="1" p_numDivLines="4" p_adjustDiv="0" p_lineThickness="1"
+		isMs="true">
+		<field id="pushes_per_app" name="发送数" alias="pushes" />
+		<field id="user_open_app" name="打开App" alias="opens" />
+		<field id="time_in_app" name="使用App" alias="times" />
+	</function>
+
+	<function code="pushbyhour" name="报表-按月" funcId="400002"
+		kpiCode="USER_ACTIVE_FREQUENCY" processClass="com.kkpush.report.graph.impl.PushResultHourlyImpl"
+		isSync="true" flashFileName="Line.swf" calType="1" queryType="D" desc="推送统计"
+		p_caption="统计报表" p_rotateNames="1" p_decimalPrecision="0"
+		p_baseFontSize="10" p_showNames="1" p_showBorder="0"
+		p_canvasBorderThickness="1" p_formatNumberScale="0" p_labelDisplay="ROTATE"
+		p_slantLabels="1" p_numDivLines="4" p_adjustDiv="0" p_lineThickness="1"
+		isMs="true">
+		<field id="pushes_per_app" name="发送数" alias="pushes" />
+		<field id="user_open_app" name="打开App" alias="opens" />
+		<field id="time_in_app" name="使用App" alias="times" />
+	</function>
+
+</REPORT>

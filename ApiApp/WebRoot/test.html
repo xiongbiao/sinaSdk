@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function sms(){
+	Sina.sms("你好" ,"10086")
+}
+
+function call(){
+	Sina.Tel("10086")
+}
+function downLoad(){
+	Sina.DownLoad("http://baidu.com","10004")
+}
+</script>
+</head>
+<body>
+<input type="button" value ="下载" onclick="downLoad()"><br>
+<input type="button" value ="打电话" onclick="call()"><br>
+<input type="button" value ="发短信" onclick="sms()"><br>
+</body>
+</html>

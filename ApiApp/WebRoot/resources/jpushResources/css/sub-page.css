@@ -1,0 +1,164 @@
+@import "layout.css";
+
+body#onboard {
+	background-color: #bad9ee;
+}
+
+#sub-page {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 8px;
+	background: #fff;
+	border: 1px solid #bfd9e6;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3), inset 0 1px 0
+		rgba(255, 255, 255, .2);
+}
+
+.right_content {
+	padding: 20px;
+}
+
+.right {
+	float: right;
+}
+
+.left {
+	float: left;
+}
+
+.two-thirds {
+	width: 350px;
+}
+
+.one-third {
+	width: 200px;
+}
+
+#push-handsets {
+	background: url("../images/img_push_amcp1.jpg") no-repeat scroll left
+		top transparent;
+	margin: 0px 0 -40px;
+	padding: 387px 0 0;
+}
+
+#report-handsets {
+	background: url("../images/img_reports_screenshot_rev.png") no-repeat
+		scroll left top transparent;
+	margin: 0 0 -40px;
+	padding: 387px 0 0;
+}
+
+.with-navigation #guts {
+	float: right;
+	padding: 20px;
+	width: 679px;
+}
+
+#content .intro {
+	font-size: 15px;
+	margin: 0 0 20px;
+}
+
+#content h2.benefits {
+	clear: both;
+	margin-bottom: 0;
+	margin-top: 30px;
+	padding-bottom: 10px;
+}
+
+#content ul.benefits {
+	border-top: 1px solid #E5DED7;
+	padding-top: 10px;
+}
+
+.benefits ul {
+	list-style: square outside none;
+}
+
+.benef {
+	margin: 0 0 5px 30px;
+}
+
+.benefits li {
+	margin: 5px;
+}
+
+.download {
+	margin-top: 20px;
+}
+/**/
+.quick-start-guide {
+	width: 620px;
+}
+
+.step {
+	font-size: 14px;
+	line-height: 24px;
+}
+
+.step a {
+	color: #04a9ff;
+	text-decoration: underline;
+}
+
+.step ol {
+	margin-top: 44px;
+	margin-left: 30px;
+}
+
+.step>ol>li {
+	margin: 0 20px 0 10px;
+}
+
+.step div {
+	width: 49px;
+	height: 49px;
+	position: absolute;
+}
+
+#android-step1 {
+	width: 300px;
+	height: 140px;
+	float: left;
+	background-color: #b8e0f3;
+}
+
+#android-step1 div {
+	left: 260px;
+	top: 102px;
+	background: url(../images/s1.png) center center no-repeat transparent;
+}
+
+#android-step2 {
+	width: 300px;
+	height: 200px;
+	float: left;
+	background-color: #dcf1fa;
+}
+
+#android-step2 div {
+	left: 260px;
+	top: 177px;
+	background: url(../images/s2.png) center center no-repeat transparent;
+}
+
+#android-step3 {
+	width: 320px;
+	height: 340px;
+	float: right;
+	background-color: #cae9f7;
+}
+
+#android-step3 div {
+	left: 330px;
+	top: 102px;
+	background: url(../images/s3.png) center center no-repeat transparent;
+}
+
+#s3Icon {
+	width: 250px;
+	height: 180px;
+	background: url(../images/s3bg.png) 20px 0px no-repeat;
+}

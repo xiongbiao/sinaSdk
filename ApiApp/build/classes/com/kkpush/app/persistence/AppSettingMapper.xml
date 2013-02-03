@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kkpush.app.persistence.AppSettingMapper">
+  <resultMap type="AppSetting" id="appSettingResult">
+  
+      <id property="id"  column="id" />
+	  <result property="appId" column="app_id"/> 
+	  <result property="key" column="key"/> 
+	  <result property="value" column="value"/> 
+	  <result property="description" column="description"/> 
+  </resultMap>
+  <cache />
+ 
+   
+   <!-- 查询所有应用设置 -->
+   <select id="findAppSetting" parameterType="map" resultMap="appSettingResult">
+         select * from t_app_setting
+          <where>  
+         <if test="appId!=null and appId!='' ">  
+            app_id=#{appId} 
+         </if>           
+    </where>  
+         
+   </select> 
+ 
+    <!-- 查询某个应用设置 -->
+   <select id="findAppSettingValue" parameterType="map" resultMap="appSettingResult">
+         select * from t_app_setting where app_id=#{appId}   and  `key`=#{key}  
+   </select> 
+ 
+ <!-- 插入应用设置 -->
+  <insert id="insertAppSetting" parameterType="AppSetting"  >
+  	INSERT INTO t_app_setting (
+  	                        app_id,
+							`key`,
+							`value`,
+							description
+							)
+    VALUES ( #{appId}, #{key},#{value},#{description})
+  </insert>
+   
+ <!-- 删除应用设置 -->
+   <delete id="deleteAppSetting"  parameterType="map"> 
+	delete from t_app_setting
+	<where>
+		 app_id=#{appId} 
+         <if test="key!=null and key!='' ">  
+            and `key`=#{key} 
+         </if>   
+	</where>
+  </delete>
+   
+</mapper>

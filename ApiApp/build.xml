@@ -1,0 +1,137 @@
+<project name="TSVDB" default="deploy" basedir=".">
+	<!-- definitions starts from here -->
+	<property name="package.name" value="jpush" />
+	<property name="javasrc.home" value="${basedir}/src/" />
+	<property name="class.home" value="${basedir}/build" />
+	<property name="websrc.home" value="${basedir}/WebRoot" />
+	<property name="build.home" value="build/" />
+	<property name="jar.home" value="${build.home}/jars" />
+	<property name="war.home" value="${build.home}/war" />
+	<property name="debug" value="true" />
+	<!-- definitions ends to here -->
+
+	<!-- javadoc directory -->
+	<property name="javadoc.home" value="${basedir}/doc" />
+
+	<!-- need not modify from here -->
+
+	<property name="lib.home" value="${websrc.home}/WEB-INF/lib" />
+	<property name="devlib.home" value="${basedir}/lib" />
+
+	<path id="classpath">
+		<fileset dir="${lib.home}">
+			<include name="*.jar" />
+		</fileset>
+
+		<fileset dir="${devlib.home}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<!-- build project, normally is the default target. -->
+	<target name="build" depends="compile, war" />
+
+	<!-- initial target -->
+	<target name="init">
+		<tstamp />
+		<delete dir="${build.home}"></delete>
+		<mkdir dir="${build.home}/" />
+		<mkdir dir="${jar.home}" />
+		<mkdir dir="${build.home}/classes" />
+		<mkdir dir="${war.home}" />
+		<filter token="date" value="${TODAY}" />
+		<filter token="log" value="true" />
+		<filter token="verbose" value="true" />
+	</target>
+
+	<!-- compile -->
+	<target name="compile" depends="init">
+		<echo>Compile java files.</echo>
+		<javac debug="on" source="1.6" destdir="${class.home}/classes">
+			<classpath refid="classpath" />
+			<src path="${javasrc.home}" />
+		</javac>
+		<echo>Copy xml files.</echo>
+		<copy todir="${build.home}/classes/com">
+			<fileset dir="${javasrc.home}/com" excludes="*.java" />
+		</copy>
+		<!--<copy todir="${build.home}/classes"> <fileset dir="${properties.home}" 
+			includes="**/*.properties" /> </copy> -->
+	</target>
+
+	<!-- make jar file -->
+	<target name="jar" depends="compile">
+		<echo>Create jar file [${package.name}.jar].</echo>
+		<jar jarfile="${jar.home}/${package.name}.jar">
+			<fileset dir="${build.home}/classes/" />
+		</jar>
+	</target>
+
+	<!-- make war file -->
+	<target name="war" depends="jar">
+		<echo>Create war file [${package.name}.war].</echo>
+		<war destfile="${war.home}/${package.name}.war" webxml="${websrc.home}/WEB-INF/web.xml">
+			<fileset dir="${websrc.home}">
+				<exclude name="WEB-INF/web.xml" />
+			</fileset>
+			<lib dir="${build.home}/jars" />
+		</war>
+	</target>
+
+	<!-- doploy war file to JBoss webapp directory -->
+	<target name="deploy" depends="war, jar">
+
+
+	</target>
+
+	<!-- copy batch lib -->
+	<target name="batch">
+
+		<echo>Deploy ${jar.home}/${package.name}.jar to batch lib dir
+			[${batch.lib.home}].</echo>
+		<copy file="${jar.home}/${package.name}.jar" todir="${batch.lib.home}" />
+
+		<copy todir="${batch.lib.home}">
+			<fileset dir="${websrc.home}/WEB-INF/lib" includes="*.jar">
+			</fileset>
+		</copy>
+
+	</target>
+
+
+	<!-- clean -->
+	<target name="clean" description="Clean the build files">
+		<echo>Clean build dir [${build.home}].</echo>
+		<delete dir="${build.home}" />
+		<delete dir="${jar.home}" />
+		<delete dir="${war.home}" />
+	</target>
+
+	<!-- clean deploy directory files -->
+	<target name="deploy-clean" depends="clean" description="Clean deployment source">
+		<delete dir="${jboss.home}/server/default/tmp" />
+		<delete dir="${jboss.home}/server/default/work" />
+	</target>
+
+	<!-- generate javadoc -->
+	<target name="javadoc">
+		<javadoc destdir="${javadoc.home}" access="private" source="1.4"
+			use="true" notree="false" nonavbar="false" noindex="false"
+			splitindex="true" author="true" version="true" nodeprecatedlist="false"
+			nodeprecated="false">
+			<packageset dir="${javasrc.home}">
+				<include name="com/gs/**" />
+			</packageset>
+			<classpath refid="classpath" />
+			<sourcepath path="${javasrc.home}" />
+		</javadoc>
+	</target>
+
+	<!-- clean javadoc -->
+	<target name="javadoc-clean">
+		<echo>Clean javadoc dir [${javadoc.home}].</echo>
+		<delete dir="${javadoc.home}" />
+	</target>
+</project>
+
+

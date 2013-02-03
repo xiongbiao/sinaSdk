@@ -1,0 +1,501 @@
+#navigation,#greeting {
+	display: none;
+}
+
+h1 {
+	color: #193d58;
+	margin: 0 auto;
+	width: 960px;
+}
+
+h1 span {
+	color: #0e3a4e;
+	display: block;
+	font-size: 40px;
+	line-height: 42px;
+	margin: 0 0 20px;
+	text-shadow: rgba(255, 255, 255, 0.45) 0 1px 0;
+}
+
+h2 {
+	color: #193D58;
+	font: 18px/22px 'museo-sans', 'HelveticaNeue', Helvetica, Arial,
+		sans-serif;
+	font-weight: 700;
+	margin: 0 0 13px;
+	padding: 0;
+	text-shadow: rgba(255, 255, 255, .7) 0 1px 0;
+}
+
+h3 {
+	color: #193d58;
+	font: 14px/20px 'museo-sans', 'HelveticaNeue', Helvetica, Arial,
+		sans-serif;
+	font-weight: 700;
+	margin: 0;
+}
+
+a {
+	color: #0065a2;
+}
+
+/********************************************************************** layout */
+#onboard .header .container {
+	width: 960px;
+}
+
+#onboard #content {
+	min-height: 0;
+	margin-bottom: 15px;
+}
+
+#onboard #flash_message.notification {
+	display: none;
+}
+
+#onboard .footer p {
+	border: none;
+	margin: 0 auto;
+	width: 950px;
+	color: #000000;
+	font-size: 12px;
+}
+
+#content {
+	width: 958px;
+	min-height: 300px;
+	margin: 0 auto 20px;
+	padding: 0 0 10px;
+}
+
+#onboard #content .announcement {
+	background-color: rgba(255, 255, 255, .8);
+	display: none;
+	margin: 20px 20px 0;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+}
+
+ul li {
+	background: transparent url(../images/bullet.png) no-repeat 0 4px;
+	margin: 0 0 15px;
+	padding: 0 0 0 20px;
+}
+
+ul li.nobull {
+	background: none;
+}
+
+.col_1,.col_2 {
+	float: left;
+	position: relative;
+}
+
+.col_2,.general,.pwreset .col_1 {
+	font-size: 14px;
+	line-height: 20px;
+	padding: 15px 15px 0;
+	width: 238px;
+	background: #c1d5e3;
+	background-color: rgba(255, 255, 255, 0.3);
+	border-radius: 5px;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	box-shadow: inset 0 40px 10px -30px rgba(255, 255, 255, 0.2), 0 1px 5px
+		rgba(0, 0, 0, 0.08);
+}
+
+.moarpro {
+	background: transparent url(../images/moarpro_btn.png) no-repeat;
+	bottom: 10px;
+	display: block;
+	height: 45px;
+	position: absolute;
+	right: -10px;
+	width: 250px;
+}
+
+.moarpro a {
+	display: block;
+	height: 45px;
+	width: 250px;
+}
+
+.moarpro a span {
+	display: none;
+}
+
+/********************************************************************** steps */
+.steps {
+	background: #c3d9e5;
+	border: 1px solid #86a9bf;
+	border-radius: 8px;
+	box-shadow: inset 0px 2px 1px rgba(0, 0, 0, .1), 0 1px 0
+		rgba(255, 255, 255, .25);
+	color: #4c6e80;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: bold;
+	line-height: 15px;
+	margin: 20px 19px 0;
+}
+
+.steps .step {
+	display: inline-block;
+	margin: 0;
+	padding: 10px 20px;
+	vertical-align: middle;
+	width: auto;
+}
+
+.steps .step em {
+	font-style: normal;
+}
+
+.steps .step.active {
+	background: #e9f6fb;
+	border: 1px solid #6b94b2;
+	border-radius: 8px;
+	box-shadow: -1px 0 0 rgba(0, 0, 0, .1), 1px 0 0 rgba(0, 0, 0, .1), -2px
+		0 0 rgba(0, 0, 0, .05), 2px 0 0 rgba(0, 0, 0, .05), inset 0 1px 0
+		rgba(255, 255, 255, .5);
+	color: #4a5459;
+	margin: -1px 0;
+	text-shadow: 0 1px #fff;
+}
+
+.steps .step.active em {
+	color: #2a5877;
+}
+
+.steps .step.active:first-child {
+	box-shadow: -1px 0 0 rgba(0, 0, 0, 0), 1px 0 0 rgba(0, 0, 0, .1), -2px 0
+		0 rgba(0, 0, 0, .0), 2px 0 0 rgba(0, 0, 0, .05), inset 0 1px 0
+		rgba(255, 255, 255, .5);
+}
+
+.steps .step.active:last-child {
+	box-shadow: -1px 0 0 rgba(0, 0, 0, .1), 1px 0 0 rgba(0, 0, 0, 0), -2px 0
+		0 rgba(0, 0, 0, .05), 2px 0 0 rgba(0, 0, 0, 0), inset 0 1px 0
+		rgba(255, 255, 255, .5);
+}
+
+/********************************************************************** forms */
+form {
+	margin: 0;
+}
+
+fieldset {
+	margin: 0 0 20px;
+	padding: 0;
+}
+
+fieldset div {
+	color: #333;
+	display: inline-block;
+	font: inherit;
+	line-height: inherit;
+	padding: 0 0 20px;
+	position: relative;
+	vertical-align: top;
+	height: 65px;
+	width: 420px;
+}
+
+label {
+	display: block;
+	font-weight: bold;
+	line-height: 20px;
+	margin: 0 0 2px;
+}
+
+label span {
+	font-style: italic;
+}
+
+input[type="text"],input[type="password"] {
+	background: rgba(255, 255, 255, .1);
+}
+
+.ccards {
+	background: transparent url(../images/ccards_sprite_small.png) no-repeat;
+	height: 30px;
+	padding: 0;
+	position: absolute;
+	right: -190px;
+	top: 25px;
+	width: 180px;
+}
+
+fieldset.filled label {
+	color: #8597a6;
+	text-shadow: 0 1px rgba(255, 255, 255, .5);
+}
+
+fieldset.filled div {
+	padding-bottom: 10px;
+}
+
+fieldset div#bt_info {
+	display: inline;
+	padding: 0;
+}
+
+input[type="submit"] {
+	background: #781135;
+	background: -webkit-gradient(linear, left top, left bottom, from(#CB4982),
+		to(#A92850) );
+	background: -moz-linear-gradient(top, #CB4982, #A92850);
+	border: 1px solid #A92850;
+	border-radius: 5px;
+	box-shadow: inset -1px 0 0 0 rgba(241, 151, 191, 0.48), inset 1px 0 0 0
+		rgba(241, 151, 191, 0.48), inset 0 1px 0 0 rgba(241, 151, 191, 0.48),
+		inset 0 0 0 1px rgba(241, 151, 191, 0.48), 0 1px 4px
+		rgba(241, 151, 191, 0.48);
+	color: #fff;
+	font: 15px/20px 'museo', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+	padding: 3px 20px 4px;
+	text-shadow: 0 -1px #000;
+	width: auto;
+}
+
+input[type="submit"]:hover {
+	background-color: #87231a;
+	background: -webkit-gradient(linear, left top, left bottom, from(#A72F5E),
+		to(#911E46) );
+	background: -moz-linear-gradient(top, #A72F5E, #911E46);
+	box-shadow: inset -1px 0 0 0 rgba(203, 34, 115, 0.73), inset 1px 0 0 0
+		rgba(203, 34, 115, 0.73), inset 0 1px 0 0 rgba(203, 34, 115, 0.73),
+		inset 0 0 0 1px rgba(166, 57, 54, .5), 0 1px 4px rgba(34, 83, 114, .6);
+	cursor: pointer;
+}
+
+input[type="submit"]:active {
+	background-color: #781135;
+	background: -webkit-gradient(linear, left top, left bottom, from(#911E46),
+		to(#A72F5E) );
+	background: -moz-linear-gradient(top, #911E46, #A72F5E);
+	box-shadow: inset -1px 0 0 0 rgba(203, 60, 34, .4), /*right*/ 
+         inset 1px 0 0 0 rgba(203, 60, 34, .4), /*left*/ 
+         inset 0 1px 0 0 rgba(203, 60, 34, .1), /*top*/ 
+         inset 0 0 0 1px rgba(166, 57, 54, .9), /*bottom*/ 
+         0 1px 4px rgba(34, 83, 114, .6);
+}
+
+input[type="submit"].waiting {
+	background-image: url(../images/waiting_bg.gif);
+	height: 29px;
+	margin-top: -6px;
+	width: 100px;
+	vertical-align: inherit;
+}
+
+ul.errorlist li {
+	background: none;
+}
+
+fieldset div ul.errorlist,#onboard #flash_error {
+	background: #fff9e0;
+	border: 2px solid #ffd11a;
+	border-radius: 0 0 5px 5px;
+	color: #332900;
+	margin: -1px 10px 0;
+	padding: 5px 0;
+}
+
+#onboard #flash_error {
+	border-radius: 5px;
+	margin: 0 0 20px;
+	padding: 5px 10px;
+}
+
+fieldset div ul.errorlist li {
+	background: none;
+	display: block;
+	font-weight: bold;
+	margin: 0;
+	padding: 0 10px;
+	position: relative;
+}
+
+fieldset div ul.errorlist  ~ input,fieldset div ul.errorlist  ~ input[type="text"],fieldset div ul.errorlist 
+	~ input[type="password"] {
+	background: #fff;
+	border: 1px solid #ffd11a;
+}
+
+#alert,fieldset div.error {
+	border-radius: 5px;
+	display: none;
+	margin: 20px;
+	padding: 5px 10px;
+}
+
+fieldset div.error {
+	display: block;
+	font-size: 11px;
+	font-weight: bold;
+	margin: 10px;
+}
+
+#alert.error,fieldset div.error {
+	background: #FFF9E0;
+	border: 2px solid #FFD11A;
+	color: #332900;
+}
+
+/********************************************************************** UA link buttons */
+.uabtn,.uabtn span,.uabtn_alt,.uabtn_alt span {
+	height: 36px;
+	display: inline-block;
+	background-repeat: no-repeat;
+	font-size: 15px;
+	line-height: 36px;
+	min-width: 80px;
+	color: #FFF;
+	text-align: center;
+	text-decoration: none;
+	width: auto;
+}
+
+.uabtn,.uabtn_alt {
+	padding: 0 20px 0 0;
+	background-image: url(../../media/images/bg_button_right.png);
+	background-position: 100% 0;
+	text-shadow: rgba(0, 0, 0, 0.5) 0 -1px 0;
+}
+
+.uabtn span,.uabtn_alt span {
+	padding: 0 0 0 20px;
+	background-image: url(../../media/images/bg_button.png);
+}
+
+.uabtn:hover {
+	background-position: 100% -36px;
+}
+
+.uabtn:hover span {
+	background-position: 0 -36px;
+}
+
+.uabtn:active {
+	background-position: 100% -72px;
+	text-shadow: rgba(0, 0, 0, 0.5) 0 1px 0;
+}
+
+.uabtn:active span {
+	background-position: 0 -72px;
+}
+
+.uabtn_alt {
+	background-position: 100% -110px;
+}
+
+.uabtn_alt span {
+	background-position: 0 -110px;
+	color: #333;
+	font-weight: bold;
+	text-shadow: 0 1px rgba(255, 255, 255, .6);
+}
+
+.uabtn_alt:hover {
+	background-position: 100% -146px;
+}
+
+.uabtn_alt:hover span {
+	background-position: 0 -146px;
+}
+
+.uabtn_alt:active {
+	background-position: 100% -182px;
+}
+
+.uabtn_alt:active span {
+	background-position: 0 -182px;
+	color: #1a1a1a;
+	text-shadow: 0 1px rgba(255, 255, 255, .4);
+}
+
+/********************************************************************** log in */
+.login .col_1,.signup .col_1 {
+	margin-right: 40px;
+	width: 630px;
+}
+
+.login .col_1 fieldset,.pwreset fieldset {
+	padding: 0;
+}
+
+.login .col_1 input[type="text"],.login .col_1 input[type="password"] {
+	width: 398px;
+	line-height: 30px\9;
+}
+
+/********************************************************************** sign up */
+.signup .col_1 h2 {
+	background: url(../images/bg_h1.png) repeat-x 0 100%;
+	margin: 0;
+	padding: 10px 10px 8px;
+}
+
+.signup .col_1 fieldset {
+	background-color: #f8f5f0;
+	background: rgba(248, 245, 240, .95);
+	border: 1px solid #FFFFFF;
+	border-radius: 0 0 8px 8px;
+	box-shadow: 0 5px 10px rgba(37, 126, 166, 0.3), inset 0 60px 10px -30px
+		rgba(255, 255, 255, 0.5);
+	padding: 20px 10px 0;
+}
+
+.signup .col_1 fieldset div {
+	
+}
+
+.signup .col_1 fieldset.submit {
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+/********************************************************************** password reset */
+.pwreset {
+	width: auto;
+}
+
+.pwreset .col_1 {
+	width: auto;
+}
+
+/********************************************************************** general */
+.general {
+	padding: 20px 20px 0;
+	width: auto;
+}
+
+.general ul {
+	padding-bottom: 10px;
+}
+
+/********************************************************************** clear floats */
+/*IE6 float fix*/
+* html #content,* html #onboard .footer .container {
+	height: 1%;
+}
+/* IE7 float clear */
+*:first-child+html #content,*:first-child+html #onboard .footer .container
+	{
+	min-height: 1px;
+}
+/* Browsers that support :after */
+#content:after,#onboard .footer .container:after {
+	clear: both;
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+}

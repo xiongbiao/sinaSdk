@@ -1,0 +1,847 @@
+.right_content {
+	width: 705px;
+}
+
+.right_content.history {
+	width: 930px;
+}
+
+.right_content label {
+	font-weight: normal;
+	padding-right: 10px;
+}
+/* Composer Globals */
+.revealed-field {
+	display: none;
+}
+
+span.alert {
+	color: #F00;
+}
+
+span.warning {
+	color: #F99;
+}
+
+div.actions {
+	text-align: right;
+	clear: both;
+	padding: 10px;
+}
+
+div.advanced {
+	display: none;
+	clear: both;
+}
+
+ul li.disabled label {
+	color: #ccc;
+}
+
+/* Step 1. Compose Message */
+/* Alert box */
+#id_alert {
+	font-size: 16px;
+	width: 640px;
+	height: 65px;
+}
+
+#step-1 div.bare-box ul li:last-child {
+	padding-top: 0;
+}
+
+/* Preview scrolling area */
+#preview-scroller-prev {
+	position: absolute;
+	left: 0;
+	display: block;
+	top: 1px;
+	bottom: 0;
+	width: 60px;
+	background: #EFEFEF url(../images/preview-prev.png) no-repeat 50% 50%;
+	background: rgba(239, 239, 239, 0.8) url(../images/preview-prev.png)
+		no-repeat 50% 50%;
+	overflow: hidden;
+	text-indent: -999px;
+	z-index: 99;
+}
+
+#preview-scroller-prev:hover {
+	background: #E3E3E3 url(../images/preview-prev.png) no-repeat 50% 50%;
+	background: rgba(227, 227, 227, 0.8) url(../images/preview-prev.png)
+		no-repeat 50% 50%;
+}
+
+#preview-scroller-next {
+	position: absolute;
+	right: 0;
+	display: block;
+	top: 1px;
+	bottom: 0;
+	width: 60px;
+	background: #EFEFEF url(../images/preview-next.png) no-repeat 50% 50%;
+	background: rgba(239, 239, 239, 0.8) url(../images/preview-next.png)
+		no-repeat 50% 50%;
+	overflow: hidden;
+	text-indent: -999px;
+	z-index: 99;
+}
+
+#preview-scroller-next:hover {
+	background: #E3E3E3 url(../images/preview-next.png) no-repeat 50% 50%;
+	background: rgba(227, 227, 227, 0.8) url(../images/preview-next.png)
+		no-repeat 50% 50%;
+}
+
+#preview-position {
+	position: absolute;
+	bottom: 0;
+	right: 70px;
+	height: 30px;
+	color: #CCC;
+	line-height: 30px;
+	font-size: 40px;
+	z-index: 100;
+}
+
+#preview-position span.active {
+	color: #666;
+}
+
+/* Individual Previews */
+#previews {
+	text-align: center;
+	color: #FFF;
+	overflow: hidden;
+	white-space: nowrap;
+	vertical-align: top;
+	background: #EFEFEF url(../images/preview-scroller-bg.png) no-repeat 50%
+		50%;
+	position: relative;
+}
+
+#previews h3,#previews p {
+	font-family: 'HelveticaNeue', Helvetica, Arial, sans-serif;
+}
+
+#preview-scroller {
+	overflow: hidden;
+	white-space: nowrap;
+	vertical-align: top;
+	border-top: 1px solid #CCC;
+	height: 322px;
+}
+
+#previews div.preview {
+	display: inline-block;
+	width: 700px;
+	vertical-align: middle;
+}
+
+#preview-ios,#preview-ios-blank,#preview-ios5-lock,#preview-ios5-ns,#preview-ios5-rolldown
+	{
+	color: #fff;
+	height: 322px;
+	margin: 0;
+	text-align: center;
+	width: 320px;
+	word-wrap: break-word;
+	-webkit-text-stroke: 1px transparent;
+}
+
+#preview-ios-blank pre,#preview-ios pre {
+	margin: 0 auto;
+	line-height: 24px;
+	text-shadow: #000 0 -1px 1px;
+	font-size: 16px;
+	width: 258px;
+	font-family: inherit;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+}
+
+#preview-ios h3,#preview-ios-blank h3 {
+	color: #000000;
+	font-family: "droid-sans", Arial;
+	font-size: 16px;
+	font-weight: bold;
+	height: 22px;
+	left: 239px;
+	line-height: 24px;
+	overflow: hidden;
+	position: absolute;
+	text-align: left;
+	text-overflow: ellipsis;
+	top: 194px;
+	width: 250px;
+	word-wrap: break-word;
+}
+
+#preview-ios span {
+	color: #FFFFFF;
+	display: inline-block;
+	font-size: 11px;
+	height: 16px;
+	left: 242px;
+	overflow: hidden;
+	position: absolute;
+	text-align: left;
+	top: 102px;
+	white-space: normal;
+	width: 248px;
+}
+
+#preview-ios p {
+	color: #fff;
+	font-family: "droid-sans", Arial;
+	height: 20px;
+	left: 259px;
+	overflow: hidden;
+	position: absolute;
+	text-align: left;
+	text-overflow: ellipsis;
+	top: 144px;
+	white-space: nowrap;
+	width: 270px;
+	word-wrap: break-word;
+}
+/* iOS 4 */
+#preview-ios {
+	background: transparent url(../images/iphone-preview.png) no-repeat 50%
+		bottom;
+	height: 322px;
+	font-family: "droid-sans", Arial;
+	margin: 0;
+	display: inline-block;
+	position: relative;
+}
+
+#preview-ios pre {
+	background: transparent url(../images/preview-alert-bottom.png)
+		no-repeat 50% bottom;
+	padding: 10px 24px 80px 24px;
+	text-overflow: ellipsis;
+}
+/* iOS 4 blank */
+#preview-ios-blank {
+	background: transparent url(../images/iphone-preview-blank.png)
+		no-repeat 50% 50%;
+}
+
+#preview-ios-blank h3 {
+	background: transparent url(../images/preview-alert-top.png) no-repeat
+		50% top;
+	margin: 40px auto 0;
+}
+
+#preview-ios-blank pre {
+	background: transparent url(../images/preview-alert-bottom-blank.png)
+		no-repeat 50% bottom;
+	padding: 10px 24px 30px 24px;
+}
+/* iOS 5 lock screen */
+#preview-ios5-lock {
+	background: transparent url(../images/iphone-preview-blank.png)
+		no-repeat 50% -200px;
+}
+
+#preview-ios5-lock .message {
+	margin: 100px auto 0;
+	padding: 0;
+	position: relative;
+	width: 320px;
+}
+
+#preview-ios5-lock span.app-icon {
+	background: transparent url(../images/preview-alert-icon-29x29.png)
+		no-repeat;
+	display: block;
+	height: 29px;
+	margin: 0 6px 0px 22px;
+	position: absolute;
+	bottom: 45%;
+	width: 29px;
+	vertical-align: middle;
+}
+
+#preview-ios5-lock h3 {
+	background: transparent url(../images/preview-alert-ios5-lock-top.png)
+		no-repeat left top;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	height: 24px;
+	line-height: 20px;
+	margin: 0;
+	overflow: hidden;
+	padding: 13px 33px 0 57px;
+	text-align: left;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	text-shadow: #000 0 -1px 1px;
+	white-space: nowrap;
+	width: 230px;
+}
+
+#preview-ios5-lock pre {
+	background: transparent
+		url(../images/preview-alert-ios5-lock-bottom.png) no-repeat left
+		bottom;
+	font-size: 16px;
+	line-height: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	margin: 0;
+	padding: 0 23px 22px 57px;
+	text-align: left;
+	text-shadow: #000 0 -1px 1px;
+	width: 240px;
+	font-family: inherit;
+}
+/* iOS 5 notification center */
+#preview-ios5-ns {
+	background: transparent url(../images/iphone-preview-ns.png) no-repeat
+		50% -101px;
+}
+
+#preview-ios5-ns .message {
+	margin: 120px auto 0;
+	position: relative;
+	width: 320px;
+}
+
+#preview-ios5-ns span.app-icon {
+	background: transparent url(../images/preview-alert-icon-20x20.png)
+		no-repeat;
+	display: block;
+	height: 20px;
+	left: 5px;
+	position: absolute;
+	top: -2px;
+	width: 20px;
+}
+
+#preview-ios5-ns h3 {
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	height: 18px;
+	line-height: 16px;
+	margin: 0 28px 9px 32px;
+	overflow: hidden;
+	text-align: left;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	text-shadow: #000 0 1px 1px;
+	white-space: nowrap;
+	width: 260px;
+}
+
+#preview-ios5-ns .alert {
+	background: transparent url(../images/preview-ns-hr.png) repeat-x bottom;
+	padding: 3px 0 5px;
+	position: relative;
+}
+
+#preview-ios5-ns .alert span.unread-icon {
+	background: transparent url(../images/preview-ns-unread-icon.png)
+		no-repeat;
+	bottom: 50%;
+	display: block;
+	height: 10px;
+	left: 10px;
+	position: absolute;
+	width: 10px;
+}
+
+#preview-ios5-ns .alert span.time {
+	display: block;
+	font-size: 12px;
+	font-weight: bold;
+	position: absolute;
+	right: 10px;
+	text-align: right;
+	text-shadow: #000 0 1px 1px;
+	top: 4px;
+}
+
+#preview-ios5-ns .alert h4 {
+	border: none;
+	color: #fff;
+	font-size: 14px;
+	height: 16px;
+	line-height: 16px;
+	margin: 0 58px 0 32px;
+	overflow: hidden;
+	padding: 0;
+	text-align: left;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	text-shadow: #000 0 1px 1px;
+	white-space: nowrap;
+	width: 230px;
+}
+
+#preview-ios5-ns .alert p,#preview-ios5-ns .alert pre {
+	line-height: 16px;
+	margin: 0 0 0 32px;
+	padding: 2px 10px 2px 0;
+	text-align: left;
+	text-shadow: #000 0 1px 1px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	font-family: inherit;
+	width: 278px;
+}
+/* iOS 5 rolldown */
+#preview-ios5-rolldown {
+	background: transparent url(../images/iphone-preview-rolldown.png)
+		no-repeat 50% 0;
+}
+
+#preview-ios5-rolldown .message {
+	color: #333;
+	margin: 115px auto 0;
+	padding: 0;
+	position: relative;
+	width: 320px;
+}
+
+#preview-ios5-rolldown span.app-icon {
+	background: transparent url(../images/preview-alert-icon-20x20.png)
+		no-repeat;
+	display: block;
+	height: 20px;
+	margin: 9px 0 0 6px;
+	position: absolute;
+	top: 0;
+	width: 20px;
+}
+
+#preview-ios5-rolldown h3 {
+	color: #333;
+	font-size: 14px;
+	font-weight: bold;
+	height: 16px;
+	line-height: 14px;
+	margin: 0;
+	overflow: hidden;
+	padding: 4px 4px 0 36px;
+	text-align: left;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	text-shadow: #fff 0 1px 1px;
+	white-space: nowrap;
+	width: 280px;
+}
+
+#preview-ios5-rolldown p {
+	color: #333;
+	font-size: 13px;
+	height: 15px;
+	line-height: 14px;
+	margin: 0;
+	overflow: hidden;
+	padding: 0 0 0 36px;
+	text-align: left;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	text-shadow: #fff 0 1px 1px;
+	width: 279px;
+}
+/* android */
+#preview-android {
+	background: transparent url(../images/android-preview-chrome.png)
+		no-repeat 50% bottom;
+	height: 322px;
+	font-family: "droid-sans", Arial;
+	margin: 0;
+	display: inline-block;
+	position: relative;
+}
+
+#preview-android span {
+	color: #FFF;
+	position: absolute;
+	top: 102px;
+	left: 242px;
+	font-size: 11px;
+	overflow: hidden;
+	height: 16px;
+	width: 248px;
+	text-align: left;
+	white-space: normal;
+	display: inline-block;
+}
+
+#preview-android h3 {
+	position: absolute;
+	top: 194px;
+	left: 239px;
+	color: #000;
+	font-family: "droid-sans", Arial;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 24px;
+	width: 250px;
+	text-overflow: ellipses;
+	overflow: hidden;
+	word-wrap: break-word;
+	height: 22px;
+	text-align: left;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+}
+
+#preview-android p {
+	position: absolute;
+	top: 216px;
+	left: 216px;
+	color: #000;
+	font-family: "droid-sans", Arial;
+	width: 270px;
+	overflow: hidden;
+	white-space: nowrap;
+	word-wrap: break-word;
+	height: 20px;
+	text-align: left;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+}
+
+#android-task {
+	position: absolute;
+	font-size: 11px;
+	left: -9999px;
+	width: 260px;
+}
+
+/* Step 2. Choose Recipients */
+/* Tag search area */
+#tag-search-container {
+	position: relative;
+}
+
+#tag-list {
+	position: absolute;
+	top: 25px;
+	left: 5px;
+	background: #FFF;
+	display: none;
+	padding: 0;
+	width: 657px;
+	border: 1px solid #CCC;
+	margin: 0;
+	padding: 0;
+	z-index: 999;
+}
+
+#tag-list li {
+	text-align: left;
+	padding: 5px;
+	margin: 0;
+}
+
+#tag-list li.active {
+	color: #FFF;
+	background: #346883;
+}
+
+#tag-search-box {
+	position: relative;
+	padding: 0 10px 5px;
+	min-height: 35px;
+}
+
+#tag_search {
+	position: absolute;
+	background: transparent;
+	z-index: 2;
+	width: 628px;
+}
+
+#tag_search_shadow {
+	position: absolute;
+	background: #FFF;
+	z-index: 1;
+	color: silver;
+	width: 628px;
+}
+
+#tag-search-box #loader {
+	position: absolute;
+	top: 6px;
+	right: 12px;
+	z-index: 3;
+	display: none;
+}
+
+#selected-tags {
+	min-height: 0;
+	padding-top: 19px;
+}
+
+#selected-tags a.selected-tag {
+	-webkit-transition: padding 0.1s linear;
+	-moz-transition: padding 0.1s linear;
+	font-size: 11px;
+	color: #403F3F;
+	border: 1px solid #CCC;
+	background: #EFEFEF;
+	border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	padding: 2px 10px;
+	line-height: 16px;
+	margin: 5px 10px 0 0;
+	display: inline-block;
+	text-decoration: none;
+}
+
+#selected-tags a.selected-tag:hover {
+	background-image: url(../images/button.cancel.upload.png);
+	background-repeat: no-repeat;
+	background-position: 3px 3px;
+	padding-left: 18px;
+	cursor: pointer;
+}
+
+#token-container input {
+	width: 628px;
+}
+
+#broadcast-notice {
+	font-style: italic;
+	color: #666;
+}
+
+#recipient-choices label,#device-specific label {
+	display: inline-block;
+	margin: 0;
+	padding-right: 15px;
+}
+
+#device-specific li:first-child {
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-top-left-radius: 5px;
+	border-radius-topright: 5px;
+	-moz-border-radius-topright: 5px;
+	border-radius-topleft: 5px;
+	-moz-border-radius-topleft: 5px;
+	border-top: 0;
+}
+
+#device-specific li.leader {
+	padding: 3px 10px 0;
+}
+
+#device-specific li.leader label {
+	line-height: 15px;
+}
+
+#device-specific li.leader label .icon {
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+}
+
+/* Step 3. Pick Delivery Time */
+#delivery_timezone {
+	margin: 3px 0;
+}
+
+#later-selector {
+	display: inline-block;
+}
+
+#later-delivery {
+	margin-top: 5px;
+	margin-bottom: 0;
+}
+
+#later-delivery input,#later-delivery select {
+	vertical-align: top;
+}
+
+#later-delivery input#id_delivery_date {
+	width: 147px;
+}
+
+#later-delivery input#id_delivery_time {
+	width: 58px;
+}
+
+#later-delivery select#id_delivery_am_pm {
+	background-position: 88% 50%;
+	width: 60px;
+}
+
+#later-delivery select#id_delivery_timezone {
+	width: 330px;
+}
+
+#delivery-date-container label {
+	display: inline-block;
+	margin: 0;
+	width: 100px;
+}
+
+#delivery-date-container {
+	position: relative;
+}
+
+#delivery-date-container .date-picker {
+	position: absolute;
+	top: 58px;
+	left: 5px;
+	display: none;
+	z-index: 5;
+}
+
+/* Step 4. Optional settings */
+#optional-settings {
+	clear: both;
+	position: relative;
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 10px;
+}
+
+#optional-settings div.bare-box {
+	margin-bottom: 0;
+	display: none;
+}
+
+#optional-settings div.bare-box ul li {
+	clear: left;
+	border-top: 1px solid #CCC;
+}
+
+#optional-settings div.bare-box ul li label {
+	display: inline-block;
+	padding: 0 5px 0 0;
+}
+
+#optional-settings div.bare-box ul li.disabled {
+	color: #CCC;
+}
+
+#optional-settings div.bare-box ul li.disabled input[type=text] {
+	color: #CCC;
+}
+
+#optional-settings div.bare-box ul li.disabled span.icon {
+	opacity: 0.6;
+}
+
+#optional-settings div.bare-box ul li.disabled a.button {
+	display: none;
+}
+
+#optional-settings div.bare-box ul li:first-child {
+	border-top: none;
+}
+
+#optional-settings h4 {
+	background: transparent url(../images/toggle-arrow.png) no-repeat 15px
+		11px;
+	padding-left: 38px;
+	cursor: pointer;
+	line-height: 22px;
+}
+
+#optional-settings h4.open {
+	background: transparent url(../images/toggle-arrow.png) no-repeat 15px
+		-31px;
+}
+
+#optional-settings span.icon {
+	display: block;
+	float: left;
+	clear: left;
+	margin: 9px 9px 0 9px;
+}
+
+/* specific layout stuff */
+#broadcast-notice,#token-container,#tag-search-box,#segments-select {
+	padding: 0 10px 5px;
+}
+
+#recipient-choices,#delivery-date-container,ul.form li.options.custom_fields
+	{
+	padding: 5px 10px;
+}
+
+#id_sound {
+	width: 378px;
+	margin-right: 10px;
+}
+
+#id_badge {
+	width: 28px;
+}
+
+#id_extra {
+	width: 568px;
+}
+
+#id_content_type {
+	width: 508px;
+}
+
+#device-specific ul.form li.options label {
+	padding-right: 5px;
+}
+
+ul.form li.options .button {
+	margin-top: 4px;
+}
+
+#segments-select select { /*width: 153px;*/
+	margin-right: 10px;
+}
+
+ul.form li.options.custom_fields input.custom_key,ul.form li.options.custom_fields input.custom_value
+	{
+	width: 153px;
+	margin-right: 10px;
+}
+
+/* Table listings for history and scheduled notifications */
+table.list {
+	border: 1px solid #b3b3b3;
+	font-size: 90%;
+	background-color: #fff;
+	color: #565555;
+	width: 100%;
+}
+
+table.list td {
+	word-break: break-all;
+	padding: 10px;
+	margin: 0;
+	border-right: 1px solid #b3b3b3;
+	border-bottom: 1px solid #b3b3b3;
+}
+
+table.list th {
+	background: #d6d6d6 url(../images/table.th.bg.png) repeat-x 0 0;
+	border-right: 1px solid #b3b3b3;
+	border-bottom: 1px solid #b3b3b3;
+	text-align: left;
+	text-shadow: #fff 0 1px 1px;
+	color: #2b2b2b;
+	padding: 10px;
+}

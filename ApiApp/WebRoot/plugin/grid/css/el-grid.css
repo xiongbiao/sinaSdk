@@ -1,0 +1,93 @@
+div.el-grid {
+	overflow: hidden;
+	border: 1px solid #E1E1E2;
+}
+
+div.el-grid div.el-gridHeader,div.el-grid div.el-gridFixed,div.el-grid div.el-gridFixCol
+	{
+	display: none;
+}
+
+div.el-grid div.el-gridDataLayout {
+	overflow: auto;
+}
+
+div.el-grid table {
+	margin: 0;
+	border-collapse: collapse;
+	display: block;
+}
+
+div.el-grid table th {
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	background: #F7FBFD;
+	border: 1px solid #E1E1E2;
+	border-top: none;
+	font-weight: normal;
+	font-size: 12px;
+	color: #686869;
+}
+
+div.el-grid table td {
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	border-left: 1px solid #E1E1E2;
+	border-right: 1px solid #E1E1E2;
+}
+
+div.el-grid table tr.odd td {
+	background-color: #F6FAFD;
+}
+
+div.el-grid table tr.even td {
+	background-color: #fff;
+}
+
+div.el-grid table tfoot {
+	background-color: #eee;
+}
+
+div.el-grid div.el-gridFooter {
+	height: 30px;
+	line-height: 30px;
+	color: #000;
+	border-top: 1px solid #E1E1E2;
+}
+
+div.el-grid span {
+	text-align: center;
+	width: 150px;
+	float: left;
+	font-size: 12px;
+	height: 25px;
+	line-height: 25px;
+}
+
+div.el-grid a.page-link {
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	width: 40px;
+	float: left;
+	margin: 0 10px;
+	text-decoration: none;
+	color: #686869;
+	font-size: 12px;
+}
+
+div.el-grid a.page-link:hover {
+	color: #000;
+}
+
+div.el-grid a.link-disabled {
+	color: #EBE2D2;
+	cursor: default;
+}
+
+div.el-grid a.link-disabled:hover {
+	color: #EBE2D2;
+	cursor: default;
+}

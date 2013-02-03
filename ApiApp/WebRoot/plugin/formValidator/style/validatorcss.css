@@ -1,0 +1,47 @@
+input[type="submit"] {
+	widows: 100px;
+}
+
+fieldset {
+	padding: 10px;
+	border: 1px solid #000;
+}
+
+table {
+	width: 100%;
+	border: 0;
+	border-collapse: collapse;
+	line-height: 30px;
+	margin: 10px 0;
+}
+
+table th {
+	text-align: right;
+	width: 20%;
+	font-weight: normal;
+}
+
+table td span {
+	color: #a40000
+}
+
+input.rightformcss,select.rightformcss,textarea.rightformcss {
+	border: 1px solid green;
+	padding: 4px;
+}
+
+.failmsg {
+	background: url(../images/onError1.gif) no-repeat;
+	vertical-align: middle;
+	padding-left: 25px;
+	color: red;
+}
+
+.msgvaluecss {
+	font-style: italic;
+}
+
+input.failformcss,select.failformcss,textarea.failformcss {
+	border: 1px solid red;
+	padding: 4px;
+}

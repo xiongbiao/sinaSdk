@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kkpush.push.persistence.PushMsgMapper">
+	<cache eviction="FIFO"  flushInterval="60000"  size="512" readOnly="true"  />
+
+	<resultMap type="SimplePush" id="simplePush"> 
+		<result property="msgId" column="msg_id" />
+		<result property="title" column="msg_title"/>
+		<result property="content" column="msg_content"/>
+		<result property="scheduledTime" column="start_date"/>
+		<result property="msgType" column="msg_type"/>
+		<result property="builderId" column="n_builder_id"/>
+		<result property="timeToLive" column="time_to_live"/>
+		<result property="appId" column="app_id"/>
+		<result property="appKey" column="app_key" />
+		<result property="platform" column="platform" />
+		<result property="receiverType" column="receiver_type" />
+		<result property="receiverValue" column="receiver_value" />
+		<result property="totalUser" column="total_user" />
+		<result property="sendCount" column="send_cnt" />
+        <result property="errorCode" column="err_code" />
+        <result property="sendSource" column="send_source" />
+	</resultMap>
+	
+	<resultMap type="ScheduledPush" id="scheduledPush">
+		<result property="msgId" column="msg_id" />
+		<result property="title" column="msg_title"/>
+		<result property="content" column="msg_content"/>
+		<result property="scheduledTime" column="start_date"/>
+		<result property="msgType" column="msg_type"/>
+		<result property="builderId" column="n_builder_id"/>
+		<result property="timeToLive" column="time_to_live"/>
+		<result property="appId" column="app_id"/>
+		<result property="devId" column="dev_id" />
+		<result property="appKey" column="app_key" />
+		<result property="platform" column="platform" />
+		<result property="receiverType" column="receiver_type" />
+		<result property="receiverValue" column="receiver_value" />
+		<result property="retrySendCount" column="retry_send_count"/>
+	</resultMap>
+
+	<insert id="insertPushMsg" parameterType="ScheduledPush">
+	INSERT INTO t_push_list(msg_id,
+							msg_title, 
+							msg_content, 
+							create_date, 
+							create_user, 
+							last_update_date, 
+							last_update_user, 
+							msg_type,
+							dev_id,
+							app_id,
+							start_Date,
+							extra,
+							n_builder_id,
+							platform,
+							receiver_type,
+							receiver_value,
+							send_source,
+							is_scheduled,
+							time_to_live)
+	VALUES (#{msgId},
+			#{title},
+			#{content},
+			now(),
+			#{createUser},
+			now(),
+			#{lastUpdateUser},
+			#{msgType},
+			#{devId},
+			#{appId},
+			#{scheduledTime},
+			#{extras},
+			#{builderId},
+			#{platform},
+			#{receiverType},
+			#{receiverValue},
+			0,
+			#{isScheduled},
+			#{timeToLive}) 
+	</insert>
+
+	<select id="getPushMsgMaxId" resultType="int">
+	SELECT	max(msg_id) 
+	  FROM	t_push_list 
+	 WHERE	send_source=0
+	</select>
+
+	<select id="getPushMsg" parameterType="map" resultMap="simplePush">
+	SELECT	* 
+	  FROM	t_push_list 
+	 WHERE	dev_id=#{devId} 
+	   AND	msg_id=#{msgId}
+	   AND	flag=0 
+	</select>
+	
+	<select id="checkPushMsgStatus" parameterType="map" resultType="int">
+	SELECT	opt, flag
+	  FROM	t_push_list 
+	 WHERE	msg_id=#{msgId}
+	   AND	send_source=0 
+	</select>
+
+	<select id="getScheduledPushList" resultMap="scheduledPush" >
+	SELECT	*
+	 FROM	push_msg_view as view
+	WHERE	view.send_source=0
+	  AND	view.is_scheduled=1
+	  AND	view.opt IN (0, 1, 2)
+	  AND	3>=view.retry_send_count 
+	</select>
+
+	<select id="checkScheduledPushCancelled" parameterType="int" resultType="int">
+	SELECT	count(1)
+	  FROM	t_push_list
+	 WHERE	msg_id=#{msgId}
+	   AND	send_source=0
+	   AND	flag=1
+	</select>
+	
+	<delete id="deletePush" parameterType="map">
+	UPDATE	t_push_list 
+	   SET	flag=1,opt=4
+	 WHERE	msg_id IN 
+	 <foreach collection="msgIds" item="msgId"  open="(" separator="," close=")">#{msgId}</foreach>
+	   AND	dev_id=#{devId}
+	</delete>
+
+	<select id="getPushMsgList" parameterType="map" resultMap="simplePush" >
+	SELECT	*
+	  FROM	t_push_list
+	 WHERE	dev_id=#{devId}
+	   AND	app_id=#{appId}
+	   AND	msg_type=#{msgType}
+	   AND  flag = 0
+	<if test="isScheduled == true">AND is_scheduled=1 AND opt=1</if>
+	<if test="isScheduled == false">AND opt=4</if>
+	 ORDER	BY start_Date DESC
+	<if test="startIndex != null and pageSize != null">LIMIT #{startIndex}, #{pageSize}</if>
+	</select>
+
+	<insert id="upatePushStatus" parameterType="map">
+	UPDATE	t_push_list 
+	<set>
+		<if test="errCode != null">err_code=#{errCode},</if>
+		<if test="opt != null">opt=#{opt},</if> 
+		<if test="totalUser != null">total_user=#{totalUser},</if>
+		<if test="sendCnt != null">send_cnt=#{sendCnt},</if>
+		<if test="retrySendCount != null">retry_send_count=retry_send_count+1</if>
+	</set> 
+	WHERE	msg_id=#{msgId} 
+	  AND	send_source=0
+	  AND	flag=0
+	</insert>
+</mapper>

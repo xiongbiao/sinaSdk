@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	dev_user_amount    用户数汇总
+	dev_new_user　　　　新增用户
+	dev_user_online　　　用户在线
+	dev_user_active　　　用户活跃
+	pushes_per_app　　　　用户推送数
+	
+	t_dev_kpi_(hour/day/mon)
+ -->
+<mapper namespace="com.kkpush.app.persistence.AppMapper">
+  <resultMap type="App" id="appResult">
+      <id property="appId"  column="app_id" />
+	  <result property="appKey" column="app_key"/> 
+	  <result property="appName" column="app_name"/> 
+	  <result property="devId" column="dev_id"/> 
+	  <result property="appTypeId" column="app_type_id"/> 
+	  <result property="typeName" column="type_name"/> 
+	  <result property="appPackage" column="app_package"/> 
+	  <result property="appDescription" column="app_description"/> 
+	  <result property="appIcon" column="app_icon"/> 
+	  <result property="appImage1" column="app_image1"/> 
+	  <result property="appImage2" column="app_image2"/> 
+	  <result property="appImage3" column="app_image3"/> 
+	  <result property="itime" column="itime"/> 
+	  <result property="appApk" column="app_apk"/> 
+	  <result property="lastUpdateTime" column="last_update_time"/> 
+	  <result property="appStatus" column="app_status"/> 
+	  <result property="appStage" column="app_stage"/> 
+	  <result property="isPush" column="value"/> 
+	  <result property="certificatePass" column="certificate_pass"/> 
+	  <result property="certificatePassTest" column="certificate_pass_test"/> 
+	  <result property="appleCertificate" column="apple_certificate"/> 
+	  <result property="appleData" column="apple_data"/> 
+	  <result property="appleDataTest" column="apple_data_test"/> 
+	  <result property="platform" column="platform"/>
+	  <result property="apiMasterSecret" column="api_master_secret"/>  
+  </resultMap>
+  <cache eviction="FIFO"  flushInterval="10000"  size="512" readOnly="true"  />
+   
+  <select id="findAllApp"  parameterType="map" resultMap="appResult">
+    select tp.* from t_app_list as tp 
+	    <where>  
+	           tp.isEnabled=0
+	         <if test="devId != null and devId!='' ">  
+	           and   dev_id=#{devId} 
+	         </if>  
+	         <if test="appId != null ">  
+	           and  tp.app_id=#{appId} 
+	         </if>  
+	         <if test="whereStr != null ">  
+	           and ( tp.app_name like #{whereStr} 
+	         </if>  
+	         <if test="whereStr != null ">  
+	           or  tp.app_package like #{whereStr} ) 
+	         </if> 
+	    </where>
+	    order by  last_update_time  desc 
+       <if test="index!=null and size!=null" >
+	         limit #{index}  ,#{size}
+	   </if>
+   </select>
+   
+   <!-- 查询数量  -->
+    <select id="getAllAppCount" parameterType="map" resultType="int">
+      select count(1) from t_app_list as tp 
+	     <where>  
+	           tp.isEnabled=0
+	         <if test="devId != null and devId!='' ">  
+	           and tp.dev_id=#{devId} 
+	         </if>  
+	         <if test="appId != null ">  
+	           and  tp.app_id=#{appId} 
+	         </if> 
+	         <if test="whereStr != null ">  
+	           and ( tp.app_name like #{whereStr} 
+	         </if>  
+	         <if test="whereStr != null ">  
+	           or  tp.app_package like #{whereStr} ) 
+	         </if> 
+         </where>
+   </select> 
+   
+   
+     <!-- 查询所有应用名称 -->
+   <select id="findAppNameList" parameterType="map" resultMap="appResult">
+         select app_id,app_name,app_package from t_app_list
+	     <where> 
+	           isEnabled=0  
+	         <if test="devId!=null and devId!='' ">  
+	            and dev_id=#{devId}  
+	         </if>   
+	         <if test="stage!=null and stage != ''">
+	            and app_stage = #{stage}
+	         </if>
+	    </where>  
+    </select>
+   
+   
+  <resultMap type="java.util.Map" id="map">
+       <result property="DEV_ID" column="DEV_ID"/> 
+	   <result property="APP_ID" column="APP_ID"/> 
+	   <result property="DEVICES_PER" column="DEVICES_PER"/> 
+	   <result property="ACTIVE_DEVICES_PER" column="ACTIVE_DEVICES_PER"/> 
+	   <result property="ACTIVE_USER_PER" column="ACTIVE_USER_PER"/> 
+	   <result property="PSUHES_PER" column="PSUHES_PER"/> 
+	   <result property="PUSHES_AMOUNT" column="PUSHES_AMOUNT"/> 
+	   <result property="IDATE" column="IDATE"/> 
+  </resultMap>
+   <select id="resultAppUser" parameterType="map" resultMap="map">
+   select mon as IDATE,dev_id as DEV_ID,field as APP_ID, 
+	sum(case when KPI_CODE = 'DEV_USER_AMOUNT' then KPI_VALUE else 0 end) as DEVICES_PER, 
+	sum(case when KPI_CODE = 'ACTIVE_DEVICES_PER_APP_MONTHLY' then KPI_VALUE else 0 end) as ACTIVE_DEVICES_PER, 
+	sum(case when KPI_CODE = 'ACTIVE_USERS_PER_APP_MONTHLY' then KPI_VALUE else 0 end) as ACTIVE_USER_PER, 
+	sum(case when KPI_CODE = 'PUSHES_PER_APP' then KPI_VALUE else 0 end) as PSUHES_PER, 
+	sum(case when KPI_CODE = 'PUSHES_AMOUNT_PER_APP' then KPI_VALUE else 0 end) as PUSHES_AMOUNT 
+	from t_dev_kpi_mon 
+   <where>
+      kpi_code in('users_per_app','active_devices_per_app_monthly','active_users_per_app_monthly','PUSHES_PER_APP','pushes_amount_per_app','dev_user_amount' ) 
+		 and  dev_id=#{devId} 
+		 <if test="appId!=null and appId!='' ">
+				and field=#{appId}
+		 </if>
+		 and mon=#{imonth}
+		</where>
+       group by  field
+   </select>
+   <!-- 应用列表添加昨日／今天 统计 -->
+   <resultMap type="java.util.Map" id="statsMap">
+       <result property="DEV_ID" column="DEV_ID"/> 
+	   <result property="APP_ID" column="APP_ID"/> 
+	   <result property="IDATE" column="IDATE"/> 
+	   <result property="NEW_USER_TODAY" column="NEW_USER_TODAY"/> 
+	   <result property="NEW_USER_YESTERDAY" column="NEW_USER_YESTERDAY"/> 
+	   <result property="ONLINE_USER_TODAY" column="ONLINE_USER_TODAY"/> 
+	   <result property="ONLINE_USER_YESTERDAY" column="ONLINE_USER_YESTERDAY"/> 
+	   <result property="ACTIVE_USER_TODAY" column="ACTIVE_USER_TODAY"/> 
+	   <result property="ACTIVE_USER_YESTERDAY" column="ACTIVE_USER_YESTERDAY"/> 
+	   <result property="START_APP_TODAY" column="START_APP_TODAY"/> 
+	   <result property="START_APP_YESTERDAY" column="START_APP_YESTERDAY"/> 
+   </resultMap>
+	<select id="resultAppDaliyStats" parameterType="map" resultMap="statsMap">
+		select idate as IDATE,dev_id as DEV_ID,field as APP_ID,
+		
+		sum(case when KPI_CODE = 'DEV_NEW_USER' and IDATE = #{idate} then KPI_VALUE else 0 end) as NEW_USER_TODAY, 
+		sum(case when KPI_CODE = 'DEV_NEW_USER' and IDATE = #{idate}-1 then KPI_VALUE else 0 end) as NEW_USER_YESTERDAY, 
+		sum(case when KPI_CODE = 'DEV_USER_ACTIVE' and IDATE = #{idate} then KPI_VALUE else 0 end) as ACTIVE_USER_TODAY, 
+		sum(case when KPI_CODE = 'DEV_USER_ACTIVE' and IDATE = #{idate}-1 then KPI_VALUE else 0 end) as ACTIVE_USER_YESTERDAY,
+		sum(case when KPI_CODE = 'DEV_USER_ONLINE' and IDATE = #{idate} then KPI_VALUE else 0 end) as ONLINE_USER_TODAY, 
+		sum(case when KPI_CODE = 'DEV_USER_ONLINE' and IDATE = #{idate}-1 then KPI_VALUE else 0 end) as ONLINE_USER_YESTERDAY,
+		sum(case when KPI_CODE = 'USER_OPEN_APP' and IDATE = #{idate} then KPI_VALUE else 0 end) as START_APP_TODAY, 
+		sum(case when KPI_CODE = 'USER_OPEN_APP' and IDATE = #{idate}-1 then KPI_VALUE else 0 end) as START_APP_YESTERDAY
+		from t_dev_kpi_day
+	   <where>
+	      kpi_code in('dev_new_user','dev_user_online','dev_user_active','user_open_app' ) 
+			 and  dev_id=#{devId} 
+			 <if test="appId!=null and appId!='' ">
+					and field=#{appId}
+			 </if>
+			 and idate between #{idate}-1 and #{idate}
+			</where>
+	       group by  field
+   </select>
+    <!-- 查询单个 -->
+    <select id="findApp" parameterType="map" resultMap="appResult">
+         select * from t_app_list  
+         where dev_id=#{devId}   and  app_id=#{appId}  
+     </select> 
+    <select id="getAppID" parameterType="map" resultType="int">
+         select max(app_id) from t_app_list where dev_id=#{devId}
+    </select> 
+    <select id="isExistsAppPackage" parameterType="map" resultType="int"> 
+       select count(1) from t_app_list   
+       <where>
+	       app_package=#{appPackage} and isEnabled=0   
+	       <if test="appid!=null  and appid!='' ">
+	         and app_id=#{appid}
+	       </if>
+	       <if test="devId!=null and devId != ''">
+	          and dev_id =#{devId}
+	       </if>
+       </where>
+   </select> 
+  <!-- 插入数据 -->
+  <insert id="insertApp" parameterType="App"  >
+  	INSERT INTO t_app_list (
+  	                        app_id,
+							app_key,
+							app_name,
+							dev_id,
+							app_type_id,
+							app_package,
+							app_description,
+							app_icon,
+							app_image1,
+							app_image2,
+							app_image3, 
+							app_apk,
+							app_stage,
+							isPushAd,
+							isPushMsg,
+							certificate_pass,
+							certificate_pass_test,
+							apple_certificate,
+							apple_data,
+							apple_data_test,
+							platform,
+							itime ,
+							api_master_secret
+							)
+    VALUES ( #{appId},#{appKey}, #{appName},#{devId},#{appTypeId},#{appPackage},#{appDescription},#{appIcon},
+    #{appImage1},#{appImage2},#{appImage3},#{appApk},#{appStage},#{isPushAd},#{isPushMsg},
+    #{certificatePass},#{certificatePassTest},#{appleCertificate},#{appleData},#{appleDataTest},#{platform},
+     #{itime},#{apiMasterSecret}
+    )
+  </insert>
+   
+  <update id="updateApp"  parameterType="App"> 
+	UPDATE t_app_list
+	<set> 
+		<if test="appName != null">app_name=#{appName},</if>
+		<if test="appDescription != null">app_description=#{appDescription},</if>
+		<if test="appApk != null">app_apk=#{appApk},</if>
+		<if test="appImage1 != null">app_image1=#{appImage1},</if>
+		<if test="appImage2 != null">app_image2=#{appImage2},</if>
+		<if test="appImage3 != null">app_image3=#{appImage3},</if>
+		<if test="appIcon != null">app_icon=#{appIcon},</if>
+		<if test="appTypeId != null">app_type_id=#{appTypeId},</if>
+		<if test="appPackage != null">app_package=#{appPackage},</if>
+		<if test="appStage != null">app_stage=#{appStage},</if>
+		<if test="isPushAd != null">isPushAd=#{isPushAd},</if>
+		<if test="isPushMsg != null">isPushMsg=#{isPushMsg},</if>
+		<if test="certificatePass != null">certificate_pass=#{certificatePass},</if>
+		<if test="appleCertificate != null">apple_certificate=#{appleCertificate},</if>
+		<if test="appleData != null">apple_data = #{appleData},</if>
+		<if test="appleDataTest != null">apple_data_test = #{appleDataTest},</if>
+		<if test="platform != null">platform = #{platform},</if>
+		<if test="certificatePassTest != null">certificate_pass_test = #{certificatePassTest},</if>
+		last_update_time=now(),
+		app_status=0
+	</set>
+	WHERE app_id=#{appId} and dev_id=#{devId}
+  </update>
+  
+   <update id="deleteApp"  parameterType="map"> 
+	UPDATE t_app_list
+	<set>  
+		isEnabled=1
+	</set>
+	WHERE app_id=#{appId} and dev_id=#{devId}
+  </update>
+  
+   <!-- 查询数量  -->
+     <select id="isExistsApp" parameterType="map" resultType="int">
+         select count(1) from t_app_list WHERE app_id=#{appId} and dev_id=#{devId}
+    </select> 
+   
+   <!-- 删除证书 -->
+    <delete id="deleteIosCertificate" parameterType="map">
+        update t_app_list
+        <set>
+	        <if test="ctype != null and ctype == 1">
+	           apple_data = null , certificate_pass = ""
+	        </if>
+	         <if test="ctype != null and ctype == 2">
+	           apple_data_test =null , certificate_pass_test = ""
+	        </if>
+        </set>
+       WHERE app_id=#{appId} and dev_id=#{devId}
+    </delete>
+   
+</mapper>

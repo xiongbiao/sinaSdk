@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kkpush.api.persistence.ApiCallBackMapper">
+	<resultMap type="ApiCallBack" id="apiCallBackResult">
+		<id property="id" column="id" />
+		<result property="devId" column="dev_id" />
+		<result property="devName" column="dev_name" />
+		<result property="type" column="type" />
+		<result property="baseUrl" column="base_url" />
+		<result property="backUrl" column="back_url" />
+		<result property="callbackUrl" column="callback_url" />
+		<result property="apiSecretKey" column="api_secret_key" />
+		<result property="apiWebsiteValidate" column="api_website_validate" />
+		<result property="createDate" column="create_date" />
+	</resultMap>
+	
+	
+	<!-- 根据条件查找相关数据 -->
+	<select id="selectApiCallBackByCond" parameterType="map"  resultMap="apiCallBackResult" >
+		SELECT
+			*
+		FROM t_api_callback
+		WHERE 1= 1 
+			<if test="devId != null and devId != '' ">
+				and dev_id = #{devId}
+			</if>
+			<if test="devName != null and devName != '' ">
+				and dev_name = #{devName}
+			</if>	
+			<if test="type != null and type != '' ">
+				and type = #{type}
+			</if>
+			
+  </select>
+  
+  
+	<!-- 根据条件查找相关数据 -->
+	<select id="selectApiCallBackOne" parameterType="map"  resultMap="apiCallBackResult" >
+		SELECT
+			*
+		FROM t_api_callback
+			WHERE
+				and dev_id = #{devId} limit 0,1
+  </select>
+  
+  
+	<!-- 根据条件查找相关数据 -->
+	<select id="selectApiCallBackList" parameterType="map"  resultMap="apiCallBackResult" >
+		SELECT
+			*
+		FROM t_api_callback
+		WHERE dev_id = #{devId}
+		
+			
+  </select>
+	
+	
+	<update id="updateApiCallBack"  parameterType="map" >
+		UPDATE t_api_callback
+		<set>
+			<if test="baseUrl != null">base_url=#{baseUrl},</if>
+			<if test="callbackUrl != null">callback_url=#{callbackUrl},</if>
+			<if test="apiWebsiteValidate != null">api_website_validate=#{apiWebsiteValidate},</if>
+			<if test="apiSecretKey != null">api_secret_key=#{apiSecretKey},</if>
+			<if test="backUrl != null">back_url = #{backUrl},</if>
+			create_date = now()
+		</set>
+		WHERE dev_id=#{devId}
+		<if test="type != null">
+			and type=#{type}
+		</if>
+	</update>
+
+
+
+	<!-- 插入数据 -->
+	<insert id="insertApiCallBack" parameterType="ApiCallBack">
+		INSERT INTO t_api_callback (
+		dev_id,
+		dev_name,
+		type,
+		base_url,
+		callback_url,
+		api_website_validate,
+		api_secret_key,
+		back_url
+		)
+		VALUES (#{devId},#{devName},#{type},#{baseUrl},#{callbackUrl},
+		#{apiWebsiteValidate},#{apiSecretKey},#{backUrl})
+  </insert>
+	
+
+</mapper>

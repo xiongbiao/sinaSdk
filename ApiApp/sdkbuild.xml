@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+	2012-12-19 上午10:36:30 project 解压android sdkzip 替换服务器的 项目下的 sdkmastermask 
+	和 sdktemplate 文件夹全部内容 xiongbiao ====================================================================== -->
+<project name="sdkdemo" default="default">
+
+	<loadproperties srcFile="local.properties" />
+
+	<property name="newexample.dir" value="${newexample.dir}" />
+	<property name="temp.dir" value="${tempexample.dir}" />
+	<property name="sdk.vison" value="${sdk.vison}" />
+	<property name="sdk.zip.name" value="${sdk.vison}" />
+	<property name="sdk.mastermask.dir" value="${sdkmastermask}" />
+	<property name="sdk.template.dir" value="${sdktemplate}" />
+	<property name="sdk.package.dir" value="src/com/example/jpushdemo" />
+	<property name="sdk.unzip.name" value="Jpush-Android-sdk" />
+	<property name="sdk.unzip.example.name" value="Jpush-Android-sdk/example" />
+	<property name="packagename.temp.name" value="您应用的包名" />
+	<property name="key.temp.name" value="您应用的Appkey" />
+
+	<description>
+		description
+    </description>
+
+	<!-- ================================= target: default ================================= -->
+	<target name="default" depends="depends" description="description">
+	</target>
+	<!--=========== target:unzip -->
+
+	<target name="example_mastermask">
+		<delete dir="${sdk.mastermask.dir}/example" />
+		<mkdir dir="${sdk.mastermask.dir}/example" />
+		<copy todir="${sdk.mastermask.dir}/example">
+			<fileset dir="${temp.dir}/Jpush-Android-sdk/example" />
+		</copy>
+		<delete file="${sdk.mastermask.dir}/example/AndroidManifest.xml"></delete>
+		<delete
+			file="${sdk.mastermask.dir}/example/${sdk.package.dir}/MainActivity.java"></delete>
+		<delete
+			file="${sdk.mastermask.dir}/example/${sdk.package.dir}/SettingActivity.java"></delete>
+		<delete
+			file="${sdk.mastermask.dir}/example/${sdk.package.dir}/PushSetActivity.java"></delete>
+		<delete dir="${sdk.mastermask.dir}/example/bin" />
+		<delete dir="${sdk.mastermask.dir}/example/gen" />
+	</target>
+
+	<target name="example_template">
+		<copy todir="${sdk.template.dir}"
+			file="${temp.dir}/${sdk.unzip.example.name}/AndroidManifest.xml"></copy>
+		<copy todir="${sdk.template.dir}"
+			file="${temp.dir}/${sdk.unzip.example.name}/${sdk.package.dir}/MainActivity.java"></copy>
+		<copy todir="${sdk.template.dir}"
+			file="${temp.dir}/${sdk.unzip.example.name}/${sdk.package.dir}/SettingActivity.java"></copy>
+		<copy todir="${sdk.template.dir}"
+			file="${temp.dir}/${sdk.unzip.example.name}/${sdk.package.dir}/PushSetActivity.java"></copy>
+		<replace encoding="UTF-8" file="${sdk.template.dir}/AndroidManifest.xml">
+			<replacefilter token="${packagename.temp.name}" value="${packagename!''}" />
+			<replacefilter token="${key.temp.name}" value="${appkey!''}" />
+		</replace>
+
+		<replace encoding="UTF-8" file="${sdk.template.dir}/MainActivity.java">
+			<replacefilter token="import cn.jpush.android.api.JPushInterface;"
+				value="import cn.jpush.android.api.JPushInterface; import  ${packagename!''}.R;" />
+		</replace>
+		<replace encoding="UTF-8" file="${sdk.template.dir}/SettingActivity.java">
+			<replacefilter token="import cn.jpush.android.api.JPushInterface;"
+				value="import cn.jpush.android.api.JPushInterface; import  ${packagename!''}.R;" />
+		</replace>
+		<replace encoding="UTF-8" file="${sdk.template.dir}/PushSetActivity.java">
+			<replacefilter token="import cn.jpush.android.api.JPushInterface;"
+				value="import cn.jpush.android.api.JPushInterface; import  ${packagename!''}.R;" />
+		</replace>
+		<move file="${sdk.template.dir}/AndroidManifest.xml" tofile="${sdk.template.dir}/AndroidManifest.ftl"></move>
+		<move file="${sdk.template.dir}/MainActivity.java" tofile="${sdk.template.dir}/MainActivity.ftl"></move>
+		<move file="${sdk.template.dir}/SettingActivity.java" tofile="${sdk.template.dir}/SettingActivity.ftl"></move>
+		<move file="${sdk.template.dir}/PushSetActivity.java" tofile="${sdk.template.dir}/PushSetActivity.ftl"></move>
+	</target>
+
+	<target name="unsdk" depends="unzipsdk,example_mastermask ,example_template">
+	</target>
+
+	<target name="unzipsdk" description="rar files">
+		<delete dir="${temp.dir}"></delete>
+		<unzip src="${newexample.dir}/${sdk.unzip.name}-${sdk.zip.name}.zip"
+			dest="${temp.dir}" />
+		<delete dir="${temp.dir}/${sdk.unzip.name}/doc"></delete>
+		<delete dir="${temp.dir}/${sdk.unzip.name}/libs"></delete>
+		<delete file="${temp.dir}/${sdk.unzip.name}/AndroidManifest.xml"></delete>
+		<delete file="${temp.dir}/${sdk.unzip.name}/ChangeLog.txt"></delete>
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - target: depends - - - - - - - - - 
+		- - - - - - - - -->
+	<target name="depends" depends="unsdk">
+	</target>
+
+</project>

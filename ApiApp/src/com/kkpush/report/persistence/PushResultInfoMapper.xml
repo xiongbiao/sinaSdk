@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kkpush.report.persistence.PushResultInfoMapper">
+ <resultMap type="java.util.Map" id="map">
+       <result property="appId" column="app_id"/> 
+	   <result property="adId" column="ad_id"/> 
+  </resultMap>
+  <cache eviction="FIFO"  flushInterval="1000"  size="512" readOnly="true"  />
+  
+
+	<select id="getSystemPushDataList" parameterType="map" resultMap="map">
+		select IDATE,FIELD as DEV_ID,
+		sum(case when KPI_CODE = 'ALL_REGISTER_PER_APP' then KPI_VALUE else 0 end) as TOTAL_USER,
+		sum(case when KPI_CODE = 'NEW_REGISTER_PER_APP' then KPI_VALUE else 0  end) as NEW_REGISTER_USER, 
+		sum(case when KPI_CODE = 'SENT_AFTER_PER_APP' then KPI_VALUE else 0 end) as SEND_COUNT,
+		sum(case when KPI_CODE = 'SHOW_AFTER_PER_APP' then KPI_VALUE else 0  end) as SHOW_COUNT, 
+		sum(case when KPI_CODE = 'SHOW_SENT_RATE_PER_APP' then KPI_VALUE else 0  end) as RATE, 
+		sum(case when KPI_CODE = 'MONEY_PER_APP' then KPI_VALUE else 0  end) as REVENUE 
+
+		from t_general_kpi_day 
+		<where>
+			idate between #{startDate} and #{endDate}
+			and field=#{devId}
+			
+			<if test="appId!=null and appId!='' ">
+				and kpi_field=#{appId}
+			</if>
+		</where>
+		 and kpi_code in('ALL_REGISTER_PER_APP','NEW_REGISTER_PER_APP','SENT_AFTER_PER_APP','SHOW_AFTER_PER_APP','SHOW_SENT_RATE_PER_APP','MONEY_PER_APP') 
+		 group by IDATE,FIELD order by idate  limit #{startIndex}, #{endIndex} 
+ 
+	</select>
+	
+	<select id="getSystemPushDataCount" parameterType="map" resultType="java.lang.Integer">
+		select count(1) from (
+		select IDATE,FIELD as DEV_ID,
+		sum(case when KPI_CODE = 'ALL_REGISTER_PER_APP' then KPI_VALUE else 0 end) as TOTAL_USER,
+		sum(case when KPI_CODE = 'NEW_REGISTER_PER_APP' then KPI_VALUE else 0  end) as NEW_REGISTER_USER, 
+		sum(case when KPI_CODE = 'SENT_AFTER_PER_APP' then KPI_VALUE else 0 end) as SEND_COUNT,
+		sum(case when KPI_CODE = 'SHOW_AFTER_PER_APP' then KPI_VALUE else 0  end) as SHOW_COUNT, 
+		sum(case when KPI_CODE = 'SHOW_SENT_RATE_PER_APP' then KPI_VALUE else 0  end) as RATE, 
+		sum(case when KPI_CODE = 'MONEY_PER_APP' then KPI_VALUE else 0  end) as REVENUE 
+
+		from t_general_kpi_day 
+		<where>
+			idate between #{startDate} and #{endDate}
+			and field=#{devId}
+			
+			<if test="appId!=null and appId!='' ">
+				and kpi_field=#{appId}
+			</if>
+		</where>
+		 and kpi_code in('ALL_REGISTER_PER_APP','NEW_REGISTER_PER_APP','SENT_AFTER_PER_APP','SHOW_AFTER_PER_APP','SHOW_SENT_RATE_PER_APP','MONEY_PER_APP') 
+		 group by IDATE,FIELD order by idate)a
+	</select>
+	
+	
+	
+</mapper>

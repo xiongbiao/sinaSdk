@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+<urlrewrite>
+
+	<!-- 开发者账号 -->
+	<!--<rule> <from>/dev/account.html</from> <to>/dev/account.jsp</to> </rule> -->
+	<!-- <rule> <from> /dev/account.jsp</from> <to>/dev/account.html</to> </rule> -->
+	<rule>
+		<from>/dev/account.html</from>
+		<to>/developer/view_account</to>
+	</rule>
+	<rule>
+		<from>/dev/validate_website.html</from>
+		<to>/api/getApiCallBackUrl</to>
+	</rule>
+
+	<!-- 修改邮箱 -->
+	<rule>
+		<from>/dev/change_email.html</from>
+		<to>/dev/account_change_email.jsp</to>
+	</rule>
+	<!-- 修改密码 -->
+	<rule>
+		<from>/dev/change_passwd.html</from>
+		<to>/dev/account_change_passwd.jsp</to>
+	</rule>
+	<!-- 修改基本信息 -->
+	<rule>
+		<from>/dev/change_base.html</from>
+		<to>/dev/account_change_base.jsp</to>
+	</rule>
+
+	<!--应用详情 url -->
+	<rule>
+		<from>/app/detail/([0-9]+).html</from>
+		<to>/app/detail.jsp?appId=$1</to>
+	</rule>
+	<!-- 修改应用 -->
+	<rule>
+		<from>/app/edit/([0-9]+).html</from>
+		<to>/app/edit.jsp?appId=$1</to>
+	</rule>
+
+	<!-- 统计 -->
+	<rule>
+		<from>/report/statistics/([0-9]+).html</from>
+		<to>/report/statistics.jsp?appId=$1</to>
+	</rule>
+
+
+	<!-- 创建新的通知 -->
+	<rule>
+		<from>/push/newMsg/([0-9]+).html</from>
+		<to>/push/composer_newMessage.jsp?appId=$1</to>
+	</rule>
+
+	<!-- 发送中的通知 -->
+	<rule>
+		<from>/push/scheduleMsg/([0-9]+).html</from>
+		<to>/push/composer_scheduledMessage.jsp?appId=$1</to>
+	</rule>
+	<!-- 历史的通知 -->
+	<rule>
+		<from>/push/hisMsg/([0-9]+).html</from>
+		<to>/push/composer_history.jsp?appId=$1</to>
+	</rule>
+
+	<!-- 编辑通知 -->
+	<rule>
+		<from>/push/newMsg/([0-9]+)/([0-9]+).html</from>
+		<to>/push/composer_newMessage.jsp?appId=$1&amp;msgid=$2</to>
+	</rule>
+
+
+	<!-- 创建新的消息 -->
+	<rule>
+		<from>/push/new_Msg/([0-9]+).html</from>
+		<to>/push/msgComposer_message_new.jsp?appId=$1</to>
+	</rule>
+	<!-- 发送中的消息 -->
+	<rule>
+		<from>/push/schedule_Msg/([0-9]+).html</from>
+		<to>/push/msgComposer_message_schedule.jsp?appId=$1</to>
+	</rule>
+	<!-- 历史的消息 -->
+
+	<rule>
+		<from>/push/his_Msg/([0-9]+).html</from>
+		<to>/push/msgComposer_message_history.jsp?appId=$1</to>
+	</rule>
+
+
+	<!--编辑消息 -->
+	<rule>
+		<from>/push/new_Msg/([0-9]+)/([0-9]+).html</from>
+		<to>/push/msgComposer_message_new.jsp?appId=$1&amp;msgid=$2</to>
+	</rule>
+
+
+	<!-- 发送的通知 -->
+	<rule>
+		<from>/report/pushes/([0-9]+).html</from>
+		<to>/report/reports.jsp?pushes=pushes&amp;appId=$1</to>
+	</rule>
+	<!-- 用户打开APP -->
+	<rule>
+		<from>/report/opens/([0-9]+).html</from>
+		<to>/report/reports.jsp?opens=opens&amp;appId=$1</to>
+	</rule>
+	<!-- 用户使用APP -->
+	<rule>
+		<from>/report/times/([0-9]+).html</from>
+		<to>/report/reports.jsp?times=times&amp;appId=$1</to>
+	</rule>
+
+	<!-- 报表统计 - 应用用户新增、在线、活跃 -->
+	<rule>
+		<from>/report/user_count/([0-9]+).html</from>
+		<to>/report/user_count.jsp?appId=$1</to>
+	</rule>
+
+
+</urlrewrite>
+

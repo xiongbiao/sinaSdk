@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kkpush.account.persistence.DeveloperMapper">
+	<resultMap type="Developer" id="developerResult">
+		<id property="devId" column="dev_id" />
+		<result property="devName" column="dev_name" />
+		<result property="contact" column="contact" />
+		<result property="password" column="password" />
+		<result property="email" column="email" />
+		<result property="qq" column="QQ" />
+		<result property="mobilePhone" column="mobile_phone" />
+		<result property="otherContact" column="other_contact" />
+		<result property="regTime" column="reg_time" />
+		<result property="lastUpdateTime" column="last_update_time" />
+		<result property="authToken" column="auth_token" />
+		<result property="isEnabled" column="is_enabled" />
+		<result property="isActivation" column="is_activation" />
+		<result property="activationCode" column="activation_code" />
+		<result property="isCustomDiscount" column="is_custom_discount" />
+		<result property="clickRate" column="click_rate" />
+		<result property="showRate" column="show_rate" />
+		<result property="secondPassword" column="second_password" />
+		<result property="tempPasswordTime" column="temp_password_time" />
+		<result property="companyName" column="company_name" />
+		<result property="emailCode" column="email_code" />
+		<result property="emailFlag" column="email_flag" />
+		
+	</resultMap>
+	<cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />
+
+
+	<select id="getId" resultType="long">
+		SELECT max(id) FROM t_user
+  </select>
+
+	<select id="selectAeveloper" parameterType="map" resultType="Developer">
+		SELECT
+		uid,
+		username,
+		password
+		FROM account
+		WHERE username = #{name} AND password = #{password}
+  </select>
+	<select id="Activate" parameterType="map" resultType="int">
+		SELECT count(1) FROM t_developer
+		WHERE dev_name = #{name} AND activation_code = #{code}
+  </select>
+
+	<update id="updateActivate" parameterType="map">
+		UPDATE t_developer
+		<set>
+			is_activation=1 
+	</set>
+		WHERE dev_name = #{name} AND activation_code = #{code}
+	</update>
+
+	<update id="updateDeveloper" parameterType="Developer">
+		UPDATE t_developer
+		<set>
+			<if test="contact != null">contact=#{contact},</if>
+			<if test="email != null">email=#{email},</if>
+			<if test="QQ != null">QQ=#{qq},</if>
+			<if test="mobilePhone != null">mobile_phone=#{mobilePhone},</if>
+			<if test="companyName != null">company_name=#{companyName},</if>
+			last_update_time=now()
+		</set>
+		WHERE dev_id=#{devId}
+	</update>
+
+
+
+	<!-- 插入数据 -->
+	<insert id="insertDeveloper" parameterType="Developer">
+		INSERT INTO t_developer (dev_id,
+		dev_name,
+		contact,
+		password,
+		email,
+		QQ,
+		mobile_phone,
+		other_contact,
+		reg_time ,
+		last_update_time,
+		auth_token,
+		activation_code,
+		company_name
+		)
+		VALUES ( null,#{devName},#{contact},
+		#{password},#{email},#{qq},#{mobilePhone},#{otherContact},#{regTime,jdbcType=TIMESTAMP}
+		,now(),#{authToken},#{activationCode},#{companyName}
+		)
+  </insert>
+   
+  <!-- 收集来自外部网站用户注册 -->
+  <insert id="insertThirdSiteRegister" parameterType="map">
+	INSERT INTO t_collection_reg (uid, referer, itime) values (#{uid}, #{referer}, now());
+  </insert>
+  
+   <!-- 修改密码 -->
+   <update id="updatePass"  parameterType="map"> 
+	UPDATE t_developer
+	<set> 
+		<if test="newPass != null">password=#{newPass}</if> 
+	</set>
+	WHERE   dev_id=#{devId}
+  </update>
+  
+    <resultMap type="java.util.Map" id="map">
+       <result property="TEST_APP_COUNT" column="TEST_APP_COUNT"/> 
+	   <result property="GENERATE_APP_COUNT" column="GENERATE_APP_COUNT"/> 
+  </resultMap>
+  
+  <select id="getDevAppCount" parameterType="map" resultMap="map">
+    select   sum(case when app_stage=1 then 1 end) as 'GENERATE_APP_COUNT' , 
+   			 sum(case when app_stage=0 then 1 end) as 'TEST_APP_COUNT' 
+    		 from t_app_list 
+    		 	where dev_id=#{devId}  and isEnabled=0
+  </select>
+
+	<!-- 修改邮箱 -->
+	<update id="updateEmail" parameterType="map">
+		UPDATE t_developer
+		<set>
+			<if test="email != null">email=#{email},</if>
+			<if test="emailFlag != null">email_flag=#{emailFlag}</if>
+		</set>
+		WHERE dev_id=#{devId}
+	</update>
+
+	<update id="updateTxPass" parameterType="map">
+		UPDATE t_developer
+		<set>
+			<if test="newPass != null">second_password=#{newPass}</if>
+		</set>
+		WHERE dev_id=#{devId}
+	</update>
+
+	<update id="updateTempPass" parameterType="map">
+		UPDATE t_developer
+		<set>
+			<if test="tempPass != null">temp_password=#{tempPass},</if>
+			temp_password_time=now()
+		</set>
+		WHERE email=#{email}
+	</update>
+
+	<update id="updateUserToken" parameterType="Developer">
+		UPDATE t_developer
+		<set>
+			<if test="loginToken != null">token_pass=#{loginToken},</if>
+			token_time=now()
+		</set>
+		WHERE dev_id=#{devId}
+	</update>
+
+	<!-- 用户名是否存在 -->
+	<select id="isExistsName" parameterType="map" resultType="int">
+		select count(1) from t_developer where dev_name=#{devName}   
+   </select>
+	<!-- 密码是否对 -->
+	<select id="isExistsPass" parameterType="map" resultType="int">
+		select count(1) from t_developer where dev_id=#{devId} and
+		(password=#{oldPass} or (temp_password = #{oldPass} and
+		temp_password_time>date_sub(now(),interval 1 day)))
+   </select>
+
+	<!-- 邮箱是否存在 -->
+	<select id="isExistsEmail" parameterType="map" resultType="int">
+		select count(1) from t_developer
+		<where>
+			email=#{email}
+			<if test="devId != null and devId != ''">
+				and dev_id=#{devId}
+          </if>
+		</where>
+	</select>
+	<select id="getTempPass" parameterType="map" resultType="string">
+		select temp_password from t_developer
+		<where>
+			email=#{email} and temp_password_time>date_sub(now(),interval 1 day) 
+	      </where>
+	</select>
+
+	<!-- 登录 -->
+	<select id="isExists" parameterType="Developer" resultMap="developerResult">
+		select * from t_developer
+		where
+		<if test="password!=null and password !='' ">
+			(( dev_name=#{devName} or email=#{devName} ) and (password=#{password}
+			) or (temp_password = #{password} and
+			temp_password_time>date_sub(now(),interval 1 day)))
+        </if>
+		<if test="loginToken!=null and loginToken !='' ">
+			( ( dev_name=#{devName} or email=#{devName} ) and token_pass =
+			#{loginToken} and token_time>date_sub(now(),interval 14 day)) 
+        </if>
+	</select>
+
+	<select id="isExistsR" parameterType="Developer" resultMap="developerResult">
+		select * from t_developer where temp_password=#{password} and
+		email=#{email}   
+    </select>
+
+
+	<select id="getDev" parameterType="map" resultMap="developerResult">
+		select dev_name, contact,mobile_phone,email,QQ,company_name from t_developer
+		where dev_id=#{devId}   
+    </select>
+
+
+	<select id="getAllDevById" parameterType="map" resultMap="developerResult">
+		select * from t_developer where 1=1
+		<if test="email != null and email != '' "> and	email =#{email} </if>
+
+		<if test="devId != null and devId != '' "> and	dev_Id =#{devId} </if>
+   </select>
+
+
+
+	<!-- 修改邮箱验证码email_code -->
+	<update id="updateEmailCode" parameterType="map">
+		UPDATE t_developer
+		<set>
+			<if test="emailCode != null"> email_code=#{emailCode},</if>
+			<if test="emailFlag != null"> email_flag=#{emailFlag},</if>
+		</set>
+		WHERE dev_id=#{devId}
+	</update>
+
+
+	<!-- 修改邮箱认证状态email_flag -->
+	<update id="updateEmailFlag" parameterType="map">
+
+		UPDATE t_developer
+		<set>
+			<if test="emailFlag != null"> email_flag=#{emailFlag},</if>
+			email_code=''
+		</set>
+		WHERE dev_id=#{devId}
+	</update>
+	
+	<!-- 修改用户基本信息 -->
+	<update id="updateDevBase" parameterType="map">
+
+		UPDATE t_developer
+		<set>
+			<if test="contact != null"> contact=#{contact},</if>
+			<if test="qq != null"> QQ=#{qq},</if>
+			<if test="mobilePhone != null">mobile_phone=#{mobilePhone},</if>
+			<if test="companyName != null">company_name=#{companyName}</if>
+		</set>
+		WHERE dev_id=#{devId}
+	</update>
+	
+	
+
+</mapper>
