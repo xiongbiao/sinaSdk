@@ -8,16 +8,16 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class DrawTunnel extends BNShape
 {
-	//Á¢·½Ìå³¤¡¢¿í¡¢¸ß
-	private static final float LENGTH=123.94f;//ËíµÀ¿í¶ÈÒ»°ë
-	private static final float WIDTH=542f;//ËíµÀ³¤¶ÈÒ»°ë
-	private static final float HEIGHT=1f;//ËíµÀ°åºñ¶È
-	private static final float TOP_HEIGHT=45f;//ËíµÀ¸ß¶È
+	//ç«‹æ–¹ä½“é•¿ã€å®½ã€é«˜
+	private static final float LENGTH=123.94f;//éš§é“å®½åº¦ä¸€åŠ
+	private static final float WIDTH=542f;//éš§é“é•¿åº¦ä¸€åŠ
+	private static final float HEIGHT=1f;//éš§é“æ¿åšåº¦
+	private static final float TOP_HEIGHT=45f;//éš§é“é«˜åº¦
 	
-	private static final float COL=1;//ĞĞÊı  
-	private static final float COLUMN=25;//ÁĞÊı
+	private static final float COL=1;//è¡Œæ•°  
+	private static final float COLUMN=25;//åˆ—æ•°
 	
-	//¸÷¸ö×ø±êÖáµÄ×ª¶¯½Ç¶È
+	//å„ä¸ªåæ ‡è½´çš„è½¬åŠ¨è§’åº¦
 	public float mAngleX;
 	public float mAngleY;
 	public float mAngleZ; 
@@ -42,7 +42,7 @@ public class DrawTunnel extends BNShape
 
 	@Override
 	public void drawSelf(GL10 gl, int texId, int number) {
-		gl.glRotatef(mAngleX, 1, 0, 0);//Ğı×ª
+		gl.glRotatef(mAngleX, 1, 0, 0);//æ—‹è½¬
 		gl.glRotatef(mAngleY, 0, 1, 0);
 		gl.glRotatef(mAngleZ, 0, 0, 1);
 //		
@@ -88,18 +88,18 @@ public class DrawTunnel extends BNShape
 	}
 	
 	private class Cube {
-		private FloatBuffer mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-		private FloatBuffer mTextureBuffer;	//ÎÆÀí×ø±êÊı¾İ»º³å
+		private FloatBuffer mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+		private FloatBuffer mTextureBuffer;	//çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		public float mOffsetX;
-		public float mOffsetY;	//Á¢·½Ìå´óĞ¡
-		int vCount;//¶¥µãÊıÁ¿
+		public float mOffsetY;	//ç«‹æ–¹ä½“å¤§å°
+		int vCount;//é¡¶ç‚¹æ•°é‡
 		public Cube(float scale,float LENGTH,float WIDTH,float HEIGHT)
 		{
 			vCount=30;
 			float[] verteices=
 			{
 					
-					//¶¥Ãæ
+					//é¡¶é¢
 					-scale*LENGTH,HEIGHT,-WIDTH,
 					-scale*LENGTH,HEIGHT,WIDTH,
 					scale*LENGTH,HEIGHT,WIDTH,
@@ -108,7 +108,7 @@ public class DrawTunnel extends BNShape
 					scale*LENGTH,HEIGHT,WIDTH,
 					scale*LENGTH,HEIGHT,-WIDTH,
 					
-					//ºóÃæ
+					//åé¢
 					scale*LENGTH,HEIGHT,-WIDTH,
 					scale*LENGTH,-HEIGHT,-WIDTH,
 					-scale*LENGTH,-HEIGHT,-WIDTH,
@@ -117,7 +117,7 @@ public class DrawTunnel extends BNShape
 					-scale*LENGTH,-HEIGHT,-WIDTH,
 					-scale*LENGTH,HEIGHT,-WIDTH,
 					
-					//Ç°Ãæ
+					//å‰é¢
 					-scale*LENGTH,HEIGHT,WIDTH,
 					-scale*LENGTH,-HEIGHT,WIDTH,
 					scale*LENGTH,-HEIGHT,WIDTH,
@@ -126,7 +126,7 @@ public class DrawTunnel extends BNShape
 					scale*LENGTH,-HEIGHT,WIDTH,
 					scale*LENGTH,HEIGHT,WIDTH,
 					
-					//×óÃæ
+					//å·¦é¢
 					-scale*LENGTH,-HEIGHT,-WIDTH,
 					-scale*LENGTH,-HEIGHT,-WIDTH,
 					-scale*LENGTH,-HEIGHT,WIDTH,
@@ -135,7 +135,7 @@ public class DrawTunnel extends BNShape
 					-scale*LENGTH,-HEIGHT,WIDTH,
 					-scale*LENGTH,HEIGHT,WIDTH,
 					
-					//ÓÒÃæ
+					//å³é¢
 					scale*LENGTH,HEIGHT,WIDTH,
 					scale*LENGTH,-HEIGHT,WIDTH,
 					scale*LENGTH,-HEIGHT,-WIDTH,
@@ -146,14 +146,14 @@ public class DrawTunnel extends BNShape
 							
 			};
 			
-			ByteBuffer vbb=ByteBuffer.allocateDirect(verteices.length*4); //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-			vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-			mVertexBuffer=vbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-			mVertexBuffer.put(verteices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-			mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+			ByteBuffer vbb=ByteBuffer.allocateDirect(verteices.length*4); //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+			vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+			mVertexBuffer=vbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+			mVertexBuffer.put(verteices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+			mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 			
 			float[] textureCoors=new float[vCount*2];
-			for(int i=0;i<vCount/6;i++)//¸ö¶¥µãÎÆÀí×ø±ê
+			for(int i=0;i<vCount/6;i++)//ä¸ªé¡¶ç‚¹çº¹ç†åæ ‡
 			{
 				textureCoors[i*12]=0;
 				textureCoors[(i*12)+1]=0;
@@ -175,11 +175,11 @@ public class DrawTunnel extends BNShape
 
 			}
 			
-			ByteBuffer tbb=ByteBuffer.allocateDirect(textureCoors.length*4);//´´½¨¶¥µã×ø±êÊı¾İ»º³å
-			tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-			mTextureBuffer=tbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-			mTextureBuffer.put(textureCoors);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-			mTextureBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+			ByteBuffer tbb=ByteBuffer.allocateDirect(textureCoors.length*4);//åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+			tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+			mTextureBuffer=tbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+			mTextureBuffer.put(textureCoors);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+			mTextureBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 			
 			
 		}
@@ -192,25 +192,25 @@ public class DrawTunnel extends BNShape
 			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mVertexBuffer);
 			
-			gl.glEnable(GL10.GL_TEXTURE_2D);//¿ªÆôÎÆÀí
-			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//ÔÊĞíÊ¹ÓÃÎÆÀíÊı×é
-			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);//Ö¸¶¨ÎÆÀíÊı×é
-			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//°ó¶¨ÎÆÀí
-			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//»æÖÆ
+			gl.glEnable(GL10.GL_TEXTURE_2D);//å¼€å¯çº¹ç†
+			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…è®¸ä½¿ç”¨çº¹ç†æ•°ç»„
+			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);//æŒ‡å®šçº¹ç†æ•°ç»„
+			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//ç»‘å®šçº¹ç†
+			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//ç»˜åˆ¶
 			
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±ÕÎÆÀíÊı×é
-			gl.glDisable(GL10.GL_TEXTURE_2D);//¹Ø±ÕÎÆÀí
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­çº¹ç†æ•°ç»„
+			gl.glDisable(GL10.GL_TEXTURE_2D);//å…³é—­çº¹ç†
 			
 		}
 	}
 	
 	private class Texture
 	{
-		private FloatBuffer mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-		private FloatBuffer mTextureBuffer;	//ÎÆÀí×ø±êÊı¾İ»º³å
+		private FloatBuffer mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+		private FloatBuffer mTextureBuffer;	//çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		public float mOffsetX;
 		public float mOffsetY;	
-		int vCount;//¶¥µãÊıÁ¿	
+		int vCount;//é¡¶ç‚¹æ•°é‡	
 		
 		public Texture(float scale,float LENGTH,float WIDTH)
 		{
@@ -253,14 +253,14 @@ public class DrawTunnel extends BNShape
 				verteices[i]=al.get(i);
 			}
 			
-			ByteBuffer vbb=ByteBuffer.allocateDirect(verteices.length*4); //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-			vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-			mVertexBuffer=vbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-			mVertexBuffer.put(verteices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-			mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+			ByteBuffer vbb=ByteBuffer.allocateDirect(verteices.length*4); //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+			vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+			mVertexBuffer=vbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+			mVertexBuffer.put(verteices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+			mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 			
 			float[] textureCoors=new float[vCount*2];
-			for(int i=0;i<vCount/6;i++)//¸ö¶¥µãÎÆÀí×ø±ê
+			for(int i=0;i<vCount/6;i++)//ä¸ªé¡¶ç‚¹çº¹ç†åæ ‡
 			{
 				textureCoors[i*12]=0;
 				textureCoors[(i*12)+1]=0.5f;
@@ -282,11 +282,11 @@ public class DrawTunnel extends BNShape
 
 			}
 			
-			ByteBuffer tbb=ByteBuffer.allocateDirect(textureCoors.length*4);//´´½¨¶¥µã×ø±êÊı¾İ»º³å
-			tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-			mTextureBuffer=tbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-			mTextureBuffer.put(textureCoors);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-			mTextureBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+			ByteBuffer tbb=ByteBuffer.allocateDirect(textureCoors.length*4);//åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+			tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+			mTextureBuffer=tbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+			mTextureBuffer.put(textureCoors);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+			mTextureBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 			
 		}
 		
@@ -298,25 +298,25 @@ public class DrawTunnel extends BNShape
 			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mVertexBuffer);
 			
-			gl.glEnable(GL10.GL_TEXTURE_2D);//¿ªÆôÎÆÀí
-			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//ÔÊĞíÊ¹ÓÃÎÆÀíÊı×é
-			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);//Ö¸¶¨ÎÆÀíÊı×é
-			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//°ó¶¨ÎÆÀí
-			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//»æÖÆ
+			gl.glEnable(GL10.GL_TEXTURE_2D);//å¼€å¯çº¹ç†
+			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…è®¸ä½¿ç”¨çº¹ç†æ•°ç»„
+			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);//æŒ‡å®šçº¹ç†æ•°ç»„
+			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//ç»‘å®šçº¹ç†
+			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//ç»˜åˆ¶
 			
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±ÕÎÆÀíÊı×é
-			gl.glDisable(GL10.GL_TEXTURE_2D);//¹Ø±ÕÎÆÀí
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­çº¹ç†æ•°ç»„
+			gl.glDisable(GL10.GL_TEXTURE_2D);//å…³é—­çº¹ç†
 			
 		}
 	}
 	
 	private class TextureForTop
 	{
-		private FloatBuffer mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-		private FloatBuffer mTextureBuffer;	//ÎÆÀí×ø±êÊı¾İ»º³å
+		private FloatBuffer mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+		private FloatBuffer mTextureBuffer;	//çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		public float mOffsetX;
 		public float mOffsetY;	
-		int vCount;//¶¥µãÊıÁ¿	
+		int vCount;//é¡¶ç‚¹æ•°é‡	
 		
 		public TextureForTop(float scale,float LENGTH,float WIDTH)
 		{
@@ -359,14 +359,14 @@ public class DrawTunnel extends BNShape
 				verteices[i]=al.get(i);
 			}
 			
-			ByteBuffer vbb=ByteBuffer.allocateDirect(verteices.length*4); //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-			vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-			mVertexBuffer=vbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-			mVertexBuffer.put(verteices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-			mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+			ByteBuffer vbb=ByteBuffer.allocateDirect(verteices.length*4); //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+			vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+			mVertexBuffer=vbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+			mVertexBuffer.put(verteices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+			mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 			
 			float[] textureCoors=new float[vCount*2];
-			for(int i=0;i<vCount/6;i++)//¸ö¶¥µãÎÆÀí×ø±ê
+			for(int i=0;i<vCount/6;i++)//ä¸ªé¡¶ç‚¹çº¹ç†åæ ‡
 			{
 				textureCoors[i*12]=0.125f;
 				textureCoors[(i*12)+1]=0;
@@ -388,11 +388,11 @@ public class DrawTunnel extends BNShape
 
 			}
 			
-			ByteBuffer tbb=ByteBuffer.allocateDirect(textureCoors.length*4);//´´½¨¶¥µã×ø±êÊı¾İ»º³å
-			tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-			mTextureBuffer=tbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-			mTextureBuffer.put(textureCoors);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-			mTextureBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+			ByteBuffer tbb=ByteBuffer.allocateDirect(textureCoors.length*4);//åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+			tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+			mTextureBuffer=tbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+			mTextureBuffer.put(textureCoors);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+			mTextureBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 			
 		}
 		
@@ -404,14 +404,14 @@ public class DrawTunnel extends BNShape
 			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mVertexBuffer);
 			
-			gl.glEnable(GL10.GL_TEXTURE_2D);//¿ªÆôÎÆÀí
-			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//ÔÊĞíÊ¹ÓÃÎÆÀíÊı×é
-			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);//Ö¸¶¨ÎÆÀíÊı×é
-			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//°ó¶¨ÎÆÀí
-			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//»æÖÆ
+			gl.glEnable(GL10.GL_TEXTURE_2D);//å¼€å¯çº¹ç†
+			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…è®¸ä½¿ç”¨çº¹ç†æ•°ç»„
+			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);//æŒ‡å®šçº¹ç†æ•°ç»„
+			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//ç»‘å®šçº¹ç†
+			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//ç»˜åˆ¶
 			
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±ÕÎÆÀíÊı×é
-			gl.glDisable(GL10.GL_TEXTURE_2D);//¹Ø±ÕÎÆÀí
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­çº¹ç†æ•°ç»„
+			gl.glDisable(GL10.GL_TEXTURE_2D);//å…³é—­çº¹ç†
 			
 		}
 	}

@@ -3,8 +3,8 @@ package com.bn.carracer;
 import java.util.Set;
 public class Normal 
 {
-   public static final float DIFF=0.0000001f;//ÅĞ¶ÏÁ½¸ö·¨ÏòÁ¿ÊÇ·ñÏàÍ¬µÄãĞÖµ
-   //·¨ÏòÁ¿ÔÚXYZÖáÉÏµÄ·ÖÁ¿
+   public static final float DIFF=0.0000001f;//åˆ¤æ–­ä¸¤ä¸ªæ³•å‘é‡æ˜¯å¦ç›¸åŒçš„é˜ˆå€¼
+   //æ³•å‘é‡åœ¨XYZè½´ä¸Šçš„åˆ†é‡
    float nx;
    float ny;
    float nz;
@@ -20,7 +20,7 @@ public class Normal
    public boolean equals(Object o)
    {
 	   if(o instanceof  Normal)
-	   {//ÈôÁ½¸ö·¨ÏòÁ¿XYZÈı¸ö·ÖÁ¿µÄ²î¶¼Ğ¡ÓÚÖ¸¶¨µÄãĞÖµÔòÈÏÎªÕâÁ½¸ö·¨ÏòÁ¿ÏàµÈ
+	   {//è‹¥ä¸¤ä¸ªæ³•å‘é‡XYZä¸‰ä¸ªåˆ†é‡çš„å·®éƒ½å°äºæŒ‡å®šçš„é˜ˆå€¼åˆ™è®¤ä¸ºè¿™ä¸¤ä¸ªæ³•å‘é‡ç›¸ç­‰
 		   Normal tn=(Normal)o;
 		   if(Math.abs(nx-tn.nx)<DIFF&&
 			  Math.abs(ny-tn.ny)<DIFF&&
@@ -44,10 +44,10 @@ public class Normal
    {
 	   return 1;
    }   
-   //Çó·¨ÏòÁ¿Æ½¾ùÖµµÄ¹¤¾ß·½·¨
+   //æ±‚æ³•å‘é‡å¹³å‡å€¼çš„å·¥å…·æ–¹æ³•
    public static float[] getAverage(Set<Normal> sn)
    {
-	   //´æ·Å·¨ÏòÁ¿ºÍµÄÊı×é
+	   //å­˜æ”¾æ³•å‘é‡å’Œçš„æ•°ç»„
 	   float[] result=new float[3];
 	   for(Normal n:sn)
 	   {
@@ -55,7 +55,7 @@ public class Normal
 		   result[1]+=n.ny;
 		   result[2]+=n.nz;
 	   }	   
-	   //¹æ¸ñ»¯
+	   //è§„æ ¼åŒ–
 	   return LoadUtil.vectorNormal(result);
    }
 }

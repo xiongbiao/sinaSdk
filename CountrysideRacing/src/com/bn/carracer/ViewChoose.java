@@ -10,13 +10,13 @@ import android.view.SurfaceView;
 import static com.bn.carracer.Constant.*;
 public class ViewChoose extends SurfaceView implements SurfaceHolder.Callback{
 
-	Activity_GL_Racing activity;//ÉùÃ÷ÒýÓÃ
-	Bitmap choose;//ÉèÖÃ½çÃæ±³¾°
+	Activity_GL_Racing activity;//å£°æ˜Žå¼•ç”¨
+	Bitmap choose;//è®¾ç½®ç•Œé¢èƒŒæ™¯
 	
-	float screenWidth=480;//Í¼Æ¬¿í¶È
+	float screenWidth=480;//å›¾ç‰‡å®½åº¦
 	float x_Offset=Activity_GL_Racing.screenWidth/2-screenWidth/2;
 
-	Paint paint;//»­±Ê 
+	Paint paint;//ç”»ç¬” 
 	
 	public ViewChoose(Activity_GL_Racing activity) {
 		super(activity);
@@ -32,19 +32,19 @@ public class ViewChoose extends SurfaceView implements SurfaceHolder.Callback{
 		switch(event.getAction()) 
 		{
 		case MotionEvent.ACTION_DOWN:
-			int x = (int) event.getX();//»ñÈ¡X×ø±ê
+			int x = (int) event.getX();//èŽ·å–Xåæ ‡
 			int y = (int) event.getY();
-			if(x>135+x_Offset&&x<343+x_Offset&&y>100&&y<169)//µã»÷Ö÷²Ëµ¥
+			if(x>135+x_Offset&&x<343+x_Offset&&y>100&&y<169)//ç‚¹å‡»ä¸»èœå•
 			{
-				activity.toAnotherView(LOADING);//½øÈëÓÎÏ·
+				activity.toAnotherView(LOADING);//è¿›å…¥æ¸¸æˆ
 			}
-			if(x>135+x_Offset&&x<343+x_Offset&&y>169&&y<247)//µã»÷ÔÚÍæÒ»´Î
+			if(x>135+x_Offset&&x<343+x_Offset&&y>169&&y<247)//ç‚¹å‡»åœ¨çŽ©ä¸€æ¬¡
 			{
-				activity.toAnotherView(HISTORY);//½øÈëÀúÊ·½çÃæ
+				activity.toAnotherView(HISTORY);//è¿›å…¥åŽ†å²ç•Œé¢
 			} 
-			if(x>387+x_Offset&&x<474+x_Offset&&y>280&&y<310)//µã»÷·µ»Ø¼ü
+			if(x>387+x_Offset&&x<474+x_Offset&&y>280&&y<310)//ç‚¹å‡»è¿”å›žé”®
 			{
-				activity.toAnotherView(ENTER_MENU);//·µ»ØÖ÷²Ëµ¥ 
+				activity.toAnotherView(ENTER_MENU);//è¿”å›žä¸»èœå• 
 			}
 			break;
 		}
@@ -68,10 +68,10 @@ public class ViewChoose extends SurfaceView implements SurfaceHolder.Callback{
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
-		Canvas canvas = holder.lockCanvas();//»ñÈ¡»­²¼
+		Canvas canvas = holder.lockCanvas();//èŽ·å–ç”»å¸ƒ
 		try{
 			synchronized(holder){
-				onDraw(canvas);//»æÖÆ
+				onDraw(canvas);//ç»˜åˆ¶
 			}			
 		}
 		catch(Exception e){

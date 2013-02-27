@@ -8,66 +8,66 @@ import java.util.ArrayList;
 import javax.microedition.khronos.opengles.GL10;
 class DrawRoadSign extends BNShape {
 	
-	public final static float ROADSIGN_WIDTH=30f;//½»Í¨ÅÆ³¤¶È
-	public final static float ROADSIGN_HEIGHT=15f;//½»Í¨ÅÆ¸ß¶È
+	public final static float ROADSIGN_WIDTH=30f;//äº¤é€šç‰Œé•¿åº¦
+	public final static float ROADSIGN_HEIGHT=15f;//äº¤é€šç‰Œé«˜åº¦
 	
-	public final static float CYLINDER_HEIGHT=50;//Ö§¼Ü
-	public final static float CYLINDER_R=1.5f;//°ë¾¶
-	public final static float DEGREESPAN=18;//¶ÈÊı
-	public final static int COL=1;//¿éÊı
+	public final static float CYLINDER_HEIGHT=50;//æ”¯æ¶
+	public final static float CYLINDER_R=1.5f;//åŠå¾„
+	public final static float DEGREESPAN=18;//åº¦æ•°
+	public final static int COL=1;//å—æ•°
 	
-	float radiusH=0.5f;//Ğ¡ºá¼ÜµÄ°ë¾¶
-	float length=10;//Ğ¡ºá¼ÜµÄ³¤¶È
+	float radiusH=0.5f;//å°æ¨ªæ¶çš„åŠå¾„
+	float length=10;//å°æ¨ªæ¶çš„é•¿åº¦
 	float height1=CYLINDER_HEIGHT-2-4/15*ROADSIGN_HEIGHT;
 	float heitht2=height1-7/15*ROADSIGN_HEIGHT;
-	Sign sign;//½»Í¨ÅÆ
-	Cylinder cylinder;//Ö§¼Ü
-	Cylinder cylinderH;//ºá¼Ü
+	Sign sign;//äº¤é€šç‰Œ
+	Cylinder cylinder;//æ”¯æ¶
+	Cylinder cylinderH;//æ¨ªæ¶
 	float yAngle;
 	public DrawRoadSign(float scale) {
 		super(scale);
 		
 		sign=new Sign(scale);
-		cylinder=new Cylinder(scale,CYLINDER_HEIGHT,CYLINDER_R,DEGREESPAN,COL);//±ÈÀı£¬¸ß¶È£¬°ë¾¶£¬¶ÈÊı£¬¿éÊı
+		cylinder=new Cylinder(scale,CYLINDER_HEIGHT,CYLINDER_R,DEGREESPAN,COL);//æ¯”ä¾‹ï¼Œé«˜åº¦ï¼ŒåŠå¾„ï¼Œåº¦æ•°ï¼Œå—æ•°
 		cylinderH=new Cylinder(scale,length,radiusH,DEGREESPAN,COL);
 	}
 	@Override
 	public void drawSelf(GL10 gl, int texId,int number) {
 		gl.glRotatef(yAngle, 0, 1, 0);
-		//»æÖÆ½»Í¨ÅÆ
+		//ç»˜åˆ¶äº¤é€šç‰Œ
 		gl.glPushMatrix();
-		gl.glTranslatef(-(ROADSIGN_WIDTH/2+(length-0.5f))*scale,(CYLINDER_HEIGHT-ROADSIGN_HEIGHT/2-2)*scale,0);//-2±íÊ¾ÅÆ×ÓµÍÓÚÖ§¼Ü
+		gl.glTranslatef(-(ROADSIGN_WIDTH/2+(length-0.5f))*scale,(CYLINDER_HEIGHT-ROADSIGN_HEIGHT/2-2)*scale,0);//-2è¡¨ç¤ºç‰Œå­ä½äºæ”¯æ¶
 		sign.drawSelf(gl, texId,number);
 		gl.glPopMatrix();
-		//½»Í¨ÅÆ±³Ãæ
+		//äº¤é€šç‰ŒèƒŒé¢
 		gl.glPushMatrix();
 		gl.glTranslatef(-(ROADSIGN_WIDTH/2+(length-0.5f))*scale,(CYLINDER_HEIGHT-ROADSIGN_HEIGHT/2-2)*scale,0);
-		gl.glRotatef(180, 0, 1, 0);//Ğı×ª180¶È
+		gl.glRotatef(180, 0, 1, 0);//æ—‹è½¬180åº¦
 		sign.drawSelf(gl, texId,number);
 		gl.glPopMatrix();
-		//»æÖÆÖ§¼Ü
+		//ç»˜åˆ¶æ”¯æ¶
 		gl.glPushMatrix();
 		gl.glTranslatef(0, CYLINDER_HEIGHT/2*scale, 0);
 		gl.glRotatef(90, 0, 0, 1);
 		cylinder.drawSelf(gl, texId);
 		gl.glPopMatrix();
-		//»æÖÆºá¼Ü1
+		//ç»˜åˆ¶æ¨ªæ¶1
 		gl.glPushMatrix();
 		gl.glTranslatef(-(length/2-0.5f)*scale, heitht2*scale, 0);
 		cylinderH.drawSelf(gl, texId);
 		gl.glPopMatrix();
-		//»æÖÆºá¼Ü2
+		//ç»˜åˆ¶æ¨ªæ¶2
 		gl.glPushMatrix();
 		gl.glTranslatef(-(length/2-0.5f)*scale, height1*scale, 0);
 		cylinderH.drawSelf(gl, texId);
 		gl.glPopMatrix();
 	}
 	private class Sign{
-		private FloatBuffer vertexBuffer;//¶¥µãBuffer
-		private FloatBuffer[] textureBuffer;//ÎÆÀí×ø±êBuffer
-		private int vCount=0;//¶¥µãÊı
+		private FloatBuffer vertexBuffer;//é¡¶ç‚¹Buffer
+		private FloatBuffer[] textureBuffer;//çº¹ç†åæ ‡Buffer
+		private int vCount=0;//é¡¶ç‚¹æ•°
 		public Sign(float scale) {
-			float[]vertice=new float[]{//´æ·Å¶¥µã×ø±êµÄÊı×é
+			float[]vertice=new float[]{//å­˜æ”¾é¡¶ç‚¹åæ ‡çš„æ•°ç»„
 										-ROADSIGN_WIDTH/2*scale,ROADSIGN_HEIGHT/2*scale,0,//1
 										-ROADSIGN_WIDTH/2*scale,-ROADSIGN_HEIGHT/2*scale,0,//2
 										ROADSIGN_WIDTH/2*scale,ROADSIGN_HEIGHT/2*scale,0,//4
@@ -77,7 +77,7 @@ class DrawRoadSign extends BNShape {
 										ROADSIGN_WIDTH/2*scale,-ROADSIGN_HEIGHT/2*scale,0,//3
 										
 										};
-			vCount=vertice.length/3;//¶¥µãÊıÁ¿
+			vCount=vertice.length/3;//é¡¶ç‚¹æ•°é‡
 
 			ByteBuffer vbb=ByteBuffer.allocateDirect(vertice.length*4);
 			vbb.order(ByteOrder.nativeOrder());
@@ -85,8 +85,8 @@ class DrawRoadSign extends BNShape {
 			vertexBuffer.put(vertice);
 			vertexBuffer.position(0);
 			
-			float[][]textures=new float[][]{//ÎÆÀí×ø±ê		
-					{//×ó×ª±êÖ¾
+			float[][]textures=new float[][]{//çº¹ç†åæ ‡		
+					{//å·¦è½¬æ ‡å¿—
 					 0,0.26f,
 					 0,0.5f,
 					 0.5f,0.26f,
@@ -95,7 +95,7 @@ class DrawRoadSign extends BNShape {
 					 0,0.5f,
 					 0.5f,0.5f
 					},
-					{//ÓÒ×ª±êÖ¾
+					{//å³è½¬æ ‡å¿—
 					 0.5f,0.26f,
 					 0.5f,0.5f,
 					 1,0.26f,
@@ -104,7 +104,7 @@ class DrawRoadSign extends BNShape {
 					 0.5f,0.5f,
 					 1,0.5f
 					},
-					{//Ö±ĞĞ±êÖ¾
+					{//ç›´è¡Œæ ‡å¿—
 					 0,0.5f,
 					 0,0.75f,
 					 0.5f,0.5f,
@@ -113,7 +113,7 @@ class DrawRoadSign extends BNShape {
 					 0,0.75f,
 					 0.5f,0.75f
 					},
-					{//Îğ¾Æ¼İ
+					{//å‹¿é…’é©¾
 					 0.5f,0.5f,
 					 0.5f,0.75f,
 					 1,0.5f,
@@ -122,7 +122,7 @@ class DrawRoadSign extends BNShape {
 					 0.5f,0.75f,
 					 1,0.75f
 					},
-					{//ÓĞËíµÀ
+					{//æœ‰éš§é“
 					 0,0.75f,
 					 0,1,
 					 0.5f,0.75f,
@@ -131,7 +131,7 @@ class DrawRoadSign extends BNShape {
 					 0,1,
 					 0.5f,1
 					},
-					{//ÓĞÂäÊ¯
+					{//æœ‰è½çŸ³
 					0.5f,0.75f,
 					0.5f,1,
 					1,0.75f,
@@ -155,36 +155,36 @@ class DrawRoadSign extends BNShape {
 		}
 
 		public void drawSelf(GL10 gl,int texId,int number) {
-			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//¿ªÆô¶¥µãÊı×é
+			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//å¼€å¯é¡¶ç‚¹æ•°ç»„
 			gl.glVertexPointer(3, GL10.GL_FLOAT, 0,vertexBuffer);
 			
-			gl.glEnable(GL10.GL_TEXTURE_2D);//ÔÊĞíÎÆÀí
-			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¿ªÆôÎÆÀíÊı×é
+			gl.glEnable(GL10.GL_TEXTURE_2D);//å…è®¸çº¹ç†
+			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å¼€å¯çº¹ç†æ•°ç»„
 			gl.glTexCoordPointer(2,GL10.GL_FLOAT, 0, textureBuffer[number]);
-			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//°ó¶¨ÎÆÀí
+			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//ç»‘å®šçº¹ç†
 			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);
 			
-			gl.glDisable(GL10.GL_TEXTURE_2D);//¹Ø±ÕÎÆÀí
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±ÕÎÆÀíÊı×é
+			gl.glDisable(GL10.GL_TEXTURE_2D);//å…³é—­çº¹ç†
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­çº¹ç†æ•°ç»„
 		}
 
 	}
 	private class Cylinder
 	{
-		private FloatBuffer myVertexBuffer;//¶¥µã×ø±ê»º³å 
-		private FloatBuffer myTexture;//ÎÆÀí»º³å
+		private FloatBuffer myVertexBuffer;//é¡¶ç‚¹åæ ‡ç¼“å†² 
+		private FloatBuffer myTexture;//çº¹ç†ç¼“å†²
 		
-		int vCount;//¶¥µãÊıÁ¿
+		int vCount;//é¡¶ç‚¹æ•°é‡
 		public Cylinder(float scale,float length,float circle_radius,float degreespan,int col)
 		{			
-			float collength=(float)length*scale/col;//Ô²ÖùÃ¿¿éËùÕ¼µÄ³¤¶È
+			float collength=(float)length*scale/col;//åœ†æŸ±æ¯å—æ‰€å çš„é•¿åº¦
 			int spannum=(int)(360.0f/degreespan);
 			
-			ArrayList<Float> val=new ArrayList<Float>();//¶¥µã´æ·ÅÁĞ±í
+			ArrayList<Float> val=new ArrayList<Float>();//é¡¶ç‚¹å­˜æ”¾åˆ—è¡¨
 			
-			for(float circle_degree=360.0f;circle_degree>0.0f;circle_degree-=degreespan)//Ñ­»·ĞĞ
+			for(float circle_degree=360.0f;circle_degree>0.0f;circle_degree-=degreespan)//å¾ªç¯è¡Œ
 			{
-				for(int j=0;j<col;j++)//Ñ­»·ÁĞ
+				for(int j=0;j<col;j++)//å¾ªç¯åˆ—
 				{
 					float x1 =(float)(j*collength-length/2*scale);
 					float y1=(float) (circle_radius*scale*Math.sin(Math.toRadians(circle_degree)));
@@ -207,7 +207,7 @@ class DrawRoadSign extends BNShape {
 					
 			
 					
-					val.add(x1);val.add(y1);val.add(z1);//Á½¸öÈı½ÇĞÎ£¬¹²6¸ö¶¥µãµÄ×ø±ê
+					val.add(x1);val.add(y1);val.add(z1);//ä¸¤ä¸ªä¸‰è§’å½¢ï¼Œå…±6ä¸ªé¡¶ç‚¹çš„åæ ‡
 					val.add(x2);val.add(y2);val.add(z2);
 					val.add(x4);val.add(y4);val.add(z4);
 					
@@ -217,9 +217,9 @@ class DrawRoadSign extends BNShape {
 				}
 			}
 			 
-			vCount=val.size()/3;//È·¶¨¶¥µãÊıÁ¿
+			vCount=val.size()/3;//ç¡®å®šé¡¶ç‚¹æ•°é‡
 			
-			//¶¥µã
+			//é¡¶ç‚¹
 			float[] vertexs=new float[vCount*3];
 			for(int i=0;i<vCount*3;i++)
 			{
@@ -231,7 +231,7 @@ class DrawRoadSign extends BNShape {
 			myVertexBuffer.put(vertexs);
 			myVertexBuffer.position(0);
 			
-			//ÎÆÀí
+			//çº¹ç†
 			float[] textures=generateTexCoor(col,spannum);
 			ByteBuffer tbb=ByteBuffer.allocateDirect(textures.length*4);
 			tbb.order(ByteOrder.nativeOrder());
@@ -243,33 +243,33 @@ class DrawRoadSign extends BNShape {
 		public void drawSelf(GL10 gl,int texId)
 		{
 			
-			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//´ò¿ª¶¥µã»º³å
-			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, myVertexBuffer);//Ö¸¶¨¶¥µã»º³å
+			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//æ‰“å¼€é¡¶ç‚¹ç¼“å†²
+			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, myVertexBuffer);//æŒ‡å®šé¡¶ç‚¹ç¼“å†²
 			
 			gl.glEnable(GL10.GL_TEXTURE_2D);
 			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, myTexture);
 			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);
 			
-			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//»æÖÆÍ¼Ïñ
+			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//ç»˜åˆ¶å›¾åƒ
 			
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±Õ»º³å
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­ç¼“å†²
 			gl.glEnable(GL10.GL_TEXTURE_2D);
 			gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
 		}
 		
-	    //×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+	    //è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
 	    public float[] generateTexCoor(int bw,int bh)
 	    {
 	    	float[] result=new float[bw*bh*6*2]; 
-	    	float sizew=1f/bw;//ÁĞÊı
-	    	float sizeh=0.125f/bh;//ĞĞÊı
+	    	float sizew=1f/bw;//åˆ—æ•°
+	    	float sizeh=0.125f/bh;//è¡Œæ•°
 	    	int c=0;
 	    	for(int i=0;i<bh;i++)
 	    	{
 	    		for(int j=0;j<bw;j++)
 	    		{
-	    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+	    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
 	    			float s=j*sizew;
 	    			float t=i*sizeh;
 	    			

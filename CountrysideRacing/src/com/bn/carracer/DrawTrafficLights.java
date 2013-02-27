@@ -8,22 +8,22 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class DrawTrafficLights extends BNShape
 {
-	//Á¢·½Ìå³¤¡¢¿í¡¢¸ß
+	//ç«‹æ–¹ä½“é•¿ã€å®½ã€é«˜
 	private static float LENGTH=12f;
 	private static float WIDTH=2f;
 	private static float HEIGHT=4f;
 	
-	//Çò°ë¾¶¡¢ÇĞ¸î½Ç¶È
+	//çƒåŠå¾„ã€åˆ‡å‰²è§’åº¦
 	private final float RADIUS=4f;
     private final float ANGLE_SPAN=18;
     
-    //Ô²Öù¸ß¡¢°ë¾¶¡¢ÇĞ¸î¶ÈÊı¡¢¿éÊı
+    //åœ†æŸ±é«˜ã€åŠå¾„ã€åˆ‡å‰²åº¦æ•°ã€å—æ•°
 	private static float CYLINDER_HEIGHT=40f;
 	private static float CIRCLE_RADIUS=2f;
 	private static float DEGREESPAN=18f;
 	private static int COL=1;
     
-	static boolean flag=true;//Ïß³ÌÆô¶¯±êÖ¾Î»	
+	static boolean flag=true;//çº¿ç¨‹å¯åŠ¨æ ‡å¿—ä½	
 	Cube lightBoard;
 	DrawBall light;
 	Texture face;
@@ -55,7 +55,7 @@ public class DrawTrafficLights extends BNShape
 		
 	}
 	
-	//³õÊ¼»¯½»Í¨µÆÏß³Ì
+	//åˆå§‹åŒ–äº¤é€šç¯çº¿ç¨‹
 	public void initLightTurn()
 	{
 		lt=new LightTurn();
@@ -97,70 +97,70 @@ public class DrawTrafficLights extends BNShape
 		face.drawSelf(gl, texId);
 		gl.glPopMatrix();
 		
-		if(count%3==2)//ÂÌµÆ
+		if(count%3==2)//ç»¿ç¯
 		{
 			gl.glPushMatrix();
 			float[] directionParams={0,0,35f,0};
             gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, directionParams,0);
-			initMaterial(gl,0,1,0,1);//³õÊ¼»¯²ÄÖÊ
+			initMaterial(gl,0,1,0,1);//åˆå§‹åŒ–æè´¨
 			gl.glTranslatef(scale*RADIUS+scale*CYLINDER_HEIGHT*0.2f/2+5*RADIUS*scale, 
 					scale*CYLINDER_HEIGHT-scale*CYLINDER_HEIGHT*0.1f, 
 					scale*WIDTH+0.1f-RADIUS*scale/2);
 			gl.glRotatef(90, 1, 0, 0);
-            initLight(gl,1,1,1,1);//¿ªµÆ
-            light.drawSelf(gl);//»æÖÆ
-            closeLight(gl);//¹ØµÆ
+            initLight(gl,1,1,1,1);//å¼€ç¯
+            light.drawSelf(gl);//ç»˜åˆ¶
+            closeLight(gl);//å…³ç¯
 			gl.glPopMatrix();
 		}
 		
-		if(count%3==0)//ºìµÆ
+		if(count%3==0)//çº¢ç¯
 		{
 			gl.glPushMatrix();
 			float[] directionParams={0,0,35f,0};
             gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, directionParams,0);
-			initMaterial(gl,1,0,0,1);//³õÊ¼»¯²ÄÖÊ
+			initMaterial(gl,1,0,0,1);//åˆå§‹åŒ–æè´¨
 			gl.glTranslatef(scale*RADIUS+scale*CYLINDER_HEIGHT*0.2f/2+RADIUS*scale, 
 					scale*CYLINDER_HEIGHT-scale*CYLINDER_HEIGHT*0.1f, 
 					scale*WIDTH+0.1f-RADIUS*scale/2);
 			gl.glRotatef(90, 1, 0, 0);
-            initLight(gl,1,1,1,1);//¿ªµÆ
-            light.drawSelf(gl);//»æÖÆ
-            closeLight(gl);//¹ØµÆ
+            initLight(gl,1,1,1,1);//å¼€ç¯
+            light.drawSelf(gl);//ç»˜åˆ¶
+            closeLight(gl);//å…³ç¯
 			gl.glPopMatrix();
 		}
 		
-		if(count%3==1)//»ÆµÆ
+		if(count%3==1)//é»„ç¯
 		{
 			gl.glPushMatrix();
 			float[] directionParams={0,0,35f,0};
             gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, directionParams,0);
-			initMaterial(gl,1,1,0,1);//³õÊ¼»¯²ÄÖÊ
+			initMaterial(gl,1,1,0,1);//åˆå§‹åŒ–æè´¨
 			gl.glTranslatef(scale*RADIUS+scale*CYLINDER_HEIGHT*0.2f/2+3*RADIUS*scale, 
 					scale*CYLINDER_HEIGHT-scale*CYLINDER_HEIGHT*0.1f, 
 					scale*WIDTH+0.1f-RADIUS*scale/2);
 			gl.glRotatef(90, 1, 0, 0);
-            initLight(gl,1,1,1,1);//¿ªµÆ
-            light.drawSelf(gl);//»æÖÆ
-            closeLight(gl);//¹ØµÆ
+            initLight(gl,1,1,1,1);//å¼€ç¯
+            light.drawSelf(gl);//ç»˜åˆ¶
+            closeLight(gl);//å…³ç¯
 			gl.glPopMatrix();
 		}
 	}
 	
 	private class DrawBall
 	{
-		private FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-	    private FloatBuffer mNormalBuffer;//¶¥µãÎÆÀíÊı¾İ»º³å
-	    int vCount=0;//¶¥µãÊıÁ¿
+		private FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+	    private FloatBuffer mNormalBuffer;//é¡¶ç‚¹çº¹ç†æ•°æ®ç¼“å†²
+	    int vCount=0;//é¡¶ç‚¹æ•°é‡
 	    public DrawBall(float scale) 
 	    {    	
-	    	ArrayList<Float> alVertix=new ArrayList<Float>();//´æ·Å¶¥µã×ø±êµÄArrayList
+	    	ArrayList<Float> alVertix=new ArrayList<Float>();//å­˜æ”¾é¡¶ç‚¹åæ ‡çš„ArrayList
 	    	
-	        for(float vAngle=90;vAngle>30;vAngle=vAngle-ANGLE_SPAN)//´¹Ö±·½ÏòangleSpan¶ÈÒ»·İ
+	        for(float vAngle=90;vAngle>30;vAngle=vAngle-ANGLE_SPAN)//å‚ç›´æ–¹å‘angleSpanåº¦ä¸€ä»½
 	        {
-	        	for(float hAngle=360;hAngle>0;hAngle=hAngle-ANGLE_SPAN)//Ë®Æ½·½ÏòangleSpan¶ÈÒ»·İ
+	        	for(float hAngle=360;hAngle>0;hAngle=hAngle-ANGLE_SPAN)//æ°´å¹³æ–¹å‘angleSpanåº¦ä¸€ä»½
 	        	{
-	        		//×İÏòºáÏò¸÷µ½Ò»¸ö½Ç¶Èºó¼ÆËã¶ÔÓ¦µÄ´ËµãÔÚÇòÃæÉÏµÄËÄ±ßĞÎ¶¥µã×ø±ê
-	        		//²¢¹¹½¨Á½¸ö×é³ÉËÄ±ßĞÎµÄÈı½ÇĞÎ
+	        		//çºµå‘æ¨ªå‘å„åˆ°ä¸€ä¸ªè§’åº¦åè®¡ç®—å¯¹åº”çš„æ­¤ç‚¹åœ¨çƒé¢ä¸Šçš„å››è¾¹å½¢é¡¶ç‚¹åæ ‡
+	        		//å¹¶æ„å»ºä¸¤ä¸ªç»„æˆå››è¾¹å½¢çš„ä¸‰è§’å½¢
 	        		
 	        		double xozLength=scale*RADIUS*Math.cos(Math.toRadians(vAngle));
 	        		float x1=(float)(xozLength*Math.cos(Math.toRadians(hAngle)));
@@ -182,11 +182,11 @@ public class DrawTrafficLights extends BNShape
 	        		float z4=(float)(xozLength*Math.sin(Math.toRadians(hAngle-ANGLE_SPAN)));
 	        		float y4=(float)(scale*RADIUS*Math.sin(Math.toRadians(vAngle)));   
 	        		
-	        		//¹¹½¨µÚÒ»Èı½ÇĞÎ
+	        		//æ„å»ºç¬¬ä¸€ä¸‰è§’å½¢
 	        		alVertix.add(x1);alVertix.add(y1);alVertix.add(z1);
 	        		alVertix.add(x2);alVertix.add(y2);alVertix.add(z2);
 	        		alVertix.add(x4);alVertix.add(y4);alVertix.add(z4);        		
-	        		//¹¹½¨µÚ¶şÈı½ÇĞÎ
+	        		//æ„å»ºç¬¬äºŒä¸‰è§’å½¢
 	        		alVertix.add(x4);alVertix.add(y4);alVertix.add(z4);
 	        		alVertix.add(x2);alVertix.add(y2);alVertix.add(z2);
 	        		alVertix.add(x3);alVertix.add(y3);alVertix.add(z3); 
@@ -194,60 +194,60 @@ public class DrawTrafficLights extends BNShape
 	        	}
 	        } 	
 	        
-	        vCount=alVertix.size()/3;//¶¥µãµÄÊıÁ¿Îª×ø±êÖµÊıÁ¿µÄ1/3£¬ÒòÎªÒ»¸ö¶¥µãÓĞ3¸ö×ø±ê
+	        vCount=alVertix.size()/3;//é¡¶ç‚¹çš„æ•°é‡ä¸ºåæ ‡å€¼æ•°é‡çš„1/3ï¼Œå› ä¸ºä¸€ä¸ªé¡¶ç‚¹æœ‰3ä¸ªåæ ‡
 	    	
-	        //½«alVertixÖĞµÄ×ø±êÖµ×ª´æµ½Ò»¸öintÊı×éÖĞ
+	        //å°†alVertixä¸­çš„åæ ‡å€¼è½¬å­˜åˆ°ä¸€ä¸ªintæ•°ç»„ä¸­
 	        float vertices[]=new float[vCount*3];
 	    	for(int i=0;i<alVertix.size();i++)
 	    	{
 	    		vertices[i]=alVertix.get(i);
 	    	}
 	        
-	        //´´½¨»æÖÆ¶¥µãÊı¾İ»º³å
+	        //åˆ›å»ºç»˜åˆ¶é¡¶ç‚¹æ•°æ®ç¼“å†²
 	        ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-	        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-	        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-	        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-	        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ     
+	        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+	        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+	        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+	        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®     
 	                
-	        //´´½¨¶¥µã·¨ÏòÁ¿Êı¾İ»º³å
-	        //vertices.length*4ÊÇÒòÎªÒ»¸öfloatËÄ¸ö×Ö½Ú
+	        //åˆ›å»ºé¡¶ç‚¹æ³•å‘é‡æ•°æ®ç¼“å†²
+	        //vertices.length*4æ˜¯å› ä¸ºä¸€ä¸ªfloatå››ä¸ªå­—èŠ‚
 	        ByteBuffer nbb = ByteBuffer.allocateDirect(vertices.length*4);
-	        nbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-	        mNormalBuffer = vbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-	        mNormalBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-	        mNormalBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ	        
+	        nbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+	        mNormalBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+	        mNormalBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+	        mNormalBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®	        
 	    }
 
 	    public void drawSelf(GL10 gl)
 	    {	        
-	    	gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//´ò¿ª¶¥µã»º³å
-			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mVertexBuffer);//Ö¸¶¨¶¥µã»º³å
+	    	gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//æ‰“å¼€é¡¶ç‚¹ç¼“å†²
+			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mVertexBuffer);//æŒ‡å®šé¡¶ç‚¹ç¼“å†²
 			
-			gl.glEnableClientState(GL10.GL_NORMAL_ARRAY);//´ò¿ª·¨ÏòÁ¿»º³å
-			gl.glNormalPointer(GL10.GL_FLOAT, 0, mNormalBuffer);//Ö¸¶¨·¨ÏòÁ¿»º³å
+			gl.glEnableClientState(GL10.GL_NORMAL_ARRAY);//æ‰“å¼€æ³•å‘é‡ç¼“å†²
+			gl.glNormalPointer(GL10.GL_FLOAT, 0, mNormalBuffer);//æŒ‡å®šæ³•å‘é‡ç¼“å†²
 			
-			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//»æÖÆÍ¼Ïñ
+			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//ç»˜åˆ¶å›¾åƒ
 			
-			gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);//¹Ø±Õ»º³å
+			gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);//å…³é—­ç¼“å†²
 			gl.glDisableClientState(GL10.GL_NORMAL_ARRAY);
 	    }
 	}
 	
 	private class Cube 
 	{
-		private FloatBuffer mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-		private FloatBuffer mTextureBuffer;	//ÎÆÀí×ø±êÊı¾İ»º³å
+		private FloatBuffer mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+		private FloatBuffer mTextureBuffer;	//çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		public float mOffsetX;
-		public float mOffsetY;	//Á¢·½Ìå´óĞ¡
-		int vCount;//¶¥µãÊıÁ¿
+		public float mOffsetY;	//ç«‹æ–¹ä½“å¤§å°
+		int vCount;//é¡¶ç‚¹æ•°é‡
 		public Cube(float scale)
 		{
 			vCount=30;
 			float[] verteices=
 			{
 					
-					//¶¥Ãæ
+					//é¡¶é¢
 					-scale*LENGTH,HEIGHT*scale,-scale*WIDTH,
 					-scale*LENGTH,HEIGHT*scale,scale*WIDTH,
 					scale*LENGTH,HEIGHT*scale,scale*WIDTH,
@@ -256,7 +256,7 @@ public class DrawTrafficLights extends BNShape
 					scale*LENGTH,HEIGHT*scale,scale*WIDTH,
 					scale*LENGTH,HEIGHT*scale,-scale*WIDTH,
 					
-					//ºóÃæ
+					//åé¢
 					scale*LENGTH,HEIGHT*scale,-scale*WIDTH,
 					scale*LENGTH,-HEIGHT*scale,-scale*WIDTH,
 					-scale*LENGTH,-HEIGHT*scale,-scale*WIDTH,
@@ -265,7 +265,7 @@ public class DrawTrafficLights extends BNShape
 					-scale*LENGTH,-HEIGHT*scale,-scale*WIDTH,
 					-scale*LENGTH,HEIGHT*scale,-scale*WIDTH,
 					
-					//Ç°Ãæ
+					//å‰é¢
 //					-scale*LENGTH,HEIGHT*scale,scale*WIDTH,
 //					-scale*LENGTH,-HEIGHT*scale,scale*WIDTH,
 //					scale*LENGTH,-HEIGHT*scale,scale*WIDTH,
@@ -274,7 +274,7 @@ public class DrawTrafficLights extends BNShape
 //					scale*LENGTH,-HEIGHT*scale,scale*WIDTH,
 //					scale*LENGTH,HEIGHT*scale,scale*WIDTH,
 					
-					//ÏÂÃæ
+					//ä¸‹é¢
 					-scale*LENGTH,-HEIGHT*scale,scale*WIDTH,
 					-scale*LENGTH,-HEIGHT*scale,-scale*WIDTH,
 					scale*LENGTH,-HEIGHT*scale,-scale*WIDTH,
@@ -283,7 +283,7 @@ public class DrawTrafficLights extends BNShape
 					scale*LENGTH,-HEIGHT*scale,-scale*WIDTH,
 					scale*LENGTH,-HEIGHT*scale,scale*WIDTH,
 					
-					//×óÃæ
+					//å·¦é¢
 					-scale*LENGTH,HEIGHT*scale,-scale*WIDTH,
 					-scale*LENGTH,-HEIGHT*scale,-scale*WIDTH,
 					-scale*LENGTH,-HEIGHT*scale,scale*WIDTH,
@@ -292,7 +292,7 @@ public class DrawTrafficLights extends BNShape
 					-scale*LENGTH,-HEIGHT*scale,scale*WIDTH,
 					-scale*LENGTH,HEIGHT*scale,scale*WIDTH,
 					
-					//ÓÒÃæ
+					//å³é¢
 					scale*LENGTH,HEIGHT*scale,scale*WIDTH,
 					scale*LENGTH,-HEIGHT*scale,scale*WIDTH,
 					scale*LENGTH,-HEIGHT*scale,-scale*WIDTH,
@@ -303,14 +303,14 @@ public class DrawTrafficLights extends BNShape
 							
 			};
 			
-			ByteBuffer vbb=ByteBuffer.allocateDirect(verteices.length*4); //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-			vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-			mVertexBuffer=vbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-			mVertexBuffer.put(verteices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-			mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+			ByteBuffer vbb=ByteBuffer.allocateDirect(verteices.length*4); //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+			vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+			mVertexBuffer=vbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+			mVertexBuffer.put(verteices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+			mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 			
 			float[] textureCoors=new float[vCount*2];
-			for(int i=0;i<vCount/6;i++)//¸ö¶¥µãÎÆÀí×ø±ê
+			for(int i=0;i<vCount/6;i++)//ä¸ªé¡¶ç‚¹çº¹ç†åæ ‡
 			{
 				textureCoors[i*12]=0.5f;
 				textureCoors[(i*12)+1]=0;
@@ -332,11 +332,11 @@ public class DrawTrafficLights extends BNShape
 
 			}
 			
-			ByteBuffer tbb=ByteBuffer.allocateDirect(textureCoors.length*4);//´´½¨¶¥µã×ø±êÊı¾İ»º³å
-			tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-			mTextureBuffer=tbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-			mTextureBuffer.put(textureCoors);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-			mTextureBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ		
+			ByteBuffer tbb=ByteBuffer.allocateDirect(textureCoors.length*4);//åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+			tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+			mTextureBuffer=tbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+			mTextureBuffer.put(textureCoors);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+			mTextureBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®		
 		}
 		
 		public void drawSelf(GL10 gl,int texId)
@@ -347,25 +347,25 @@ public class DrawTrafficLights extends BNShape
 			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mVertexBuffer);
 			
-			gl.glEnable(GL10.GL_TEXTURE_2D);//¿ªÆôÎÆÀí
-			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//ÔÊĞíÊ¹ÓÃÎÆÀíÊı×é
-			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);//Ö¸¶¨ÎÆÀíÊı×é
-			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//°ó¶¨ÎÆÀí
-			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//»æÖÆ
+			gl.glEnable(GL10.GL_TEXTURE_2D);//å¼€å¯çº¹ç†
+			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…è®¸ä½¿ç”¨çº¹ç†æ•°ç»„
+			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);//æŒ‡å®šçº¹ç†æ•°ç»„
+			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//ç»‘å®šçº¹ç†
+			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//ç»˜åˆ¶
 			
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±ÕÎÆÀíÊı×é
-			gl.glDisable(GL10.GL_TEXTURE_2D);//¹Ø±ÕÎÆÀí
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­çº¹ç†æ•°ç»„
+			gl.glDisable(GL10.GL_TEXTURE_2D);//å…³é—­çº¹ç†
 			
 		}
 	}
 	
 	private class Texture
 	{
-		private FloatBuffer mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-		private FloatBuffer mTextureBuffer;	//ÎÆÀí×ø±êÊı¾İ»º³å
+		private FloatBuffer mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+		private FloatBuffer mTextureBuffer;	//çº¹ç†åæ ‡æ•°æ®ç¼“å†²
 		public float mOffsetX;
 		public float mOffsetY;	
-		int vCount;//¶¥µãÊıÁ¿	
+		int vCount;//é¡¶ç‚¹æ•°é‡	
 		
 		public Texture(float scale)
 		{
@@ -380,22 +380,22 @@ public class DrawTrafficLights extends BNShape
 				scale*LENGTH,scale*HEIGHT,0
 			};
 			
-			ByteBuffer vbb=ByteBuffer.allocateDirect(verteices.length*4); //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-			vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-			mVertexBuffer=vbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-			mVertexBuffer.put(verteices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-			mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+			ByteBuffer vbb=ByteBuffer.allocateDirect(verteices.length*4); //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+			vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+			mVertexBuffer=vbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+			mVertexBuffer.put(verteices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+			mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 			
 			float[] textureCoors={
 				0,0.75f,0,1,0.75f,1,
 				0,0.75f,0.75f,1,0.75f,0.75f
 			};
 			
-			ByteBuffer tbb=ByteBuffer.allocateDirect(textureCoors.length*4);//´´½¨¶¥µã×ø±êÊı¾İ»º³å
-			tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-			mTextureBuffer=tbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-			mTextureBuffer.put(textureCoors);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-			mTextureBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+			ByteBuffer tbb=ByteBuffer.allocateDirect(textureCoors.length*4);//åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+			tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+			mTextureBuffer=tbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+			mTextureBuffer.put(textureCoors);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+			mTextureBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 			
 		}
 		
@@ -407,23 +407,23 @@ public class DrawTrafficLights extends BNShape
 			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mVertexBuffer);
 			
-			gl.glEnable(GL10.GL_TEXTURE_2D);//¿ªÆôÎÆÀí
-			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//ÔÊĞíÊ¹ÓÃÎÆÀíÊı×é
-			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);//Ö¸¶¨ÎÆÀíÊı×é
-			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//°ó¶¨ÎÆÀí
-			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//»æÖÆ
+			gl.glEnable(GL10.GL_TEXTURE_2D);//å¼€å¯çº¹ç†
+			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…è®¸ä½¿ç”¨çº¹ç†æ•°ç»„
+			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);//æŒ‡å®šçº¹ç†æ•°ç»„
+			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//ç»‘å®šçº¹ç†
+			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//ç»˜åˆ¶
 			
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±ÕÎÆÀíÊı×é
-			gl.glDisable(GL10.GL_TEXTURE_2D);//¹Ø±ÕÎÆÀí
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­çº¹ç†æ•°ç»„
+			gl.glDisable(GL10.GL_TEXTURE_2D);//å…³é—­çº¹ç†
 			
 		}
 	}
 	
 	private class DrawCylinder
 	{
-		private FloatBuffer myVertexBuffer;//¶¥µã×ø±ê»º³å 
-		private FloatBuffer myTexture;//ÎÆÀí»º³å
-		int vCount;//¶¥µãÊıÁ¿
+		private FloatBuffer myVertexBuffer;//é¡¶ç‚¹åæ ‡ç¼“å†² 
+		private FloatBuffer myTexture;//çº¹ç†ç¼“å†²
+		int vCount;//é¡¶ç‚¹æ•°é‡
 		
 		public float mAngleX;
 		public float mAngleY;
@@ -431,14 +431,14 @@ public class DrawTrafficLights extends BNShape
 		
 		public DrawCylinder(float length,float circle_radius,float degreespan,int col)
 		{			
-			float collength=(float)length/col;//Ô²ÖùÃ¿¿éËùÕ¼µÄ³¤¶È
+			float collength=(float)length/col;//åœ†æŸ±æ¯å—æ‰€å çš„é•¿åº¦
 			int spannum=(int)(360.0f/degreespan);
 			
-			ArrayList<Float> val=new ArrayList<Float>();//¶¥µã´æ·ÅÁĞ±í
+			ArrayList<Float> val=new ArrayList<Float>();//é¡¶ç‚¹å­˜æ”¾åˆ—è¡¨
 			
-			for(float circle_degree=360.0f;circle_degree>0.0f;circle_degree-=degreespan)//Ñ­»·ĞĞ
+			for(float circle_degree=360.0f;circle_degree>0.0f;circle_degree-=degreespan)//å¾ªç¯è¡Œ
 			{
-				for(int j=0;j<col;j++)//Ñ­»·ÁĞ
+				for(int j=0;j<col;j++)//å¾ªç¯åˆ—
 				{
 					float x1 =(float)(j*collength-length/2);
 					float y1=(float) (circle_radius*Math.sin(Math.toRadians(circle_degree)));
@@ -456,7 +456,7 @@ public class DrawTrafficLights extends BNShape
 					float y4=(float) (circle_radius*Math.sin(Math.toRadians(circle_degree)));
 					float z4=(float) (circle_radius*Math.cos(Math.toRadians(circle_degree)));
 					
-					val.add(x1);val.add(y1);val.add(z1);//Á½¸öÈı½ÇĞÎ£¬¹²6¸ö¶¥µãµÄ×ø±ê
+					val.add(x1);val.add(y1);val.add(z1);//ä¸¤ä¸ªä¸‰è§’å½¢ï¼Œå…±6ä¸ªé¡¶ç‚¹çš„åæ ‡
 					val.add(x2);val.add(y2);val.add(z2);
 					val.add(x4);val.add(y4);val.add(z4);
 					
@@ -466,9 +466,9 @@ public class DrawTrafficLights extends BNShape
 				}
 			}
 			 
-			vCount=val.size()/3;//È·¶¨¶¥µãÊıÁ¿
+			vCount=val.size()/3;//ç¡®å®šé¡¶ç‚¹æ•°é‡
 			
-			//¶¥µã
+			//é¡¶ç‚¹
 			float[] vertexs=new float[vCount*3];
 			for(int i=0;i<vCount*3;i++)
 			{
@@ -480,7 +480,7 @@ public class DrawTrafficLights extends BNShape
 			myVertexBuffer.put(vertexs);
 			myVertexBuffer.position(0);
 			
-			//ÎÆÀí
+			//çº¹ç†
 			float[] textures=generateTexCoor(col,spannum);
 			ByteBuffer tbb=ByteBuffer.allocateDirect(textures.length*4);
 			tbb.order(ByteOrder.nativeOrder());
@@ -491,38 +491,38 @@ public class DrawTrafficLights extends BNShape
 		
 		public void drawSelf(GL10 gl,int textureId)
 		{
-			gl.glRotatef(mAngleX, 1, 0, 0);//Ğı×ª
+			gl.glRotatef(mAngleX, 1, 0, 0);//æ—‹è½¬
 			gl.glRotatef(mAngleY, 0, 1, 0);
 			gl.glRotatef(mAngleZ, 0, 0, 1);
 			
-			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//´ò¿ª¶¥µã»º³å
-			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, myVertexBuffer);//Ö¸¶¨¶¥µã»º³å
+			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//æ‰“å¼€é¡¶ç‚¹ç¼“å†²
+			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, myVertexBuffer);//æŒ‡å®šé¡¶ç‚¹ç¼“å†²
 			
 			gl.glEnable(GL10.GL_TEXTURE_2D);
 			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, myTexture);
 			gl.glBindTexture(GL10.GL_TEXTURE_2D, textureId);
 			
-			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//»æÖÆÍ¼Ïñ
+			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//ç»˜åˆ¶å›¾åƒ
 			
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±Õ»º³å
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­ç¼“å†²
 			gl.glEnable(GL10.GL_TEXTURE_2D);
 			gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
 		}
 		
 		
-		//×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+		//è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
 	    public float[] generateTexCoor(int bw,int bh)
 	    {
 	    	float[] result=new float[bw*bh*6*2]; 
-	    	float sizeh=0.5f/bh;//ĞĞÊı
-	    	float sizew=0.125f/bw;//ÁĞÊı
+	    	float sizeh=0.5f/bh;//è¡Œæ•°
+	    	float sizew=0.125f/bw;//åˆ—æ•°
 	    	int c=0;
 	    	for(int i=0;i<bh;i++)
 	    	{
 	    		for(int j=0;j<bw;j++)
 	    		{
-	    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+	    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
 	    			float t=i*sizeh;
 	    			float s=j*sizew;    	
 	    			
@@ -549,42 +549,42 @@ public class DrawTrafficLights extends BNShape
 	    }
 	}
 	
-	//³õÊ¼»¯µÆ
+	//åˆå§‹åŒ–ç¯
 	private void initLight(GL10 gl,float r,float g,float b,float a)
 	{    
-        gl.glEnable(GL10.GL_LIGHTING);//ÔÊĞí¹âÕÕ    
-        gl.glEnable(GL10.GL_LIGHT0);//´ò¿ª0ºÅµÆ  
+        gl.glEnable(GL10.GL_LIGHTING);//å…è®¸å…‰ç…§    
+        gl.glEnable(GL10.GL_LIGHT0);//æ‰“å¼€0å·ç¯  
         
-        //»·¾³¹âÉèÖÃ
-        float[] ambientParams={1f*r,1f*g,1f*b,1.0f*a};//¹â²ÎÊı RGBA
+        //ç¯å¢ƒå…‰è®¾ç½®
+        float[] ambientParams={1f*r,1f*g,1f*b,1.0f*a};//å…‰å‚æ•° RGBA
         gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, ambientParams,0);            
         
-        //É¢Éä¹âÉèÖÃ
-        float[] diffuseParams={1f*r,1f*g,1f*b,1.0f*a};//¹â²ÎÊı RGBA
+        //æ•£å°„å…‰è®¾ç½®
+        float[] diffuseParams={1f*r,1f*g,1f*b,1.0f*a};//å…‰å‚æ•° RGBA
         gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, diffuseParams,0); 
         
-        //·´Éä¹âÉèÖÃ
-        float[] specularParams={0f*r,0f*g,0f*b,1.0f*a};//¹â²ÎÊı RGBA
+        //åå°„å…‰è®¾ç½®
+        float[] specularParams={0f*r,0f*g,0f*b,1.0f*a};//å…‰å‚æ•° RGBA
         gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, specularParams,0); 
 	}
 	
-	//¹Ø±ÕµÆ
+	//å…³é—­ç¯
 	private void closeLight(GL10 gl)
 	{
 		gl.glDisable(GL10.GL_LIGHT0);
 		gl.glDisable(GL10.GL_LIGHTING);
 	}
 	
-	//³õÊ¼»¯²ÄÖÊ
+	//åˆå§‹åŒ–æè´¨
 	private void initMaterial(GL10 gl,float r,float g,float b,float a)
 	{
-        //»·¾³¹â
+        //ç¯å¢ƒå…‰
         float ambientMaterial[] = {1*r, 1*g, 1*b, 1.0f*a};
         gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_AMBIENT, ambientMaterial,0);
-        //É¢Éä¹â
+        //æ•£å°„å…‰
         float diffuseMaterial[] = {1*r, 1*g, 1*b, 1.0f*a};
         gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_DIFFUSE, diffuseMaterial,0);
-        //¸ß¹â²ÄÖÊ
+        //é«˜å…‰æè´¨
         float specularMaterial[] = {0.5f*r, 0.5f*g, 0.5f*b, 1.0f*a};
         gl.glMaterialfv(GL10.GL_FRONT_AND_BACK, GL10.GL_SPECULAR, specularMaterial,0);
         gl.glMaterialf(GL10.GL_FRONT_AND_BACK, GL10.GL_SHININESS, 100.0f);
@@ -611,7 +611,7 @@ public class DrawTrafficLights extends BNShape
 				if(count>1)
 				{					
 					count=2;
-					flag=false;//½»Í¨µÆÍ£Ö¹²¥·Å
+					flag=false;//äº¤é€šç¯åœæ­¢æ’­æ”¾
 				}
 				
 			}

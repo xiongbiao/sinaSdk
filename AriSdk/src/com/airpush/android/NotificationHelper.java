@@ -3,9 +3,7 @@ package com.airpush.android;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Queue;
-import java.util.UUID;
 import java.util.zip.Adler32;
 
 import android.app.Notification;
@@ -18,23 +16,11 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.text.TextUtils;
 import android.widget.RemoteViews;
 
-import com.airpush.data.DownloadMsgInfo;
 import com.airpush.data.MsgInfo;
-import com.airpush.service.DownloadControl.SinDownloadListener;
-import com.airpush.service.PushService;
-import com.airpush.service.ServiceInterface;
-import com.airpush.util.AndroidUtil;
-import com.airpush.util.FileUtil;
 import com.airpush.util.LogUtil;
-import com.airpush.util.SinDirectoryUtils;
 import com.airpush.util.StringUtils;
 
 public class NotificationHelper {
@@ -425,6 +411,9 @@ public class NotificationHelper {
 //        }
 //    }
 //    
+    /** 
+     * 获取状态栏的消息ID
+     */
     public static int getNofiticationID(String adId, int idType) {
         if (TextUtils.isEmpty(adId)) {
             LogUtil.d(TAG, "action:getNofiticationID - empty adId");
@@ -444,11 +433,12 @@ public class NotificationHelper {
         }
         return nId;
     }
-//    
-//    
-//    // -------------------- 
-//    
-//    
+
+    /**
+     * 获取铃声模式
+     * @param code
+     * @return
+     */
     public static int getNotificationRingmode(int code) {
         int det_id = Notification.DEFAULT_LIGHTS;
         switch (code) {
@@ -468,6 +458,11 @@ public class NotificationHelper {
         return det_id;
     }
     
+    /**
+     * 获取状态栏的ICON
+     * @param code
+     * @return
+     */
     public static int getNotifiIcon(int code) {
         int icon_id = android.R.drawable.ic_menu_share;
         switch (code) {
@@ -497,6 +492,9 @@ public class NotificationHelper {
         case 3:
             icon_id = android.R.drawable.ic_menu_gallery;
             break;
+        default:
+//	        icon_id = 
+	        break;
         }
         return icon_id;
     }

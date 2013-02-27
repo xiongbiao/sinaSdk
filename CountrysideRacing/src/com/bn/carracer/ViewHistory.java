@@ -13,16 +13,16 @@ import android.view.SurfaceView;
 public class ViewHistory extends SurfaceView implements SurfaceHolder.Callback{
 
 	Activity_GL_Racing activity;
-	Bitmap history;//±³¾°
-	Paint paint;//»­±Ê
+	Bitmap history;//èƒŒæ™¯
+	Paint paint;//ç”»ç¬”
 	
-	ArrayList<String[]> al=new ArrayList<String[]>();//ÓÃÀ´»ñÈ¡½á¹û¼¯	
-	boolean moveFlag=false;//ÒÆ¶¯»á²»ÒÆ¶¯µÄ±êÖ¾Î» falseÎª²»ÒÆ¶¯£¬trueÎªÒÆ¶¯
-	private float startMoveY=0;//¼ÇÂ¼¿ªÊ¼µÄÎ»ÖÃ
-	float width=25;//¸ñÖ®¼äµÄ¿íµÄ
+	ArrayList<String[]> al=new ArrayList<String[]>();//ç”¨æ¥è·å–ç»“æœé›†	
+	boolean moveFlag=false;//ç§»åŠ¨ä¼šä¸ç§»åŠ¨çš„æ ‡å¿—ä½ falseä¸ºä¸ç§»åŠ¨ï¼Œtrueä¸ºç§»åŠ¨
+	private float startMoveY=0;//è®°å½•å¼€å§‹çš„ä½ç½®
+	float width=25;//æ ¼ä¹‹é—´çš„å®½çš„
 	
-	int TOTAL_ROWS=5;//ÏÔÊ¾µÄ×î¶àĞĞÊı
-	int rowFirst=0;//µ±Ç°±í¸ñµÚÒ»ĞĞĞĞºÅ
+	int TOTAL_ROWS=5;//æ˜¾ç¤ºçš„æœ€å¤šè¡Œæ•°
+	int rowFirst=0;//å½“å‰è¡¨æ ¼ç¬¬ä¸€è¡Œè¡Œå·
 	
 	public ViewHistory(Activity_GL_Racing activity) {
 		super(activity);
@@ -30,7 +30,7 @@ public class ViewHistory extends SurfaceView implements SurfaceHolder.Callback{
 		this.activity=activity;
 		paint=new Paint();
 		getHolder().addCallback(this);
-		history=BitmapFactory.decodeResource(this.getResources(), R.drawable.history);//¼ÓÔØ±³¾°Í¼Æ¬
+		history=BitmapFactory.decodeResource(this.getResources(), R.drawable.history);//åŠ è½½èƒŒæ™¯å›¾ç‰‡
 		al=DBUtil.getResult();		
 	}
 
@@ -45,25 +45,25 @@ public class ViewHistory extends SurfaceView implements SurfaceHolder.Callback{
 		switch(event.getAction())
 		{
 		    case MotionEvent.ACTION_DOWN:
-		      //Ğ´·µ»Ø°´Å¥µÄ´úÂë
+		      //å†™è¿”å›æŒ‰é’®çš„ä»£ç 
 		      if(x>387+Activity_GL_Racing.screen_xoffset&&x<474+Activity_GL_Racing.screen_xoffset&&y>280&&y<310)
 		      {
-		    	  activity.toAnotherView(CHOOSE);//·µ»Øµ½Ñ¡Ôñ½çÃæ
+		    	  activity.toAnotherView(CHOOSE);//è¿”å›åˆ°é€‰æ‹©ç•Œé¢
 		      }
 		    break;
 			case MotionEvent.ACTION_MOVE:				
-				int dy=(int) (y-startMoveY);//»ñÈ¡y·½ÏòÉÏµÄÒÆ¶¯Á¿
+				int dy=(int) (y-startMoveY);//è·å–yæ–¹å‘ä¸Šçš„ç§»åŠ¨é‡
 				
 				if(al.size()<=TOTAL_ROWS)
 				{
 					return true;
 				}
 				
-				if(dy>25)//Èç¹ûÒÆ¶¯µÄ¾àÀë´óÓÚÒ»¸ö¸ñµÄ¾àÀë
+				if(dy>25)//å¦‚æœç§»åŠ¨çš„è·ç¦»å¤§äºä¸€ä¸ªæ ¼çš„è·ç¦»
 				{
 					rowFirst=rowFirst-1;
 					if(rowFirst<0){rowFirst=0;};
-					startMoveY=y;//½«µ±Ç°yÖµ¸³Óè¿ªÊ¼µã
+					startMoveY=y;//å°†å½“å‰yå€¼èµ‹äºˆå¼€å§‹ç‚¹
 					repaint();
 				}
 				if(dy<-25)
@@ -73,7 +73,7 @@ public class ViewHistory extends SurfaceView implements SurfaceHolder.Callback{
 					{
 						rowFirst=al.size()-TOTAL_ROWS;
 					}
-					startMoveY=y;//½«µ±Ç°yÖµ¸³Óè¿ªÊ¼µã
+					startMoveY=y;//å°†å½“å‰yå€¼èµ‹äºˆå¼€å§‹ç‚¹
 					repaint();
 				}				
 				break;
@@ -84,8 +84,8 @@ public class ViewHistory extends SurfaceView implements SurfaceHolder.Callback{
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
-		canvas.drawBitmap(history, Activity_GL_Racing.screen_xoffset,0, paint);//»æÖÆ±³¾°		
-		for(int i=0;i<5;i++)//»æÖÆÊ¹ÓÃÊ±¼ä
+		canvas.drawBitmap(history, Activity_GL_Racing.screen_xoffset,0, paint);//ç»˜åˆ¶èƒŒæ™¯		
+		for(int i=0;i<5;i++)//ç»˜åˆ¶ä½¿ç”¨æ—¶é—´
 		{
 			if (i+rowFirst>al.size()-1) break;
 			
@@ -133,10 +133,10 @@ public class ViewHistory extends SurfaceView implements SurfaceHolder.Callback{
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
-		Canvas canvas = holder.lockCanvas();//»ñÈ¡»­²¼
+		Canvas canvas = holder.lockCanvas();//è·å–ç”»å¸ƒ
 		try{
 			synchronized(holder){
-				onDraw(canvas);//»æÖÆ
+				onDraw(canvas);//ç»˜åˆ¶
 			}			
 		}
 		catch(Exception e){
@@ -154,7 +154,7 @@ public class ViewHistory extends SurfaceView implements SurfaceHolder.Callback{
 		// TODO Auto-generated method stub
 		
 	}
-	//ÖØ»æµÄ·½·¨
+	//é‡ç»˜çš„æ–¹æ³•
 	public void repaint()
 	{
 		Canvas canvas=this.getHolder().lockCanvas();

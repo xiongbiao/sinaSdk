@@ -4,32 +4,32 @@ import javax.microedition.khronos.opengles.GL10;
 
 import static com.bn.carracer.Constant.*;
 import static com.bn.carracer.MyGLSurfaceView.*;
-//¿ÉÅö×²²¿¼ş¿ØÖÆÀà
+//å¯ç¢°æ’éƒ¨ä»¶æ§åˆ¶ç±»
 public class KZBJForControl
 {
-	int id;//¶ÔÓ¦µÄÅö×²Îïid£¬0±íÊ¾½»Í¨Í²£»1±íÊ¾ÕÏ°­Îï
-	boolean state=false;//false±íÊ¾¿É±»Åö×²£¬true±íÊ¾±»×²ºó·ÉĞĞÖĞ£¬·ñÔò²»¿ÉÅö×²¡£
-	float x;//°Ú·ÅµÄ³õÊ¼Î»ÖÃ
+	int id;//å¯¹åº”çš„ç¢°æ’ç‰©idï¼Œ0è¡¨ç¤ºäº¤é€šç­’ï¼›1è¡¨ç¤ºéšœç¢ç‰©
+	boolean state=false;//falseè¡¨ç¤ºå¯è¢«ç¢°æ’ï¼Œtrueè¡¨ç¤ºè¢«æ’åé£è¡Œä¸­ï¼Œå¦åˆ™ä¸å¯ç¢°æ’ã€‚
+	float x;//æ‘†æ”¾çš„åˆå§‹ä½ç½®
 	float y;
 	float z;
 	
-	float alpha;//×ª¶¯½Ç¶È
-	float alphaX;//×ª¶¯ÖáÏòÁ¿
+	float alpha;//è½¬åŠ¨è§’åº¦
+	float alphaX;//è½¬åŠ¨è½´å‘é‡
 	float alphaY;
 	float alphaZ;
 	
-	float currentX;//·ÉĞĞÖĞµÄµ±Ç°Î»ÖÃ
+	float currentX;//é£è¡Œä¸­çš„å½“å‰ä½ç½®
 	float currentY;
 	float currentZ;
 	
-	int row;//Î»ÖÃËùÔÚµØÍ¼ĞĞºÍÁĞ
+	int row;//ä½ç½®æ‰€åœ¨åœ°å›¾è¡Œå’Œåˆ—
 	int col;
 	
-	float vx;//·ÉĞĞÖĞµÄËÙ¶È·ÖÁ¿
+	float vx;//é£è¡Œä¸­çš„é€Ÿåº¦åˆ†é‡
 	float vy;
 	float vz;
 	
-	float timeFly;//·ÉĞĞÀÛ¼ÆÊ±¼ä
+	float timeFly;//é£è¡Œç´¯è®¡æ—¶é—´
 	
 	public KZBJForControl(int id,float x,float y,float z,int row,int col)
 	{
@@ -46,14 +46,14 @@ public class KZBJForControl
 		gl.glPushMatrix();
 		gl.glDisable(GL10.GL_CULL_FACE);
 		if(!state)
-		{//Ô­Ê¼×´Ì¬»æÖÆ
+		{//åŸå§‹çŠ¶æ€ç»˜åˆ¶
 			gl.glTranslatef(x, y, z);
 			kzbjyylb[id].drawSelf(gl,kzbjwllb[id], 0);
 		}
 		else
-		{//·ÉĞĞÖĞ»æÖÆ
+		{//é£è¡Œä¸­ç»˜åˆ¶
 			if(currentY>-40) 
-			{//Èç¹ûÒÑ¾­·ÉĞĞµ½µØÃæÒÔÏÂ£¬¾Í²»ÔÙ»æÖÆ
+			{//å¦‚æœå·²ç»é£è¡Œåˆ°åœ°é¢ä»¥ä¸‹ï¼Œå°±ä¸å†ç»˜åˆ¶
 				gl.glTranslatef(currentX, currentY, currentZ);
 				gl.glRotatef(alpha,alphaX, alphaY, alphaZ);
 				kzbjyylb[id].drawSelf(gl,kzbjwllb[id], 0);
@@ -63,42 +63,42 @@ public class KZBJForControl
 		gl.glPopMatrix();
 	}
 	
-	//¸ù¾İ³µµÄÎ»ÖÃ¼ÆËã³ö³µÍ·Î»ÖÃ£¬²¢ÅĞ¶ÏÊÇ·ñÓëÄ³¸ö¿É×²ÎïÌåÅö×²
+	//æ ¹æ®è½¦çš„ä½ç½®è®¡ç®—å‡ºè½¦å¤´ä½ç½®ï¼Œå¹¶åˆ¤æ–­æ˜¯å¦ä¸æŸä¸ªå¯æ’ç‰©ä½“ç¢°æ’
 	public void checkColl(float carXTemp,float carZTemp,float carAlphaTemp)
 	{		
-		final float R=30f;//³µÖĞĞÄµãµ½³µÍ·¾àÀë¡£		
-		//ÓÉ³µÖĞĞÄµãÎ»ÖÃ¼ÆËã³öµÄ³µÍ·×ø±ê
+		final float R=30f;//è½¦ä¸­å¿ƒç‚¹åˆ°è½¦å¤´è·ç¦»ã€‚		
+		//ç”±è½¦ä¸­å¿ƒç‚¹ä½ç½®è®¡ç®—å‡ºçš„è½¦å¤´åæ ‡
 		float bPointX=0;
 		float bPointZ=0;		
 		
-		//Ê×ÏÈÇó³öÅö×²¼ì²âµã×ø±ê
+		//é¦–å…ˆæ±‚å‡ºç¢°æ’æ£€æµ‹ç‚¹åæ ‡
 		bPointX=(float) (carXTemp-R*Math.sin(Math.toRadians(carAlphaTemp)));
 		bPointZ=(float) (carZTemp-R*Math.cos(Math.toRadians(carAlphaTemp)));
 		
-		float P=X_SPAN;//Â½µØ¿é¿í¶È
-		//¼ÆËãÅö×²µãÔÚµØÍ¼ÉÏµÄĞĞºÍÁĞ
+		float P=X_SPAN;//é™†åœ°å—å®½åº¦
+		//è®¡ç®—ç¢°æ’ç‚¹åœ¨åœ°å›¾ä¸Šçš„è¡Œå’Œåˆ—
 		float carCol=(float) Math.floor(bPointX/P);
 		float carRow=(float) Math.floor(bPointZ/P);
 		
 		if(carRow==row&&carCol==col)
-		{//Èç¹û´ó¼ÒÔÚÍ¬Ò»¸ö¸ñ×ÓÀï£¬½øĞĞÑÏ¸ñµÄÅö×²¼ì²âKZBJBJ
+		{//å¦‚æœå¤§å®¶åœ¨åŒä¸€ä¸ªæ ¼å­é‡Œï¼Œè¿›è¡Œä¸¥æ ¼çš„ç¢°æ’æ£€æµ‹KZBJBJ
 			double disP2=(bPointX-x)*(bPointX-x)+(bPointZ-z)*(bPointZ-z);
 			if(disP2<=KZBJBJ[id])
-			{//Åö×²ÁË
+			{//ç¢°æ’äº†
 				if(Activity_GL_Racing.soundFlag==true)
 				{
-					MyGLSurfaceView.activity.playSound(6, 0);//×²³µÒôĞ§ 
+					MyGLSurfaceView.activity.playSound(6, 0);//æ’è½¦éŸ³æ•ˆ 
 				}
-				state=true;//ÉèÖÃ×´Ì¬Îª·ÉĞĞÖĞ×´Ì¬
-				timeFly=0;//·ÉĞĞ³ÖĞøÊ±¼äÇåÁã
+				state=true;//è®¾ç½®çŠ¶æ€ä¸ºé£è¡Œä¸­çŠ¶æ€
+				timeFly=0;//é£è¡ŒæŒç»­æ—¶é—´æ¸…é›¶
 				alpha=0;
 				alphaX=(float) (-40*Math.cos(Math.toRadians(carAlphaTemp)));
 				alphaY=0;
 				alphaZ=(float) (40*Math.sin(Math.toRadians(carAlphaTemp)));
-				currentX=x;//ÉèÖÃ·ÉĞĞÆğÊ¼µãÎªÔ­Ê¼°Ú·Åµã
+				currentX=x;//è®¾ç½®é£è¡Œèµ·å§‹ç‚¹ä¸ºåŸå§‹æ‘†æ”¾ç‚¹
 				currentY=y;
 				currentZ=z;
-				//¸ù¾İ³µµÄĞĞ½ø·½ÏòÈ·¶¨·ÉĞĞËÙ¶ÈµÄÈı¸ö·ÖÁ¿
+				//æ ¹æ®è½¦çš„è¡Œè¿›æ–¹å‘ç¡®å®šé£è¡Œé€Ÿåº¦çš„ä¸‰ä¸ªåˆ†é‡
 				vx=(float) (-100*Math.sin(Math.toRadians(carAlphaTemp)));
 				vy=40;
 				vz=(float) (-100*Math.cos(Math.toRadians(carAlphaTemp)));
@@ -106,21 +106,21 @@ public class KZBJForControl
 		}
 	}
 	
-	//·ÉĞĞÒÆ¶¯·½·¨£¬Ïß³Ì¶¨Ê±µ÷ÓÃ´Ë·½·¨£¬ÊµÏÖ¿É×²ÎïÌå·ÉĞĞ
+	//é£è¡Œç§»åŠ¨æ–¹æ³•ï¼Œçº¿ç¨‹å®šæ—¶è°ƒç”¨æ­¤æ–¹æ³•ï¼Œå®ç°å¯æ’ç‰©ä½“é£è¡Œ
 	public void go()
 	{
 		if(!state)
-		{//Èç¹û²»ÔÚ·ÉĞĞ×´Ì¬ÖĞ²»ĞèÒªgo
+		{//å¦‚æœä¸åœ¨é£è¡ŒçŠ¶æ€ä¸­ä¸éœ€è¦go
 			return;
 		}
 		
-		timeFly=timeFly+0.6f;//·ÉĞĞ³ÖĞøÊ±¼äÔö¼Ó
+		timeFly=timeFly+0.6f;//é£è¡ŒæŒç»­æ—¶é—´å¢åŠ 
 		alpha=alpha+10;
-		//¸ù¾İ·ÉĞĞËÙ¶ÈµÄÈı¸ö·ÖÁ¿¼°·ÉĞĞ³ÖĞøÊ±¼äÓë·ÉĞĞÆğµã¼ÆËãµ±Ç°Î»ÖÃ
+		//æ ¹æ®é£è¡Œé€Ÿåº¦çš„ä¸‰ä¸ªåˆ†é‡åŠé£è¡ŒæŒç»­æ—¶é—´ä¸é£è¡Œèµ·ç‚¹è®¡ç®—å½“å‰ä½ç½®
 		currentX=x+vx*timeFly;
 		currentZ=z+vz*timeFly;
-		currentY=y+vy*timeFly-0.5f*5*timeFly*timeFly;//5ÎªÖØÁ¦¼ÓËÙ¶È
-		//µ±Åö×²ÎïÌå·ÉĞĞÂäµ½µØÃæÒÔÏÂ2000Ê±»Ö¸´Ô­Î»
+		currentY=y+vy*timeFly-0.5f*5*timeFly*timeFly;//5ä¸ºé‡åŠ›åŠ é€Ÿåº¦
+		//å½“ç¢°æ’ç‰©ä½“é£è¡Œè½åˆ°åœ°é¢ä»¥ä¸‹2000æ—¶æ¢å¤åŸä½
 		if(currentY<-8000)
 		{
 			state=false;

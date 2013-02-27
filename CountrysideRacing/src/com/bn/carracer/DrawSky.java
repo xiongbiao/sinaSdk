@@ -23,32 +23,32 @@ public class DrawSky extends BNShape{
 	}
 	private class Ball {
 
-		private FloatBuffer   mVertexBuffer;//¶¥µã×ø±êÊı¾İ»º³å
-	    private FloatBuffer mTextureBuffer;//¶¥µãÎÆÀíÊı¾İ»º³å
-	    int vCount=0;//¶¥µãÊıÁ¿
+		private FloatBuffer   mVertexBuffer;//é¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+	    private FloatBuffer mTextureBuffer;//é¡¶ç‚¹çº¹ç†æ•°æ®ç¼“å†²
+	    int vCount=0;//é¡¶ç‚¹æ•°é‡
 	    public Ball(float scale,float radius) 
 	    {
 	    	float ANGLE_SPAN=5f;
 	    	float angleV=45;
-	    	//»ñÈ¡ÇĞ·ÖÕûÍ¼µÄÎÆÀíÊı×é
+	    	//è·å–åˆ‡åˆ†æ•´å›¾çš„çº¹ç†æ•°ç»„
 	    	float[] texCoorArray= 
 	         generateTexCoor
 	    	 (
-	    			 (int)(360/ANGLE_SPAN), //ÎÆÀíÍ¼ÇĞ·ÖµÄÁĞÊı
-	    			 (int)(angleV/ANGLE_SPAN)  //ÎÆÀíÍ¼ÇĞ·ÖµÄĞĞÊı
+	    			 (int)(360/ANGLE_SPAN), //çº¹ç†å›¾åˆ‡åˆ†çš„åˆ—æ•°
+	    			 (int)(angleV/ANGLE_SPAN)  //çº¹ç†å›¾åˆ‡åˆ†çš„è¡Œæ•°
 	    	);
-	        int tc=0;//ÎÆÀíÊı×é¼ÆÊıÆ÷
-	        int ts=texCoorArray.length;//ÎÆÀíÊı×é³¤¶È
+	        int tc=0;//çº¹ç†æ•°ç»„è®¡æ•°å™¨
+	        int ts=texCoorArray.length;//çº¹ç†æ•°ç»„é•¿åº¦
 	    	
-	    	ArrayList<Float> alVertix=new ArrayList<Float>();//´æ·Å¶¥µã×ø±êµÄArrayList
-	    	ArrayList<Float> alTexture=new ArrayList<Float>();//´æ·ÅÎÆÀí×ø±êµÄArrayList
+	    	ArrayList<Float> alVertix=new ArrayList<Float>();//å­˜æ”¾é¡¶ç‚¹åæ ‡çš„ArrayList
+	    	ArrayList<Float> alTexture=new ArrayList<Float>();//å­˜æ”¾çº¹ç†åæ ‡çš„ArrayList
 	    	
-	        for(float vAngle=angleV+5;vAngle>5;vAngle=vAngle-ANGLE_SPAN)//´¹Ö±·½ÏòangleSpan¶ÈÒ»·İ
+	        for(float vAngle=angleV+5;vAngle>5;vAngle=vAngle-ANGLE_SPAN)//å‚ç›´æ–¹å‘angleSpanåº¦ä¸€ä»½
 	        {
-	        	for(float hAngle=360;hAngle>0;hAngle=hAngle-ANGLE_SPAN)//Ë®Æ½·½ÏòangleSpan¶ÈÒ»·İ
+	        	for(float hAngle=360;hAngle>0;hAngle=hAngle-ANGLE_SPAN)//æ°´å¹³æ–¹å‘angleSpanåº¦ä¸€ä»½
 	        	{
-	        		//×İÏòºáÏò¸÷µ½Ò»¸ö½Ç¶Èºó¼ÆËã¶ÔÓ¦µÄ´ËµãÔÚÇòÃæÉÏµÄËÄ±ßĞÎ¶¥µã×ø±ê
-	        		//²¢¹¹½¨Á½¸ö×é³ÉËÄ±ßĞÎµÄÈı½ÇĞÎ
+	        		//çºµå‘æ¨ªå‘å„åˆ°ä¸€ä¸ªè§’åº¦åè®¡ç®—å¯¹åº”çš„æ­¤ç‚¹åœ¨çƒé¢ä¸Šçš„å››è¾¹å½¢é¡¶ç‚¹åæ ‡
+	        		//å¹¶æ„å»ºä¸¤ä¸ªç»„æˆå››è¾¹å½¢çš„ä¸‰è§’å½¢
 	        		
 	        		double xozLength=scale*radius*Math.cos(Math.toRadians(vAngle));
 	        		float x1=(float)(xozLength*Math.cos(Math.toRadians(hAngle)));
@@ -70,25 +70,25 @@ public class DrawSky extends BNShape{
 	        		float z4=(float)(xozLength*Math.sin(Math.toRadians(hAngle-ANGLE_SPAN)));
 	        		float y4=(float)(scale*radius*Math.sin(Math.toRadians(vAngle)));   
 	        		
-	        		//¹¹½¨µÚÒ»Èı½ÇĞÎ
+	        		//æ„å»ºç¬¬ä¸€ä¸‰è§’å½¢
 	        		alVertix.add(x1);alVertix.add(y1);alVertix.add(z1);
 	        		alVertix.add(x4);alVertix.add(y4);alVertix.add(z4); 
 	        		alVertix.add(x2);alVertix.add(y2);alVertix.add(z2);
 	        		       		
-	        		//¹¹½¨µÚ¶şÈı½ÇĞÎ
+	        		//æ„å»ºç¬¬äºŒä¸‰è§’å½¢
 	        		
 	        		alVertix.add(x2);alVertix.add(y2);alVertix.add(z2);
 	        		alVertix.add(x4);alVertix.add(y4);alVertix.add(z4);
 	        		alVertix.add(x3);alVertix.add(y3);alVertix.add(z3); 
 	        		
-	        		//µÚÒ»Èı½ÇĞÎ3¸ö¶¥µãµÄ6¸öÎÆÀí×ø±ê
+	        		//ç¬¬ä¸€ä¸‰è§’å½¢3ä¸ªé¡¶ç‚¹çš„6ä¸ªçº¹ç†åæ ‡
 	        		alTexture.add(texCoorArray[tc++%ts]);
 	        		alTexture.add(texCoorArray[tc++%ts]);
 	        		alTexture.add(texCoorArray[tc++%ts]);        		
 	        		alTexture.add(texCoorArray[tc++%ts]);
 	        		alTexture.add(texCoorArray[tc++%ts]);
 	        		alTexture.add(texCoorArray[tc++%ts]);
-	        		//µÚ¶şÈı½ÇĞÎ3¸ö¶¥µãµÄ6¸öÎÆÀí×ø±ê
+	        		//ç¬¬äºŒä¸‰è§’å½¢3ä¸ªé¡¶ç‚¹çš„6ä¸ªçº¹ç†åæ ‡
 	        		alTexture.add(texCoorArray[tc++%ts]);
 	        		alTexture.add(texCoorArray[tc++%ts]);
 	        		alTexture.add(texCoorArray[tc++%ts]);        		
@@ -98,85 +98,85 @@ public class DrawSky extends BNShape{
 	        	}
 	        } 	
 	        
-	        vCount=alVertix.size()/3;//¶¥µãµÄÊıÁ¿Îª×ø±êÖµÊıÁ¿µÄ1/3£¬ÒòÎªÒ»¸ö¶¥µãÓĞ3¸ö×ø±ê
+	        vCount=alVertix.size()/3;//é¡¶ç‚¹çš„æ•°é‡ä¸ºåæ ‡å€¼æ•°é‡çš„1/3ï¼Œå› ä¸ºä¸€ä¸ªé¡¶ç‚¹æœ‰3ä¸ªåæ ‡
 	    	
-	        //½«alVertixÖĞµÄ×ø±êÖµ×ª´æµ½Ò»¸öfloatÊı×éÖĞ
+	        //å°†alVertixä¸­çš„åæ ‡å€¼è½¬å­˜åˆ°ä¸€ä¸ªfloatæ•°ç»„ä¸­
 	        float vertices[]=new float[vCount*3];
 	    	for(int i=0;i<alVertix.size();i++)
 	    	{
 	    		vertices[i]=alVertix.get(i);
 	    	}
 	        
-	        //´´½¨»æÖÆ¶¥µãÊı¾İ»º³å
+	        //åˆ›å»ºç»˜åˆ¶é¡¶ç‚¹æ•°æ®ç¼“å†²
 	        ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-	        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-	        mVertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-	        mVertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-	        mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ     
+	        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+	        mVertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+	        mVertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+	        mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®     
 	        
 	       
 	                
-	        //´´½¨ÎÆÀí×ø±ê»º³å
-	        float textureCoors[]=new float[alTexture.size()];//¶¥µãÎÆÀíÖµÊı×é
+	        //åˆ›å»ºçº¹ç†åæ ‡ç¼“å†²
+	        float textureCoors[]=new float[alTexture.size()];//é¡¶ç‚¹çº¹ç†å€¼æ•°ç»„
 	        for(int i=0;i<alTexture.size();i++) 
 	        {
 	        	textureCoors[i]=alTexture.get(i);
 	        }
 	        
 	        ByteBuffer tbb = ByteBuffer.allocateDirect(textureCoors.length*4);
-	        tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-	        mTextureBuffer = tbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-	        mTextureBuffer.put(textureCoors);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ÅÉ«Êı¾İ
-	        mTextureBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+	        tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+	        mTextureBuffer = tbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+	        mTextureBuffer.put(textureCoors);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹ç€è‰²æ•°æ®
+	        mTextureBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 	    }
 
 	    public void drawSelf(GL10 gl,int texId)
 	    {
-	        //ÔÊĞíÊ¹ÓÃ¶¥µãÊı×é
+	        //å…è®¸ä½¿ç”¨é¡¶ç‚¹æ•°ç»„
 	        gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
-			//Îª»­±ÊÖ¸¶¨¶¥µã×ø±êÊı¾İ
+			//ä¸ºç”»ç¬”æŒ‡å®šé¡¶ç‚¹åæ ‡æ•°æ®
 	        gl.glVertexPointer
 	        (
-	        		3,				//Ã¿¸ö¶¥µãµÄ×ø±êÊıÁ¿Îª3  xyz 
-	        		GL10.GL_FLOAT,	//¶¥µã×ø±êÖµµÄÀàĞÍÎª GL_FIXED
-	        		0, 				//Á¬Ğø¶¥µã×ø±êÊı¾İÖ®¼äµÄ¼ä¸ô
-	        		mVertexBuffer	//¶¥µã×ø±êÊı¾İ
+	        		3,				//æ¯ä¸ªé¡¶ç‚¹çš„åæ ‡æ•°é‡ä¸º3  xyz 
+	        		GL10.GL_FLOAT,	//é¡¶ç‚¹åæ ‡å€¼çš„ç±»å‹ä¸º GL_FIXED
+	        		0, 				//è¿ç»­é¡¶ç‚¹åæ ‡æ•°æ®ä¹‹é—´çš„é—´éš”
+	        		mVertexBuffer	//é¡¶ç‚¹åæ ‡æ•°æ®
 	        );        
 			
-	        //¿ªÆôÎÆÀí
+	        //å¼€å¯çº¹ç†
 	        gl.glEnable(GL10.GL_TEXTURE_2D);   
-	        //ÔÊĞíÊ¹ÓÃÎÆÀíST×ø±ê»º³å
+	        //å…è®¸ä½¿ç”¨çº¹ç†STåæ ‡ç¼“å†²
 	        gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
-	        //Îª»­±ÊÖ¸¶¨ÎÆÀíST×ø±ê»º³å
+	        //ä¸ºç”»ç¬”æŒ‡å®šçº¹ç†STåæ ‡ç¼“å†²
 	        gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);
-	        //°ó¶¨µ±Ç°ÎÆÀí
+	        //ç»‘å®šå½“å‰çº¹ç†
 	        gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);
 	     
 	        gl.glPushMatrix();
-	        //»æÖÆÍ¼ĞÎ
+	        //ç»˜åˆ¶å›¾å½¢
 	        gl.glDrawArrays
 	        (
-	        		GL10.GL_TRIANGLES, 		//ÒÔÈı½ÇĞÎ·½Ê½Ìî³ä
-	        		0, 			 			//¿ªÊ¼µã±àºÅ
-	        		vCount					//¶¥µãÊıÁ¿
+	        		GL10.GL_TRIANGLES, 		//ä»¥ä¸‰è§’å½¢æ–¹å¼å¡«å……
+	        		0, 			 			//å¼€å§‹ç‚¹ç¼–å·
+	        		vCount					//é¡¶ç‚¹æ•°é‡
 	        );        
 	        gl.glPopMatrix();
-	        gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//½ûÓÃÎÆÀíÊı×é
-	        gl.glDisable(GL10.GL_TEXTURE_2D);//¹Ø±ÕÎÆÀí
+	        gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//ç¦ç”¨çº¹ç†æ•°ç»„
+	        gl.glDisable(GL10.GL_TEXTURE_2D);//å…³é—­çº¹ç†
 	    }
 	    
-	    //×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+	    //è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
 	    public float[] generateTexCoor(int bw,int bh)
 	    {
 	    	float[] result=new float[bw*bh*6*2]; 
-	    	float sizew=2.0f/bw;//ÁĞÊı
-	    	float sizeh=1.0f/bh;//ĞĞÊı
+	    	float sizew=2.0f/bw;//åˆ—æ•°
+	    	float sizeh=1.0f/bh;//è¡Œæ•°
 	    	int c=0;
 	    	for(int i=0;i<bh;i++)
 	    	{
 	    		for(int j=0;j<bw;j++)
 	    		{
-	    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+	    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
 	    			float s=j*sizew;
 	    			float t=i*sizeh;
 	    			

@@ -37,16 +37,16 @@ public class SpeedSpringForControl {
         initLight(gl);
     	gl.glTranslatef(x, y, z);
     	gl.glRotatef(alpha, 0, 1, 0);
-    	if(id==0)//Åö×²ºó¼ÓËÙµÄ»ÆÉ«µ¯»É
+    	if(id==0)//ç¢°æ’ååŠ é€Ÿçš„é»„è‰²å¼¹ç°§
     	{
     		lovn_speed_spring.drawSelf(gl, 1f,1f,0.5f);
     	}
-    	else if(id==1)//Åö×²ºó¼õËÙµÄÀ¶É«µ¯»É
+    	else if(id==1)//ç¢°æ’åå‡é€Ÿçš„è“è‰²å¼¹ç°§
     	{
     		lovn_speed_spring.drawSelf(gl, 0.5f,0.5f,1f);
     	}
     	
-    	gl.glDisable(GL10.GL_LIGHT1);//¹Ø±Õ1ºÅµÆ
+    	gl.glDisable(GL10.GL_LIGHT1);//å…³é—­1å·ç¯
     	gl.glDisable(GL10.GL_LIGHTING);
     	
     	gl.glPopMatrix();
@@ -54,21 +54,21 @@ public class SpeedSpringForControl {
 	 
 	private void initLight(GL10 gl)
 	{
-	    gl.glEnable(GL10.GL_LIGHT0);//´ò¿ª0ºÅµÆ  
+	    gl.glEnable(GL10.GL_LIGHT0);//æ‰“å¼€0å·ç¯  
 	    
-	    //»·¾³¹âÉèÖÃ 
-	    float[] ambientParams={0.8f,0.8f,0.8f,1.0f};//¹â²ÎÊı RGBA
+	    //ç¯å¢ƒå…‰è®¾ç½® 
+	    float[] ambientParams={0.8f,0.8f,0.8f,1.0f};//å…‰å‚æ•° RGBA
 	    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_AMBIENT, ambientParams,0);            
 
-	    //É¢Éä¹âÉèÖÃ
-	    float[] diffuseParams={0.9f,0.9f,0.9f,1.0f};//¹â²ÎÊı RGBA
+	    //æ•£å°„å…‰è®¾ç½®
+	    float[] diffuseParams={0.9f,0.9f,0.9f,1.0f};//å…‰å‚æ•° RGBA
 	    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_DIFFUSE, diffuseParams,0); 
 	    
-	    //·´Éä¹âÉèÖÃ
-	    float[] specularParams={0.8f,0.8f,0.8f,1.0f};//¹â²ÎÊı RGBA
+	    //åå°„å…‰è®¾ç½®
+	    float[] specularParams={0.8f,0.8f,0.8f,1.0f};//å…‰å‚æ•° RGBA
 	    gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_SPECULAR, specularParams,0);    
 	    
-	    float[] positionParamsGreen=//×îºóµÄ0±íÊ¾ÊÇ¶¨Î»¹â
+	    float[] positionParamsGreen=//æœ€åçš„0è¡¨ç¤ºæ˜¯å®šä½å…‰
 	    {
 	    		-100,
 	    		80,
@@ -79,21 +79,21 @@ public class SpeedSpringForControl {
 	    
 	    //================================================================================
 	    
-        gl.glEnable(GL10.GL_LIGHT1);//´ò¿ª1ºÅµÆ  
+        gl.glEnable(GL10.GL_LIGHT1);//æ‰“å¼€1å·ç¯  
 	    
-	    //»·¾³¹âÉèÖÃ
-	    ambientParams=new float[]{0.8f,0.8f,0.8f,1.0f};//¹â²ÎÊı RGBA
+	    //ç¯å¢ƒå…‰è®¾ç½®
+	    ambientParams=new float[]{0.8f,0.8f,0.8f,1.0f};//å…‰å‚æ•° RGBA
 	    gl.glLightfv(GL10.GL_LIGHT1, GL10.GL_AMBIENT, ambientParams,0);            
 
-	    //É¢Éä¹âÉèÖÃ
-	    diffuseParams=new float[]{0.9f,0.9f,0.9f,1.0f};//¹â²ÎÊı RGBA
+	    //æ•£å°„å…‰è®¾ç½®
+	    diffuseParams=new float[]{0.9f,0.9f,0.9f,1.0f};//å…‰å‚æ•° RGBA
 	    gl.glLightfv(GL10.GL_LIGHT1, GL10.GL_DIFFUSE, diffuseParams,0); 
 	    
-	    //·´Éä¹âÉèÖÃ
-	    specularParams=new float[]{0.8f,0.8f,0.8f,1.0f};//¹â²ÎÊı RGBA
+	    //åå°„å…‰è®¾ç½®
+	    specularParams=new float[]{0.8f,0.8f,0.8f,1.0f};//å…‰å‚æ•° RGBA
 	    gl.glLightfv(GL10.GL_LIGHT1, GL10.GL_SPECULAR, specularParams,0);    
 	    
-	    positionParamsGreen=//×îºóµÄ0±íÊ¾ÊÇ¶¨Î»¹â
+	    positionParamsGreen=//æœ€åçš„0è¡¨ç¤ºæ˜¯å®šä½å…‰
 	    new float[]{
 	    		100,
 	    		100,
@@ -107,35 +107,35 @@ public class SpeedSpringForControl {
     {
     	alpha=(alpha+5)%360.0f;
     	
-    	final float R=30f;//³µÖĞĞÄµãµ½³µÍ·¾àÀë¡£		
-		//ÓÉ³µÖĞĞÄµãÎ»ÖÃ¼ÆËã³öµÄ³µÍ·×ø±ê
+    	final float R=30f;//è½¦ä¸­å¿ƒç‚¹åˆ°è½¦å¤´è·ç¦»ã€‚		
+		//ç”±è½¦ä¸­å¿ƒç‚¹ä½ç½®è®¡ç®—å‡ºçš„è½¦å¤´åæ ‡
 		float bPointX=0;
 		float bPointZ=0;		
 		
-		//Ê×ÏÈÇó³öÅö×²¼ì²âµã×ø±ê
+		//é¦–å…ˆæ±‚å‡ºç¢°æ’æ£€æµ‹ç‚¹åæ ‡
 		bPointX=(float) (carXTemp-R*Math.sin(Math.toRadians(carAlphaTemp)));
 		bPointZ=(float) (carZTemp-R*Math.cos(Math.toRadians(carAlphaTemp)));
 		
-		float P=X_SPAN;//Â½µØ¿é¿í¶È
-		//¼ÆËãÅö×²µãÔÚµØÍ¼ÉÏµÄĞĞºÍÁĞ
+		float P=X_SPAN;//é™†åœ°å—å®½åº¦
+		//è®¡ç®—ç¢°æ’ç‚¹åœ¨åœ°å›¾ä¸Šçš„è¡Œå’Œåˆ—
 		float carCol=(float) Math.floor(bPointX/P);
 		float carRow=(float) Math.floor(bPointZ/P);
 		
 		if(carRow==row&&carCol==col)
-		{//Èç¹û´ó¼ÒÔÚÍ¬Ò»¸ö¸ñ×ÓÀï£¬½øĞĞÑÏ¸ñµÄÅö×²¼ì²âKZBJBJ
+		{//å¦‚æœå¤§å®¶åœ¨åŒä¸€ä¸ªæ ¼å­é‡Œï¼Œè¿›è¡Œä¸¥æ ¼çš„ç¢°æ’æ£€æµ‹KZBJBJ
 			double disP2=(bPointX-x)*(bPointX-x)+(bPointZ-z)*(bPointZ-z);
 
 			if(disP2<=JJSTHBJ)
-			{//Åö×²ÁË
+			{//ç¢°æ’äº†
 				if(Activity_GL_Racing.soundFlag==true)
 				{
-					MyGLSurfaceView.activity.playSound(7, 0);//×²³µÒôĞ§ 
+					MyGLSurfaceView.activity.playSound(7, 0);//æ’è½¦éŸ³æ•ˆ 
 				}
 				
 				MyGLSurfaceView.ssfcList.remove(this); 
 				
 				if(id==0)
-				{//Ö´ĞĞ¼ÓËÙ¶¯×÷
+				{//æ‰§è¡ŒåŠ é€ŸåŠ¨ä½œ
 					if(SpeedFactorControl==0)
 					{
 						SpeedFactorControl=1;
@@ -148,7 +148,7 @@ public class SpeedSpringForControl {
 					}
 				}
 				else if(id==1)
-				{//Ö´ĞĞ¼õËÙ¶¯×÷
+				{//æ‰§è¡Œå‡é€ŸåŠ¨ä½œ
 					if(SpeedFactorControl==0)
 					{
 						SpeedFactorControl=-1;

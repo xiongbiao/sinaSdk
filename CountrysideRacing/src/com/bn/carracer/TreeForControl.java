@@ -4,7 +4,7 @@ public class TreeForControl implements Comparable<TreeForControl>
 	float xOffset;
 	float yOffset;
 	float zOffset;
-	int id;//»æÖÆÊ÷µÄ±àºÅ
+	int id;//ç»˜åˆ¶æ ‘çš„ç¼–å·
 	float[] cameraPosition;
 	
 	public TreeForControl(float xOffset,float yOffset,float zOffset,int id)

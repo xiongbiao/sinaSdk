@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 public class ThreadAboutView extends Thread{
-	ViewAbout aboutView;//创建引用
+	ViewAbout aboutView;//鍒涘缓寮曠敤
 	SurfaceHolder holder;
 	boolean flag=true;
 	public ThreadAboutView(ViewAbout aboutView)

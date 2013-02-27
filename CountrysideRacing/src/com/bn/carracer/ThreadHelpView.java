@@ -5,7 +5,7 @@ import android.view.SurfaceHolder;
 
 public class ThreadHelpView extends Thread{
 	
-	ViewHelp viewHelp;//创建引用
+	ViewHelp viewHelp;//鍒涘缓寮曠敤
 	SurfaceHolder holder;
 	boolean flag=true;
 	public ThreadHelpView(ViewHelp viewHelp)

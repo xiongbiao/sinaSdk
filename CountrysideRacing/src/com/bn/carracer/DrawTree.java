@@ -6,16 +6,16 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.opengles.GL10;
 
 class DrawTree extends BNShape{
-	public final static float TREE_WIDTH=20f;//Ê÷³¤¶È
-	public final static float TREE_HEIGHT=20f;//Ê÷¸ß¶È
+	public final static float TREE_WIDTH=20f;//æ ‘é•¿åº¦
+	public final static float TREE_HEIGHT=20f;//æ ‘é«˜åº¦
 	Tree tree;
-	float direction=0;//Tree µÄ³¯Ïò
+	float direction=0;//Tree çš„æœå‘
 	public DrawTree(float scale){
 		super(scale);
 		tree=new Tree(scale);
 	}
 	public void calculateDirection(float xOffset,float zOffset,float cx,float cz)
-	{//¸ù¾İÉãÏñ»úÎ»ÖÃ¼ÆËãÊ÷³¯Ïò
+	{//æ ¹æ®æ‘„åƒæœºä½ç½®è®¡ç®—æ ‘æœå‘
 		float xspan=xOffset-cx;
 		float zspan=zOffset-cz;
 		if(zspan<=0)
@@ -40,11 +40,11 @@ class DrawTree extends BNShape{
 		gl.glPopMatrix();	
 	}
 	private class Tree{
-		private FloatBuffer vertexBuffer;//¶¥µãBuffer
-		private FloatBuffer[] textureBuffer;//ÎÆÀí×ø±êBuffer
-		private int vCount=0;//¶¥µãÊı
+		private FloatBuffer vertexBuffer;//é¡¶ç‚¹Buffer
+		private FloatBuffer[] textureBuffer;//çº¹ç†åæ ‡Buffer
+		private int vCount=0;//é¡¶ç‚¹æ•°
 		public Tree(float scale) {
-			float[]vertice=new float[]{//´æ·Å¶¥µã×ø±êµÄÊı×é
+			float[]vertice=new float[]{//å­˜æ”¾é¡¶ç‚¹åæ ‡çš„æ•°ç»„
 										-TREE_WIDTH/2*scale,TREE_WIDTH/2*scale,0,//1
 										-TREE_WIDTH/2*scale,-TREE_WIDTH/2*scale,0,//2
 										TREE_WIDTH/2*scale,TREE_WIDTH/2*scale,0,//4
@@ -53,15 +53,15 @@ class DrawTree extends BNShape{
 										-TREE_WIDTH/2*scale,-TREE_WIDTH/2*scale,0,//2
 										TREE_WIDTH/2*scale,-TREE_WIDTH/2*scale,0,//3
 										};
-			vCount=vertice.length/3;//¶¥µãÊıÁ¿
+			vCount=vertice.length/3;//é¡¶ç‚¹æ•°é‡
 
 			ByteBuffer vbb=ByteBuffer.allocateDirect(vertice.length*4);
 			vbb.order(ByteOrder.nativeOrder());
 			vertexBuffer=vbb.asFloatBuffer();
 			vertexBuffer.put(vertice);
 			vertexBuffer.position(0);
-			float[][]textures=new float[][]{//Ê÷µÄÎÆÀí×ø±ê
-					{//µÚÒ»¸öÊ÷µÄÎÆÀí×ø±ê 
+			float[][]textures=new float[][]{//æ ‘çš„çº¹ç†åæ ‡
+					{//ç¬¬ä¸€ä¸ªæ ‘çš„çº¹ç†åæ ‡ 
 					 0,			0,
 					 0,			0.7343f,
 					 0.1484f,	0,
@@ -70,7 +70,7 @@ class DrawTree extends BNShape{
 					 0,			0.7343f,
 					 0.1484f,	0.7343f
 					},
-					{//µÚ¶ş¿ÃÊ÷µÄÎÆÀí×ø±ê
+					{//ç¬¬äºŒæ£µæ ‘çš„çº¹ç†åæ ‡
 					 0.1484f,	0,
 					 0.1484f,	0.7343f,
 					 0.2968f,	0,
@@ -79,7 +79,7 @@ class DrawTree extends BNShape{
 					 0.1484f,	0.7343f,
 					 0.2968f,	0.7343f
 					},
-					{//µÚÈı¿ÃÊ÷µÄÎÆÀí×ø±ê
+					{//ç¬¬ä¸‰æ£µæ ‘çš„çº¹ç†åæ ‡
 					 0.2972f,	0,
 					 0.2972f,	0.7343f,
 					 0.4453f,	0,
@@ -88,7 +88,7 @@ class DrawTree extends BNShape{
 					 0.2972f,	0.7343f,
 					 0.4453f,	0.7343f
 					},
-					{//µÚËÄ¿ÃÊ÷µÄÎÆÀí×ø±ê
+					{//ç¬¬å››æ£µæ ‘çš„çº¹ç†åæ ‡
 					 0.4453f,	0,
 					 0.4453f,	0.7343f,
 					 0.5933f,	0,
@@ -97,7 +97,7 @@ class DrawTree extends BNShape{
 					 0.4453f,	0.7343f,
 					 0.5933f,	0.7343f
 					},
-					{//µÚÎå¿ÃÊ÷µÄÎÆÀí×ø±ê
+					{//ç¬¬äº”æ£µæ ‘çš„çº¹ç†åæ ‡
 					 0.5937f,	0,
 					 0.5937f,	0.7343f,
 					 0.7422f,	0,
@@ -106,7 +106,7 @@ class DrawTree extends BNShape{
 					 0.5937f,	0.7343f,
 					 0.7422f,	0.7343f
 					},
-					{//µÚÁù¿ÃÊ÷µÄÎÆÀí×ø±ê
+					{//ç¬¬å…­æ£µæ ‘çš„çº¹ç†åæ ‡
 					 0.7424f,	0,
 					 0.7424f,	0.7343f,
 					 0.8906f,	0,
@@ -127,17 +127,17 @@ class DrawTree extends BNShape{
 			}
 		}
 		public void drawSelf(GL10 gl,int texId,int number) {
-			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//¿ªÆô¶¥µãÊı×é
+			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//å¼€å¯é¡¶ç‚¹æ•°ç»„
 			gl.glVertexPointer(3, GL10.GL_FLOAT, 0,vertexBuffer);
 			
-			gl.glEnable(GL10.GL_TEXTURE_2D);//ÔÊĞíÎÆÀí
-			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¿ªÆôÎÆÀíÊı×é
+			gl.glEnable(GL10.GL_TEXTURE_2D);//å…è®¸çº¹ç†
+			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å¼€å¯çº¹ç†æ•°ç»„
 			gl.glTexCoordPointer(2,GL10.GL_FLOAT, 0, textureBuffer[number]);
-			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//°ó¶¨ÎÆÀí
+			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//ç»‘å®šçº¹ç†
 			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);
 			
-			gl.glDisable(GL10.GL_TEXTURE_2D);//¹Ø±ÕÎÆÀí
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±ÕÎÆÀíÊı×é
+			gl.glDisable(GL10.GL_TEXTURE_2D);//å…³é—­çº¹ç†
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­çº¹ç†æ•°ç»„
 		}
 	}
 }

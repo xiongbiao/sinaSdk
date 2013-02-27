@@ -10,13 +10,13 @@ import android.view.SurfaceView;
 
 public class ViewAbout extends SurfaceView implements SurfaceHolder.Callback{
 
-	Activity_GL_Racing activity;//ÉùÃ÷ÒýÓÃ
+	Activity_GL_Racing activity;//å£°æ˜Žå¼•ç”¨
 	Bitmap about;
-	static int viewFlag=0;//½çÃæµÄ±êÖ¾Î»£¬0±íÊ¾µÚÒ»·ù¹ØÓÚ½çÃæ£¬1±íÊ¾µÚ¶þ·ù¹ØÓÚ½çÃæÍ¼¡£
-	float screenWidth=480;//Í¼Æ¬¿í¶È
+	static int viewFlag=0;//ç•Œé¢çš„æ ‡å¿—ä½ï¼Œ0è¡¨ç¤ºç¬¬ä¸€å¹…å…³äºŽç•Œé¢ï¼Œ1è¡¨ç¤ºç¬¬äºŒå¹…å…³äºŽç•Œé¢å›¾ã€‚
+	float screenWidth=480;//å›¾ç‰‡å®½åº¦
 	float x_Offset=Activity_GL_Racing.screenWidth/2-screenWidth/2;
 //	Bitmap aboutTwo;
-	static ThreadAboutView avt;//Ïß³ÌÒýÓÃ
+	static ThreadAboutView avt;//çº¿ç¨‹å¼•ç”¨
 	public ViewAbout(Activity_GL_Racing activity) {
 		super(activity);
 		// TODO Auto-generated constructor stub
@@ -32,25 +32,25 @@ public class ViewAbout extends SurfaceView implements SurfaceHolder.Callback{
 		switch(event.getAction())
 		{
 			case MotionEvent.ACTION_DOWN:
-				int x = (int) event.getX();//»ñÈ¡X×ø±ê
-				int y = (int) event.getY();//»ñÈ¡Y×ø±ê
+				int x = (int) event.getX();//èŽ·å–Xåæ ‡
+				int y = (int) event.getY();//èŽ·å–Yåæ ‡
 				if(viewFlag==0)
 				{
-//					if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//µã»÷ÏÂÒ»Ò³
+//					if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//ç‚¹å‡»ä¸‹ä¸€é¡µ
 //					{
-//						viewFlag=1;//¸Ä±ä±êÖ¾Î»½øÈëµÚ¶þ·ùÍ¼
+//						viewFlag=1;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬äºŒå¹…å›¾
 //					}
-					if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//µã»÷·µ»Ø
+					if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//ç‚¹å‡»è¿”å›ž
 					{
-						activity.toAnotherView(ENTER_MENU);//·µ»Ø²Ëµ¥½çÃæ
-						avt.flag=false;//¹Ø±ÕÏß³Ì
+						activity.toAnotherView(ENTER_MENU);//è¿”å›žèœå•ç•Œé¢
+						avt.flag=false;//å…³é—­çº¿ç¨‹
 					}
 				}
 //				if(viewFlag==1)
 //				{
-//					if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//µã»÷·µ»Ø
+//					if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//ç‚¹å‡»è¿”å›ž
 //					{
-//						viewFlag=0;//·µ»Ø²Ëµ¥½çÃæ
+//						viewFlag=0;//è¿”å›žèœå•ç•Œé¢
 //					}
 //				}
 			break;
@@ -82,7 +82,7 @@ public class ViewAbout extends SurfaceView implements SurfaceHolder.Callback{
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
-		avt.start();//¿ªÆôÏß³Ì
+		avt.start();//å¼€å¯çº¿ç¨‹
 	}
 
 	@Override

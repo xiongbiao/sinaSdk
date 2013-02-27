@@ -3,16 +3,16 @@ package com.bn.carracer;
 import static com.bn.carracer.Constant.*;
 import static com.bn.carracer.MyGLSurfaceView.*;
 import android.util.Log;
-//¼àÌı¼üÅÌ×´Ì¬µÄÏß³Ì
+//ç›‘å¬é”®ç›˜çŠ¶æ€çš„çº¿ç¨‹
 public class ThreadKey extends Thread
 {
 	MyGLSurfaceView mv; 
 	static boolean flag=true;
 	
-	static boolean tisuFlag=false;//ÌáËÙÖĞ±êÖ¾Î»
-	static boolean jianyouFlag=false;//¼õÓÍ±êÖ¾Î»
-	static boolean shacheFlag=false;//É²³µÖĞ±êÖ¾Î» 
-	static boolean zhuangceFlag=false;//×²³µºó±êÖ¾Î»
+	static boolean tisuFlag=false;//æé€Ÿä¸­æ ‡å¿—ä½
+	static boolean jianyouFlag=false;//å‡æ²¹æ ‡å¿—ä½
+	static boolean shacheFlag=false;//åˆ¹è½¦ä¸­æ ‡å¿—ä½ 
+	static boolean zhuangceFlag=false;//æ’è½¦åæ ‡å¿—ä½
 	
 	public ThreadKey(MyGLSurfaceView mv)
 	{
@@ -24,70 +24,70 @@ public class ThreadKey extends Thread
 		while(flag)
 		{			
 			if((MyGLSurfaceView.keyState&0x1)!=0) 
-			{//ÓĞUP¼ü°´ÏÂ£¬´ú±í¼ÓÓÍÃÅ
-				isBrake=false;//Î´É²³µ£¬³µÎ²µÆÃğ¡£
+			{//æœ‰UPé”®æŒ‰ä¸‹ï¼Œä»£è¡¨åŠ æ²¹é—¨
+				isBrake=false;//æœªåˆ¹è½¦ï¼Œè½¦å°¾ç¯ç­ã€‚
 				if(carV<CAR_MAX_SPEED*SpeedFactor)
 				{
-					carV=carV+CAR_SPEED_SPAN;//ÌáËÙ
+					carV=carV+CAR_SPEED_SPAN;//æé€Ÿ
 					
-					if(Activity_GL_Racing.soundFlag==true&&tisuFlag==false)//µ±ÎªÒôĞ§¿ªÆô×´Ì¬£¬²¢ÇÒÃ»ÓĞÌá¹ıËÙÊ±£¬¿ªÆôÌáËÙÒôĞ§
+					if(Activity_GL_Racing.soundFlag==true&&tisuFlag==false)//å½“ä¸ºéŸ³æ•ˆå¼€å¯çŠ¶æ€ï¼Œå¹¶ä¸”æ²¡æœ‰æè¿‡é€Ÿæ—¶ï¼Œå¼€å¯æé€ŸéŸ³æ•ˆ
 					{
-						MyGLSurfaceView.activity.playSound(4, 0);//ÌáËÙÒôĞ§
+						MyGLSurfaceView.activity.playSound(4, 0);//æé€ŸéŸ³æ•ˆ
 						
-						tisuFlag=true;//ÌáËÙÖĞ
-						shacheFlag=false;//²»ÔÚÉ²³µÖĞ
-						zhuangceFlag=false;//²»ÔÚ×²³µÖĞ 
-						jianyouFlag=false;//²»ÔÚ¼õÓÍÖĞ
+						tisuFlag=true;//æé€Ÿä¸­
+						shacheFlag=false;//ä¸åœ¨åˆ¹è½¦ä¸­
+						zhuangceFlag=false;//ä¸åœ¨æ’è½¦ä¸­ 
+						jianyouFlag=false;//ä¸åœ¨å‡æ²¹ä¸­
 					}	
 				}
 			}
 			else if((MyGLSurfaceView.keyState&0x2)!=0)
-			{//ÓĞdown¼ü°´ÏÂ,´ú±íÉ²³µ»òµ¹³µ
-				isBrake=true;//É²³µ£¬³µÎ²µÆÁÁ¡£
+			{//æœ‰downé”®æŒ‰ä¸‹,ä»£è¡¨åˆ¹è½¦æˆ–å€’è½¦
+				isBrake=true;//åˆ¹è½¦ï¼Œè½¦å°¾ç¯äº®ã€‚
 				if(carV>-CAR_MAX_SPEED*SpeedFactor)
 				{
-					carV=carV-CAR_SPEED_SPAN*2;//É²³µ»òµ¹³µ
+					carV=carV-CAR_SPEED_SPAN*2;//åˆ¹è½¦æˆ–å€’è½¦
 					
-					if(Activity_GL_Racing.soundFlag==true&&shacheFlag==false)//µ±ÎªÒôĞ§¿ªÆô×´Ì¬£¬¼õÓÍ×´Ì¬
+					if(Activity_GL_Racing.soundFlag==true&&shacheFlag==false)//å½“ä¸ºéŸ³æ•ˆå¼€å¯çŠ¶æ€ï¼Œå‡æ²¹çŠ¶æ€
 					{
-						MyGLSurfaceView.activity.playSound(2, 0);//É²³µÒôĞ§
+						MyGLSurfaceView.activity.playSound(2, 0);//åˆ¹è½¦éŸ³æ•ˆ
 						
-						shacheFlag=true;//É²³µÖĞ
-						tisuFlag=false;//²»ÔÚÌáËÙÖĞ
-						zhuangceFlag=false;//²»ÔÚ×²³µÖĞ
-						jianyouFlag=false;//²»ÔÚ¼õÓÍÖĞ
+						shacheFlag=true;//åˆ¹è½¦ä¸­
+						tisuFlag=false;//ä¸åœ¨æé€Ÿä¸­
+						zhuangceFlag=false;//ä¸åœ¨æ’è½¦ä¸­
+						jianyouFlag=false;//ä¸åœ¨å‡æ²¹ä¸­
 					}
 				}
 			}
-			else if((MyGLSurfaceView.keyState&0x2)==0&&(MyGLSurfaceView.keyState&0x1)==0)//µ±²»°´UPºÍDOWN¼üÊ±£¬³µÖğ½¥Í£Ö¹
+			else if((MyGLSurfaceView.keyState&0x2)==0&&(MyGLSurfaceView.keyState&0x1)==0)//å½“ä¸æŒ‰UPå’ŒDOWNé”®æ—¶ï¼Œè½¦é€æ¸åœæ­¢
 			{
-				isBrake=false;//Î´É²³µ£¬³µÎ²µÆÃğ¡£
+				isBrake=false;//æœªåˆ¹è½¦ï¼Œè½¦å°¾ç¯ç­ã€‚
 				if(carV>0)
 				{
-					carV=carV-CAR_SPEED_SPAN/2;//¼õËÙ
+					carV=carV-CAR_SPEED_SPAN/2;//å‡é€Ÿ
 					
-					if(Activity_GL_Racing.soundFlag==true&&jianyouFlag==false)//µ±ÎªÒôĞ§¿ªÆô×´Ì¬£¬¼õÓÍ×´Ì¬
+					if(Activity_GL_Racing.soundFlag==true&&jianyouFlag==false)//å½“ä¸ºéŸ³æ•ˆå¼€å¯çŠ¶æ€ï¼Œå‡æ²¹çŠ¶æ€
 					{
-						MyGLSurfaceView.activity.playSound(3, 0);//¼õËÙÒôĞ§
+						MyGLSurfaceView.activity.playSound(3, 0);//å‡é€ŸéŸ³æ•ˆ
 						
-						jianyouFlag=true;//¼õÓÍÖĞ 
-						tisuFlag=false;//²»ÔÚÌáËÙÖĞ
-						shacheFlag=false;//²»ÔÚÉ²³µÖĞ
-						zhuangceFlag=false;//²»ÔÚ×²³µÖĞ 
+						jianyouFlag=true;//å‡æ²¹ä¸­ 
+						tisuFlag=false;//ä¸åœ¨æé€Ÿä¸­
+						shacheFlag=false;//ä¸åœ¨åˆ¹è½¦ä¸­
+						zhuangceFlag=false;//ä¸åœ¨æ’è½¦ä¸­ 
 					} 
 				}
 				else if(carV<0)
 				{
-					carV=carV+CAR_SPEED_SPAN/2;//¼õËÙ
+					carV=carV+CAR_SPEED_SPAN/2;//å‡é€Ÿ
 					
-					if(Activity_GL_Racing.soundFlag==true&&jianyouFlag==false)//µ±ÎªÒôĞ§¿ªÆô×´Ì¬£¬¼õÓÍ×´Ì¬
+					if(Activity_GL_Racing.soundFlag==true&&jianyouFlag==false)//å½“ä¸ºéŸ³æ•ˆå¼€å¯çŠ¶æ€ï¼Œå‡æ²¹çŠ¶æ€
 					{
-						MyGLSurfaceView.activity.playSound(3, 0);//¼õËÙÒôĞ§
+						MyGLSurfaceView.activity.playSound(3, 0);//å‡é€ŸéŸ³æ•ˆ
 						
-						jianyouFlag=true;//¼õÓÍÖĞ
-						tisuFlag=false;//²»ÔÚÌáËÙÖĞ
-						shacheFlag=false;//²»ÔÚÉ²³µÖĞ
-						zhuangceFlag=false;//²»ÔÚ×²³µÖĞ
+						jianyouFlag=true;//å‡æ²¹ä¸­
+						tisuFlag=false;//ä¸åœ¨æé€Ÿä¸­
+						shacheFlag=false;//ä¸åœ¨åˆ¹è½¦ä¸­
+						zhuangceFlag=false;//ä¸åœ¨æ’è½¦ä¸­
 					}
 				}
 			}			
@@ -96,26 +96,26 @@ public class ThreadKey extends Thread
 			float tempcarAlphaRD=0;
 			
 			if((MyGLSurfaceView.keyState&0x4)!=0)
-			{//ÓĞleft¼ü°´ÏÂ
-				//Ïò×ó×ª¶¯
+			{//æœ‰lefté”®æŒ‰ä¸‹
+				//å‘å·¦è½¬åŠ¨
 				tempCarAlpha=carAlpha+DEGREE_SPAN;	
-				tempcarAlphaRD=15;//³µµÄÈÅ¶¯½Ç¶ÈÖµ 
+				tempcarAlphaRD=15;//è½¦çš„æ‰°åŠ¨è§’åº¦å€¼ 
 			}
 			else if((MyGLSurfaceView.keyState&0x8)!=0)
-			{//ÓĞright¼ü°´ÏÂ
-				//ÏòÓÒ×ª¶¯ 
+			{//æœ‰righté”®æŒ‰ä¸‹
+				//å‘å³è½¬åŠ¨ 
 				tempCarAlpha=carAlpha-DEGREE_SPAN;  
-				tempcarAlphaRD=-15; //³µµÄÈÅ¶¯½Ç¶ÈÖµ
+				tempcarAlphaRD=-15; //è½¦çš„æ‰°åŠ¨è§’åº¦å€¼
 			}
-			else if((MyGLSurfaceView.keyState&0x8)==0&&(MyGLSurfaceView.keyState&0x4)==0)//µ±²»°´LEFTºÍRIGHT¼üÊ±£¬³µÈÅ¶¯½Ç¶ÈÎªÁã
+			else if((MyGLSurfaceView.keyState&0x8)==0&&(MyGLSurfaceView.keyState&0x4)==0)//å½“ä¸æŒ‰LEFTå’ŒRIGHTé”®æ—¶ï¼Œè½¦æ‰°åŠ¨è§’åº¦ä¸ºé›¶
 			{
-				tempcarAlphaRD=0;//³µµÄÈÅ¶¯½Ç¶ÈÖµ
+				tempcarAlphaRD=0;//è½¦çš„æ‰°åŠ¨è§’åº¦å€¼
 				tempCarAlpha=carAlpha;
 			}
 			
 
-			float xOffset=0;//´Ë²½µÄXÎ»ÒÆ
-    		float zOffset=0;//´Ë²½µÄZÎ»ÒÆ     		
+			float xOffset=0;//æ­¤æ­¥çš„Xä½ç§»
+    		float zOffset=0;//æ­¤æ­¥çš„Zä½ç§»     		
     		xOffset=(float)-Math.sin(Math.toRadians(tempCarAlpha))*carV;
 			zOffset=(float)-Math.cos(Math.toRadians(tempCarAlpha))*carV;
 			
@@ -130,14 +130,14 @@ public class ThreadKey extends Thread
 			} 
 			else 
 			{ 
-				carV=0;//×²³µ
+				carV=0;//æ’è½¦
 				carAlphaRD=0;
 				
-				if(Activity_GL_Racing.soundFlag==true&&zhuangceFlag==false)//µ±ÎªÒôĞ§¿ªÆô×´Ì¬£¬²¢ÇÒÃ»ÓĞÔÚ×²³µ×´Ì¬Ê±£¬¿ªÆô×²³µÒôĞ§
+				if(Activity_GL_Racing.soundFlag==true&&zhuangceFlag==false)//å½“ä¸ºéŸ³æ•ˆå¼€å¯çŠ¶æ€ï¼Œå¹¶ä¸”æ²¡æœ‰åœ¨æ’è½¦çŠ¶æ€æ—¶ï¼Œå¼€å¯æ’è½¦éŸ³æ•ˆ
 				{
-					MyGLSurfaceView.activity.playSound(6, 0);//×²³µÒôĞ§ 
-//					MyGLSurfaceView.activity.vibrator();//×²³µºóÕğ¶¯
-					zhuangceFlag=true;//ÔÚ×²³µ×´Ì¬
+					MyGLSurfaceView.activity.playSound(6, 0);//æ’è½¦éŸ³æ•ˆ 
+//					MyGLSurfaceView.activity.vibrator();//æ’è½¦åéœ‡åŠ¨
+					zhuangceFlag=true;//åœ¨æ’è½¦çŠ¶æ€
 				}
 			}  
 			
@@ -152,7 +152,7 @@ public class ThreadKey extends Thread
 		}
 	}
 	
-	//ÅĞ¶ÏÊÇ·ñ¿ªµ½ÁË°ëÈ¦
+	//åˆ¤æ–­æ˜¯å¦å¼€åˆ°äº†åŠåœˆ
 	public void isHalf(float carTempX,float carTempZ)
 	{
 		double dis=Math.sqrt
@@ -167,7 +167,7 @@ public class ThreadKey extends Thread
 		}
 	}
 	
-	//ÅĞ¶ÏÊÇ·ñÅÜÍêÒ»È¦
+	//åˆ¤æ–­æ˜¯å¦è·‘å®Œä¸€åœˆ
 	public void isOneCycle(float carTempX,float carTempZ)
 	{
 		double dis=Math.sqrt
@@ -179,26 +179,26 @@ public class ThreadKey extends Thread
 		{
 			if(halfFlag==true)
 			{
-				quanshu++;//È¦Êı¼Ó1
+				quanshu++;//åœˆæ•°åŠ 1
 				
-				if(quanshu==MAX_QUANSHU)//Èç¹ûÈ¦ÊıµÈÓÚ×î´óÈ¦Êı£¬Ôò½áÊøÓÎÏ·¡£
+				if(quanshu==MAX_QUANSHU)//å¦‚æœåœˆæ•°ç­‰äºæœ€å¤§åœˆæ•°ï¼Œåˆ™ç»“æŸæ¸¸æˆã€‚
 				{
-					mv.initState();//³õÊ¼»¯³¡¾°
+					mv.initState();//åˆå§‹åŒ–åœºæ™¯
 					
-					boolean b=DBUtil.getNewRecord(Math.floor(MyGLSurfaceView.gameContinueTime()/1000));//ÅĞ¶ÏÊÇ·ñÆÆ¼ÍÂ¼
+					boolean b=DBUtil.getNewRecord(Math.floor(MyGLSurfaceView.gameContinueTime()/1000));//åˆ¤æ–­æ˜¯å¦ç ´çºªå½•
 					if(b)
 					{
-						MyGLSurfaceView.activity.toAnotherView(BREAKING);//µ÷×ªµ½ÆÆ¼ÍÂ¼½çÃæ
+						MyGLSurfaceView.activity.toAnotherView(BREAKING);//è°ƒè½¬åˆ°ç ´çºªå½•ç•Œé¢
 					}
 					else
 					{
-						MyGLSurfaceView.activity.toAnotherView(STRIVE);//µ÷×ªµ½ÆÆ¼ÍÂ¼½çÃæ
+						MyGLSurfaceView.activity.toAnotherView(STRIVE);//è°ƒè½¬åˆ°ç ´çºªå½•ç•Œé¢
 					}
 					
-//					MyGLSurfaceView.activity.toAnotherView(OVER);//·µ»Ø½áÊø
+//					MyGLSurfaceView.activity.toAnotherView(OVER);//è¿”å›ç»“æŸ
 				}
 				
-				benquanStartTime=System.currentTimeMillis();//ÖØĞÂ¿ªÊ¼¼ÆÒ»È¦µÄÊ±¼ä
+				benquanStartTime=System.currentTimeMillis();//é‡æ–°å¼€å§‹è®¡ä¸€åœˆçš„æ—¶é—´
 //				Log.d("quanshu", quanshu+""); 
 			}
 			halfFlag=false;
@@ -209,21 +209,21 @@ public class ThreadKey extends Thread
 		}
 	}
 	
-	//¼ì²âÖ¸¶¨µÄÅö×²µãÓĞ·ñÅö×²
+	//æ£€æµ‹æŒ‡å®šçš„ç¢°æ’ç‚¹æœ‰å¦ç¢°æ’
 	public boolean isColl(float bPointX,float bPointZ)
 	{
-		float P=X_SPAN;//Â½µØ¿é¿í¶È
-		//¼ÆËãÅö×²µãÔÚµØÍ¼ÉÏµÄĞĞºÍÁĞ
+		float P=X_SPAN;//é™†åœ°å—å®½åº¦
+		//è®¡ç®—ç¢°æ’ç‚¹åœ¨åœ°å›¾ä¸Šçš„è¡Œå’Œåˆ—
 		float col=(float) Math.floor(bPointX/P);
 		float row=(float) Math.floor(bPointZ/P);
 		
-		//¼ÆËãÅö×²µãÔÚ¶ÔÓ¦µÄĞĞÁĞ¸ñ×ÓÖĞµÄx¡¢z×ø±ê£¬Ã¿¸öĞ¡¸ñ×ÓµÄÖĞĞÄµã¼´Îª¸Ã¸ñ×ÓµÄ×ø±êÔ­µã
+		//è®¡ç®—ç¢°æ’ç‚¹åœ¨å¯¹åº”çš„è¡Œåˆ—æ ¼å­ä¸­çš„xã€zåæ ‡ï¼Œæ¯ä¸ªå°æ ¼å­çš„ä¸­å¿ƒç‚¹å³ä¸ºè¯¥æ ¼å­çš„åæ ‡åŸç‚¹
 		float xIn=bPointX-col*P-0.5f*P;
 		float zIn=bPointZ-row*P-0.5f*P;
-		//¸ù¾İÅö×²µãËùÔÚ¸ñ×ÓµÄĞĞºÍÁĞ£¬ÌáÈ¡³öÅö×²µãËùÔÚ¸ñ×ÓµÄÈüµÀ±àºÅ¡£
+		//æ ¹æ®ç¢°æ’ç‚¹æ‰€åœ¨æ ¼å­çš„è¡Œå’Œåˆ—ï¼Œæå–å‡ºç¢°æ’ç‚¹æ‰€åœ¨æ ¼å­çš„èµ›é“ç¼–å·ã€‚
 		int sdNumber=MAP_LEVEL1[(int) row][(int) col]; 
 
-		//ÈôÎª0ºÅÈüµÀ£¬ÔòÅĞ¶Ïz×ø±êÔÚ²»ÔÚ·¶Î§ÄÚ¡£
+		//è‹¥ä¸º0å·èµ›é“ï¼Œåˆ™åˆ¤æ–­zåæ ‡åœ¨ä¸åœ¨èŒƒå›´å†…ã€‚
 		if(sdNumber==0)
 		{
 			if(zIn>=ROAD_W/2||zIn<=-ROAD_W/2)
@@ -236,7 +236,7 @@ public class ThreadKey extends Thread
 			}
 		}
 		
-		//ÈôÎª1ºÅÈüµÀ£¬ÔòÅĞ¶Ïx×ø±êÔÚ²»ÔÚ·¶Î§ÄÚ¡£
+		//è‹¥ä¸º1å·èµ›é“ï¼Œåˆ™åˆ¤æ–­xåæ ‡åœ¨ä¸åœ¨èŒƒå›´å†…ã€‚
 		if(sdNumber==1)
 		{
 			if(xIn>=ROAD_W/2||xIn<=-ROAD_W/2)
@@ -249,8 +249,8 @@ public class ThreadKey extends Thread
 			}
 		}
 		
-		//ÈôÎª2~9ºÅÈüµÀ£¬Ôò¸ù¾İÈüµÀºÅµ½¾ØÕóÖĞ²éÕÒ¶ÔÓ¦ÈüµÀºÅµÄÈüµÀÔ²ĞÄ×ø±ê£¬²¢Çó³öÅö×²µã
-		//ÓëÈüµÀÔ²ĞÄµÄ¾àÀë£¬È»ºóÅĞ¶ÏÓëÈüµÀÔ²ĞÄµÄ¾àÀëÊÇ·ñ·ûºÏÒªÇó¡£
+		//è‹¥ä¸º2~9å·èµ›é“ï¼Œåˆ™æ ¹æ®èµ›é“å·åˆ°çŸ©é˜µä¸­æŸ¥æ‰¾å¯¹åº”èµ›é“å·çš„èµ›é“åœ†å¿ƒåæ ‡ï¼Œå¹¶æ±‚å‡ºç¢°æ’ç‚¹
+		//ä¸èµ›é“åœ†å¿ƒçš„è·ç¦»ï¼Œç„¶ååˆ¤æ–­ä¸èµ›é“åœ†å¿ƒçš„è·ç¦»æ˜¯å¦ç¬¦åˆè¦æ±‚ã€‚
 		if(sdNumber>=2&&sdNumber<=9)
 		{
 			int k=(sdNumber-2)%4;
@@ -271,30 +271,30 @@ public class ThreadKey extends Thread
 		return false;
 	}
 	
-    //¼ì²â³µÍ·ÓĞ·ñÅö×²
-	public boolean isCollHead(float carXTemp,float carZTemp,float carAlphaTemp)//·µ»Øtrue±íÊ¾×²ÁË£¬·µ»Øfalse±íÊ¾Ã»×²¡£
+    //æ£€æµ‹è½¦å¤´æœ‰å¦ç¢°æ’
+	public boolean isCollHead(float carXTemp,float carZTemp,float carAlphaTemp)//è¿”å›trueè¡¨ç¤ºæ’äº†ï¼Œè¿”å›falseè¡¨ç¤ºæ²¡æ’ã€‚
 	{
-		final float R=30f;//³µÖĞĞÄµãµ½³µÍ·¾àÀë¡£		
-		//ÓÉ³µÖĞĞÄµãÎ»ÖÃ¼ÆËã³öµÄ³µÍ·×ø±ê
+		final float R=30f;//è½¦ä¸­å¿ƒç‚¹åˆ°è½¦å¤´è·ç¦»ã€‚		
+		//ç”±è½¦ä¸­å¿ƒç‚¹ä½ç½®è®¡ç®—å‡ºçš„è½¦å¤´åæ ‡
 		float bPointX=0;
 		float bPointZ=0;		
 		
-		//Ê×ÏÈÇó³öÅö×²¼ì²âµã×ø±ê
+		//é¦–å…ˆæ±‚å‡ºç¢°æ’æ£€æµ‹ç‚¹åæ ‡
 		bPointX=(float) (carXTemp-R*Math.sin(Math.toRadians(carAlphaTemp)));
 		bPointZ=(float) (carZTemp-R*Math.cos(Math.toRadians(carAlphaTemp)));
 	
 		return isColl(bPointX,bPointZ);
 	}
 	
-	//¼ì²â³µÎ²ÓĞ·ñÅö×²
-	public boolean isCollTail(float carXTemp,float carZTemp,float carAlphaTemp)//·µ»Øtrue±íÊ¾×²ÁË£¬·µ»Øfalse±íÊ¾Ã»×²¡£
+	//æ£€æµ‹è½¦å°¾æœ‰å¦ç¢°æ’
+	public boolean isCollTail(float carXTemp,float carZTemp,float carAlphaTemp)//è¿”å›trueè¡¨ç¤ºæ’äº†ï¼Œè¿”å›falseè¡¨ç¤ºæ²¡æ’ã€‚
 	{
-		final float R=30f;//³µÖĞĞÄµãµ½³µÍ·¾àÀë¡£		
-		//ÓÉ³µÖĞĞÄµãÎ»ÖÃ¼ÆËã³öµÄ³µÍ·×ø±ê
+		final float R=30f;//è½¦ä¸­å¿ƒç‚¹åˆ°è½¦å¤´è·ç¦»ã€‚		
+		//ç”±è½¦ä¸­å¿ƒç‚¹ä½ç½®è®¡ç®—å‡ºçš„è½¦å¤´åæ ‡
 		float bPointX=0; 
 		float bPointZ=0;		
 		
-		//Ê×ÏÈÇó³öÅö×²¼ì²âµã×ø±ê
+		//é¦–å…ˆæ±‚å‡ºç¢°æ’æ£€æµ‹ç‚¹åæ ‡
 		bPointX=(float) (carXTemp+R*Math.sin(Math.toRadians(carAlphaTemp)));
 		bPointZ=(float) (carZTemp+R*Math.cos(Math.toRadians(carAlphaTemp)));
 			

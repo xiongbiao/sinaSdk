@@ -1082,8 +1082,7 @@ public class MyGLSurfaceView extends GLSurfaceView {
             SButton=new TextureRect(0.047f,0.04f,1,1);//虚拟仪表盘控制按钮     
             loadProcessGo(1);
             
-            lovn_car_wheel=
-        		LoadUtil.loadFromFileVertexOnly("licenseplate.obj", Activity_GL_Racing.rs);//加载车轮 
+            lovn_car_wheel = LoadUtil.loadFromFileVertexOnly("licenseplate.obj", Activity_GL_Racing.rs);//加载车轮 
         	loadProcessGo(10);
             lovn_car_body=
         		LoadUtil.loadFromFileVertexOnly("carbody.obj", Activity_GL_Racing.rs);//加载车身

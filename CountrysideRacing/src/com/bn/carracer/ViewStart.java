@@ -12,13 +12,13 @@ public class ViewStart extends SurfaceView implements SurfaceHolder.Callback{
 
 	Activity_GL_Racing activity;
 	Paint paint;
-	int currentAloha=0;  //µ±Ç°µÄÍ¸Ã÷¶È
+	int currentAloha=0;  //å½“å‰çš„é€æ˜åº¦
 	int screenWidth=480;
 	int screenHeight=320;
 	int sleepSpan=50;
 	
-	Bitmap[] logos=new Bitmap[2];     //logoÍ¼Æ¬Êı×é
-	Bitmap currentLogo;               //µ±Ç°logoÍ¼Æ¬ÒıÓÃ
+	Bitmap[] logos=new Bitmap[2];     //logoå›¾ç‰‡æ•°ç»„
+	Bitmap currentLogo;               //å½“å‰logoå›¾ç‰‡å¼•ç”¨
 	Bitmap sound;
 	int currentX; 
 	int currentY;
@@ -26,12 +26,12 @@ public class ViewStart extends SurfaceView implements SurfaceHolder.Callback{
 		super(activity);
 		// TODO Auto-generated constructor stub
 		this.activity=activity;
-		this.getHolder().addCallback(this);//ÉèÖÃÉúÃüÖÜÆÚ»Øµ÷½Ó¿ÚµÄÊµÏÖÕß		
-		paint=new Paint();        //´´½¨»­±Ê
-		paint.setAntiAlias(true);    //´ò¿ª¿¹¾â³İ
+		this.getHolder().addCallback(this);//è®¾ç½®ç”Ÿå‘½å‘¨æœŸå›è°ƒæ¥å£çš„å®ç°è€…		
+		paint=new Paint();        //åˆ›å»ºç”»ç¬”
+		paint.setAntiAlias(true);    //æ‰“å¼€æŠ—é”¯é½¿
 				
-		logos[0]=BitmapFactory.decodeResource(activity.getResources(), R.drawable.baina);//¼ÓÔØ°ÙÄÉÍ¼Æ¬
-		logos[1]=BitmapFactory.decodeResource(activity.getResources(), R.drawable.bnkjs);//¼ÓÔØlogoÍ¼Æ¬
+		logos[0]=BitmapFactory.decodeResource(activity.getResources(), R.drawable.baina);//åŠ è½½ç™¾çº³å›¾ç‰‡
+		logos[1]=BitmapFactory.decodeResource(activity.getResources(), R.drawable.bnkjs);//åŠ è½½logoå›¾ç‰‡
 	}
 
 	@Override
@@ -39,12 +39,12 @@ public class ViewStart extends SurfaceView implements SurfaceHolder.Callback{
 	{
 		try
 		{
-			//»æÖÆºÚÉ«Ìî³ä¾ØĞÎÇå±³¾°
+			//ç»˜åˆ¶é»‘è‰²å¡«å……çŸ©å½¢æ¸…èƒŒæ™¯
 			paint.setColor(Color.BLACK);
 			paint.setAlpha(255);
 			canvas.drawRect(0, 0,screenWidth, screenHeight ,paint);
 			 
-			//½øĞĞÆ½ÃæÌùÍ¼ 
+			//è¿›è¡Œå¹³é¢è´´å›¾ 
 			if(currentLogo==null)return;
 			paint.setAlpha(currentAloha);
 			
@@ -64,7 +64,7 @@ public class ViewStart extends SurfaceView implements SurfaceHolder.Callback{
 	}
 
 	@Override
-	public void surfaceCreated(SurfaceHolder arg0) {//´´½¨Ê±µ÷ÓÃ
+	public void surfaceCreated(SurfaceHolder arg0) {//åˆ›å»ºæ—¶è°ƒç”¨
 		// TODO Auto-generated method stub
 		new Thread()
 		{
@@ -73,11 +73,11 @@ public class ViewStart extends SurfaceView implements SurfaceHolder.Callback{
 				for(Bitmap bm:logos)
 				{
 					currentLogo=bm;
-					//Í¼Æ¬µÄÎ»ÖÃ
-					currentX=screenWidth/2-bm.getWidth()/2;     //X×ø±êÎ»ÖÃ
-					currentY=screenHeight/2-bm.getHeight()/2;   //Y×ø±êÎ»ÖÃ
+					//å›¾ç‰‡çš„ä½ç½®
+					currentX=screenWidth/2-bm.getWidth()/2;     //Xåæ ‡ä½ç½®
+					currentY=screenHeight/2-bm.getHeight()/2;   //Yåæ ‡ä½ç½®
 					
-					for(int i=255;i>-10;i=i-10)  //¶¯Ì¬¸ü¸ÄÍ¼Æ¬µÄÍ¸Ã÷¶ÈÖµ²¢²»¶ÏÖØ»æ	
+					for(int i=255;i>-10;i=i-10)  //åŠ¨æ€æ›´æ”¹å›¾ç‰‡çš„é€æ˜åº¦å€¼å¹¶ä¸æ–­é‡ç»˜	
 					{			
 						currentAloha=i;
 						if(currentAloha<0)
@@ -85,12 +85,12 @@ public class ViewStart extends SurfaceView implements SurfaceHolder.Callback{
 							currentAloha=0;
 						}
 						SurfaceHolder myholder=ViewStart.this.getHolder();
-						Canvas canvas = myholder.lockCanvas();//»ñÈ¡»­²¼
+						Canvas canvas = myholder.lockCanvas();//è·å–ç”»å¸ƒ
 						try
 						{
 							synchronized(myholder)
 							{
-								onDraw(canvas);    //»æÖÆ
+								onDraw(canvas);    //ç»˜åˆ¶
 							}							
 						}catch(Exception e)
 						{
@@ -116,9 +116,9 @@ public class ViewStart extends SurfaceView implements SurfaceHolder.Callback{
 							e.printStackTrace();
 						}
 											
-					}//µÚÒ»¸öforÑ­»·				
-				}//µÚ¶ş¸öforÑ­»·
-				activity.toAnotherView(ENTER_SOUND);//½øÈëÉùÒô¿ØÖÆ½çÃæ
+					}//ç¬¬ä¸€ä¸ªforå¾ªç¯				
+				}//ç¬¬äºŒä¸ªforå¾ªç¯
+				activity.toAnotherView(ENTER_SOUND);//è¿›å…¥å£°éŸ³æ§åˆ¶ç•Œé¢
 			}
 			
 		}.start();

@@ -10,24 +10,24 @@ import static com.bn.carracer.Activity_GL_Racing.*;
 
 public class ViewLoading extends SurfaceView implements SurfaceHolder.Callback{
 
-	Activity_GL_Racing activity;//ÉùÃ÷ÒıÓÃ
-	Paint paint;//»­±Ê
-	Bitmap load1;//¼ÓÔØ½çÃæ±³¾°Í¼
-	Bitmap load2;//¼ÓÔØ½ø¶ÈÌõ  439/31
-	Bitmap load3;//¼ÓÔØµã
-	Bitmap load4;//¼ÓÔØµãµÄ½¥±ä
+	Activity_GL_Racing activity;//å£°æ˜å¼•ç”¨
+	Paint paint;//ç”»ç¬”
+	Bitmap load1;//åŠ è½½ç•Œé¢èƒŒæ™¯å›¾
+	Bitmap load2;//åŠ è½½è¿›åº¦æ¡  439/31
+	Bitmap load3;//åŠ è½½ç‚¹
+	Bitmap load4;//åŠ è½½ç‚¹çš„æ¸å˜
 	
-	int process=0;//loading½ø¶È±êÖ¾Î»
-	int pointNum=-1;//»æÖÆµãµÄÊıÁ¿µÄ±êÖ¾Î» 
+	int process=0;//loadingè¿›åº¦æ ‡å¿—ä½
+	int pointNum=-1;//ç»˜åˆ¶ç‚¹çš„æ•°é‡çš„æ ‡å¿—ä½ 
 	
 	
-	static boolean loadFlag=true;//loadingÏß³Ì±êÖ¾Î»£¬true±íÊ¾loadingÖĞ£¬FALSE±íÊ¾½áÊøloading¡£
-	static float xoffset=330;//load2Î»Í¼Æ«ÒÆÁ¿
+	static boolean loadFlag=true;//loadingçº¿ç¨‹æ ‡å¿—ä½ï¼Œtrueè¡¨ç¤ºloadingä¸­ï¼ŒFALSEè¡¨ç¤ºç»“æŸloadingã€‚
+	static float xoffset=330;//load2ä½å›¾åç§»é‡
 	
-	float screenWidth=480;//Í¼Æ¬¿í¶È 
+	float screenWidth=480;//å›¾ç‰‡å®½åº¦ 
 	float x_Offset=Activity_GL_Racing.screenWidth/2-screenWidth/2;
 	
-	PointGoThread pgt;//loadingÖĞµãµÄ»æÖÆÏß³Ì
+	PointGoThread pgt;//loadingä¸­ç‚¹çš„ç»˜åˆ¶çº¿ç¨‹
 	
 	public ViewLoading(Activity_GL_Racing activity) { 
 		super(activity);
@@ -35,10 +35,10 @@ public class ViewLoading extends SurfaceView implements SurfaceHolder.Callback{
 		this.activity=activity;
 		paint=new Paint();
 		getHolder().addCallback(this);
-		load1=BitmapFactory.decodeResource(this.getResources(), R.drawable.load1);//¼ÓÔØ½çÃæ1
-		load2=BitmapFactory.decodeResource(this.getResources(), R.drawable.load2);//¼ÓÔØ½çÃæ2
-		load3=BitmapFactory.decodeResource(this.getResources(), R.drawable.load3);//¼ÓÔØ½çÃæ3
-		load4=BitmapFactory.decodeResource(this.getResources(), R.drawable.load4);//¼ÓÔØ½çÃæ4
+		load1=BitmapFactory.decodeResource(this.getResources(), R.drawable.load1);//åŠ è½½ç•Œé¢1
+		load2=BitmapFactory.decodeResource(this.getResources(), R.drawable.load2);//åŠ è½½ç•Œé¢2
+		load3=BitmapFactory.decodeResource(this.getResources(), R.drawable.load3);//åŠ è½½ç•Œé¢3
+		load4=BitmapFactory.decodeResource(this.getResources(), R.drawable.load4);//åŠ è½½ç•Œé¢4
 		
 		pgt=new PointGoThread(this);
 		pgt.start();
@@ -99,10 +99,10 @@ public class ViewLoading extends SurfaceView implements SurfaceHolder.Callback{
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
-		Canvas canvas = holder.lockCanvas();//»ñÈ¡»­²¼
+		Canvas canvas = holder.lockCanvas();//è·å–ç”»å¸ƒ
 		try{
 			synchronized(holder){
-				onDraw(canvas);//»æÖÆ
+				onDraw(canvas);//ç»˜åˆ¶
 			}			
 		}
 		catch(Exception e){
@@ -121,7 +121,7 @@ public class ViewLoading extends SurfaceView implements SurfaceHolder.Callback{
 		
 	}
 
-	//ÖØ»æµÄ·½·¨
+	//é‡ç»˜çš„æ–¹æ³•
 	public void repaint()
 	{
 		Canvas canvas=this.getHolder().lockCanvas();

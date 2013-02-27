@@ -9,17 +9,17 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class DrawPrism extends BNShape
 {		
-	Prism prism;//ÀâÖù
-	Cylinder cylinder;//Ô²Öù
+	Prism prism;//æ£±æŸ±
+	Cylinder cylinder;//åœ†æŸ±
 	
-	float a=1;//ÀâÖù½ØÃæ±ß³¤
-	float height=2;//ÀâÖù¸ß¶È
-	float cylinder_R=0.1f;//Ô²Öù½ØÃæ°ë¾¶
-	float cylinder_H=1;//Ô²Öù¸ß¶È
+	float a=1;//æ£±æŸ±æˆªé¢è¾¹é•¿
+	float height=2;//æ£±æŸ±é«˜åº¦
+	float cylinder_R=0.1f;//åœ†æŸ±æˆªé¢åŠå¾„
+	float cylinder_H=1;//åœ†æŸ±é«˜åº¦
 	
-    public float mAngleX;//ÑØxÖáĞı×ª½Ç¶È
-    public float mAngleY;//ÑØyÖáĞı×ª½Ç¶È 
-    public float mAngleZ;//ÑØzÖáĞı×ª½Ç¶È 
+    public float mAngleX;//æ²¿xè½´æ—‹è½¬è§’åº¦
+    public float mAngleY;//æ²¿yè½´æ—‹è½¬è§’åº¦ 
+    public float mAngleZ;//æ²¿zè½´æ—‹è½¬è§’åº¦ 
 
 	public DrawPrism(float scale) {
 		super(scale);
@@ -29,9 +29,9 @@ public class DrawPrism extends BNShape
 
 	@Override
 	public void drawSelf(GL10 gl, int texId, int number) {		
-    	gl.glRotatef(mAngleZ, 0, 0, 1);//ÑØZÖáĞı×ª    	
-        gl.glRotatef(mAngleY, 0, 1, 0);//ÑØYÖáĞı×ª
-        gl.glRotatef(mAngleX, 1, 0, 0);//ÑØXÖáĞı×ª
+    	gl.glRotatef(mAngleZ, 0, 0, 1);//æ²¿Zè½´æ—‹è½¬    	
+        gl.glRotatef(mAngleY, 0, 1, 0);//æ²¿Yè½´æ—‹è½¬
+        gl.glRotatef(mAngleX, 1, 0, 0);//æ²¿Xè½´æ—‹è½¬
         
         gl.glPushMatrix();
         gl.glTranslatef(0, scale*(cylinder_H+height/2), 0);
@@ -61,7 +61,7 @@ public class DrawPrism extends BNShape
 		{
 			float b=(float) Math.sqrt(3);
 			
-			ArrayList<Float> alVertex=new ArrayList<Float>();//´æ·Å¶¥µã×ø±ê
+			ArrayList<Float> alVertex=new ArrayList<Float>();//å­˜æ”¾é¡¶ç‚¹åæ ‡
 			
 			float x1=scale*(-a/2);
 			float y1=scale*(height/2);
@@ -111,21 +111,21 @@ public class DrawPrism extends BNShape
 			alVertex.add(x4);alVertex.add(y4);alVertex.add(z4);
 			alVertex.add(x1);alVertex.add(y1);alVertex.add(z1);
 			
-			vCount=alVertex.size()/3;//¶¥µãµÄÊıÁ¿Îª×ø±êÖµÊıÁ¿µÄ1/3£¬ÒòÎªÒ»¸ö¶¥µãÓĞ3¸ö×ø±ê
+			vCount=alVertex.size()/3;//é¡¶ç‚¹çš„æ•°é‡ä¸ºåæ ‡å€¼æ•°é‡çš„1/3ï¼Œå› ä¸ºä¸€ä¸ªé¡¶ç‚¹æœ‰3ä¸ªåæ ‡
 	    	
-	        //½«alVertixÖĞµÄ×ø±êÖµ×ª´æµ½Ò»¸öintÊı×éÖĞ
+	        //å°†alVertixä¸­çš„åæ ‡å€¼è½¬å­˜åˆ°ä¸€ä¸ªintæ•°ç»„ä¸­
 	        float[] vertices=new float[vCount*3];
 	    	for(int i=0;i<alVertex.size();i++)
 	    	{
 	    		vertices[i]=alVertex.get(i);
 	    	}
-	        //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-	        //vertices.length*4ÊÇÒòÎªÒ»¸öÕûÊıËÄ¸ö×Ö½Ú
+	        //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+	        //vertices.length*4æ˜¯å› ä¸ºä¸€ä¸ªæ•´æ•°å››ä¸ªå­—èŠ‚
 	        ByteBuffer vbb = ByteBuffer.allocateDirect(vertices.length*4);
-	        vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-	        vertexBuffer = vbb.asFloatBuffer();//×ª»»ÎªintĞÍ»º³å
-	        vertexBuffer.put(vertices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-	        vertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+	        vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+	        vertexBuffer = vbb.asFloatBuffer();//è½¬æ¢ä¸ºintå‹ç¼“å†²
+	        vertexBuffer.put(vertices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+	        vertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 	        
 			float[] textures=new float[]{			
 					1,0.5f,
@@ -160,40 +160,40 @@ public class DrawPrism extends BNShape
 		}
 		
 		public void drawSelf(GL10 gl,int texId) {
-			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//¿ªÆô¶¥µãÊı×é
+			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//å¼€å¯é¡¶ç‚¹æ•°ç»„
 			gl.glVertexPointer(3, GL10.GL_FLOAT, 0,vertexBuffer);
 			
-			gl.glEnable(GL10.GL_TEXTURE_2D);//ÔÊĞíÎÆÀí
-			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¿ªÆôÎÆÀíÊı×é
+			gl.glEnable(GL10.GL_TEXTURE_2D);//å…è®¸çº¹ç†
+			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å¼€å¯çº¹ç†æ•°ç»„
 			gl.glTexCoordPointer(2,GL10.GL_FLOAT, 0, textureBuffer);
-			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//°ó¶¨ÎÆÀí
+			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);//ç»‘å®šçº¹ç†
 			
 			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);
 			
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±ÕÎÆÀíÊı×é	
-			gl.glDisable(GL10.GL_TEXTURE_2D);//¹Ø±ÕÎÆÀí
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­çº¹ç†æ•°ç»„	
+			gl.glDisable(GL10.GL_TEXTURE_2D);//å…³é—­çº¹ç†
 			gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
 		}
 	}	
 	
-	//Ô²ÖùÄÚ²¿Àà
+	//åœ†æŸ±å†…éƒ¨ç±»
 	private class Cylinder
 	{
-		private FloatBuffer myVertexBuffer;//¶¥µã×ø±ê»º³å 
-		private FloatBuffer myTexture;//ÎÆÀí»º³å
+		private FloatBuffer myVertexBuffer;//é¡¶ç‚¹åæ ‡ç¼“å†² 
+		private FloatBuffer myTexture;//çº¹ç†ç¼“å†²
 		
-		int vCount;//¶¥µãÊıÁ¿
+		int vCount;//é¡¶ç‚¹æ•°é‡
 		
 		public Cylinder(float scale,float length,float circle_radius,float degreespan,int col)
 		{			
-			float collength=(float)length*scale/col;//Ô²ÖùÃ¿¿éËùÕ¼µÄ³¤¶È
+			float collength=(float)length*scale/col;//åœ†æŸ±æ¯å—æ‰€å çš„é•¿åº¦
 			int spannum=(int)(360.0f/degreespan);
 			
-			ArrayList<Float> val=new ArrayList<Float>();//¶¥µã´æ·ÅÁĞ±í
+			ArrayList<Float> val=new ArrayList<Float>();//é¡¶ç‚¹å­˜æ”¾åˆ—è¡¨
 			
-			for(float circle_degree=360.0f;circle_degree>0.0f;circle_degree-=degreespan)//Ñ­»·ĞĞ
+			for(float circle_degree=360.0f;circle_degree>0.0f;circle_degree-=degreespan)//å¾ªç¯è¡Œ
 			{
-				for(int j=0;j<col;j++)//Ñ­»·ÁĞ
+				for(int j=0;j<col;j++)//å¾ªç¯åˆ—
 				{
 					float x1 =(float)(j*collength-length/2*scale);
 					float y1=(float) (circle_radius*scale*Math.sin(Math.toRadians(circle_degree)));
@@ -211,7 +211,7 @@ public class DrawPrism extends BNShape
 					float y4=(float) (circle_radius*scale*Math.sin(Math.toRadians(circle_degree)));
 					float z4=(float) (circle_radius*scale*Math.cos(Math.toRadians(circle_degree)));							
 					
-					val.add(x1);val.add(y1);val.add(z1);//Á½¸öÈı½ÇĞÎ£¬¹²6¸ö¶¥µãµÄ×ø±ê
+					val.add(x1);val.add(y1);val.add(z1);//ä¸¤ä¸ªä¸‰è§’å½¢ï¼Œå…±6ä¸ªé¡¶ç‚¹çš„åæ ‡
 					val.add(x2);val.add(y2);val.add(z2);
 					val.add(x4);val.add(y4);val.add(z4);
 					
@@ -221,9 +221,9 @@ public class DrawPrism extends BNShape
 				}
 			}
 			 
-			vCount=val.size()/3;//È·¶¨¶¥µãÊıÁ¿
+			vCount=val.size()/3;//ç¡®å®šé¡¶ç‚¹æ•°é‡
 			
-			//¶¥µã
+			//é¡¶ç‚¹
 			float[] vertexs=new float[vCount*3];
 			for(int i=0;i<vCount*3;i++)
 			{
@@ -235,7 +235,7 @@ public class DrawPrism extends BNShape
 			myVertexBuffer.put(vertexs);
 			myVertexBuffer.position(0);
 			
-			//ÎÆÀí
+			//çº¹ç†
 			float[] textures=generateTexCoor(col,spannum);
 			ByteBuffer tbb=ByteBuffer.allocateDirect(textures.length*4);
 			tbb.order(ByteOrder.nativeOrder());
@@ -246,33 +246,33 @@ public class DrawPrism extends BNShape
 		
 		public void drawSelf(GL10 gl,int texId)
 		{			
-			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//´ò¿ª¶¥µã»º³å
-			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, myVertexBuffer);//Ö¸¶¨¶¥µã»º³å
+			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//æ‰“å¼€é¡¶ç‚¹ç¼“å†²
+			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, myVertexBuffer);//æŒ‡å®šé¡¶ç‚¹ç¼“å†²
 			
 			gl.glEnable(GL10.GL_TEXTURE_2D);
 			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, myTexture);
 			gl.glBindTexture(GL10.GL_TEXTURE_2D, texId);
 			
-			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//»æÖÆÍ¼Ïñ
+			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//ç»˜åˆ¶å›¾åƒ
 			
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±Õ»º³å
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­ç¼“å†²
 			gl.glDisable(GL10.GL_TEXTURE_2D);
 			gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
 		}
 		
-	    //×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+	    //è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
 	    public float[] generateTexCoor(int bw,int bh)
 	    {
 	    	float[] result=new float[bw*bh*6*2]; 
-	    	float sizew=1f/bw;//ÁĞÊı
-	    	float sizeh=0.5f/bh;//ĞĞÊı
+	    	float sizew=1f/bw;//åˆ—æ•°
+	    	float sizeh=0.5f/bh;//è¡Œæ•°
 	    	int c=0;
 	    	for(int i=0;i<bh;i++)
 	    	{
 	    		for(int j=0;j<bw;j++)
 	    		{
-	    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+	    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
 	    			float s=j*sizew;
 	    			float t=i*sizeh;
 	    			

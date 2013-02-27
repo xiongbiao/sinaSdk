@@ -10,13 +10,13 @@ import android.view.SurfaceView;
 import static com.bn.carracer.Constant.*;
 public class ViewOver extends SurfaceView implements SurfaceHolder.Callback{
 
-	Activity_GL_Racing activity;//ÉùÃ÷ÒýÓÃ
-	Bitmap over;//ÉèÖÃ½çÃæ±³¾°
+	Activity_GL_Racing activity;//å£°æ˜Žå¼•ç”¨
+	Bitmap over;//è®¾ç½®ç•Œé¢èƒŒæ™¯
 	
-	float screenWidth=480;//Í¼Æ¬¿í¶È
+	float screenWidth=480;//å›¾ç‰‡å®½åº¦
 	float x_Offset=Activity_GL_Racing.screenWidth/2-screenWidth/2;
 
-	Paint paint;//»­±Ê 
+	Paint paint;//ç”»ç¬” 
 	
 	public ViewOver(Activity_GL_Racing activity) {
 		super(activity);
@@ -32,15 +32,15 @@ public class ViewOver extends SurfaceView implements SurfaceHolder.Callback{
 		switch(event.getAction())
 		{
 		case MotionEvent.ACTION_DOWN:
-			int x = (int) event.getX();//»ñÈ¡X×ø±ê
+			int x = (int) event.getX();//èŽ·å–Xåæ ‡
 			int y = (int) event.getY();
-			if(x>135+x_Offset&&x<343+x_Offset&&y>122&&y<193)//µã»÷Ö÷²Ëµ¥
+			if(x>135+x_Offset&&x<343+x_Offset&&y>122&&y<193)//ç‚¹å‡»ä¸»èœå•
 			{
-				activity.toAnotherView(LOADING);//·µ»ØÖµÖ÷²Ëµ¥
+				activity.toAnotherView(LOADING);//è¿”å›žå€¼ä¸»èœå•
 			}
-			if(x>135+x_Offset&&x<343+x_Offset&&y>193&&y<265)//µã»÷ÔÚÍæÒ»´Î
+			if(x>135+x_Offset&&x<343+x_Offset&&y>193&&y<265)//ç‚¹å‡»åœ¨çŽ©ä¸€æ¬¡
 			{
-				activity.toAnotherView(ENTER_MENU);//½øÈëÓÎÏ·
+				activity.toAnotherView(ENTER_MENU);//è¿›å…¥æ¸¸æˆ
 			} 
 			break;
 		}
@@ -64,10 +64,10 @@ public class ViewOver extends SurfaceView implements SurfaceHolder.Callback{
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
-		Canvas canvas = holder.lockCanvas();//»ñÈ¡»­²¼
+		Canvas canvas = holder.lockCanvas();//èŽ·å–ç”»å¸ƒ
 		try{
 			synchronized(holder){
-				onDraw(canvas);//»æÖÆ
+				onDraw(canvas);//ç»˜åˆ¶
 			}			
 		}
 		catch(Exception e){

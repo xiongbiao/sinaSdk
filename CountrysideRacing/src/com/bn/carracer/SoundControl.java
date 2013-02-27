@@ -9,8 +9,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import static com.bn.carracer.Constant.*;
 public class SoundControl extends SurfaceView implements SurfaceHolder.Callback{
-	Activity_GL_Racing activity;//ÉùÃ÷ÒýÓÃ
-	Bitmap sound;//ÉùÃ÷ÒýÓÃ
+	Activity_GL_Racing activity;//å£°æ˜Žå¼•ç”¨
+	Bitmap sound;//å£°æ˜Žå¼•ç”¨
 	float screenWidth=480;
 	float x_Offset=Activity_GL_Racing.screenWidth/2-screenWidth/2;
 	
@@ -18,8 +18,8 @@ public class SoundControl extends SurfaceView implements SurfaceHolder.Callback{
 		super(activity);
 		this.activity=activity;
 		// TODO Auto-generated constructor stub
-		getHolder().addCallback(this);//ÉèÖÃÉúÃüÖÜÆÚ½Ó¿Ú
-		sound=BitmapFactory.decodeResource(this.getResources(), R.drawable.sound);//¼ÓÔØÍ¼Æ¬
+		getHolder().addCallback(this);//è®¾ç½®ç”Ÿå‘½å‘¨æœŸæŽ¥å£
+		sound=BitmapFactory.decodeResource(this.getResources(), R.drawable.sound);//åŠ è½½å›¾ç‰‡
 	}
 
 	@Override 
@@ -34,16 +34,16 @@ public class SoundControl extends SurfaceView implements SurfaceHolder.Callback{
 		switch(event.getAction())
 		{
 		case MotionEvent.ACTION_DOWN:
-			int x = (int) event.getX();//»ñÈ¡X×ø±ê
+			int x = (int) event.getX();//èŽ·å–Xåæ ‡
 			int y = (int) event.getY();
 			if(x>10+x_Offset&&x<97+x_Offset&&y>280&&y<310)
 			{
-				Activity_GL_Racing.soundFlag=true;//¿ªÆôÉùÒô
+				Activity_GL_Racing.soundFlag=true;//å¼€å¯å£°éŸ³
 				activity.toAnotherView(ENTER_MENU);
 			}
 			else if(x>380+x_Offset&&x<468+x_Offset&&y>280&&y<310)
 			{
-				Activity_GL_Racing.soundFlag=false;//¹Ø±ÕÉùÒô
+				Activity_GL_Racing.soundFlag=false;//å…³é—­å£°éŸ³
 				activity.toAnotherView(ENTER_MENU);
 			}
 				break;
@@ -52,9 +52,9 @@ public class SoundControl extends SurfaceView implements SurfaceHolder.Callback{
 		return true;
 	}
 	@Override
-	public boolean onKeyDown(int keyCode,KeyEvent e)    //´¥¿ØÊÂ¼þ
+	public boolean onKeyDown(int keyCode,KeyEvent e)    //è§¦æŽ§äº‹ä»¶
 	{
-		if(keyCode==4)     //·µ»ØÏµÍ³  
+		if(keyCode==4)     //è¿”å›žç³»ç»Ÿ  
 		{			
 			return false;
 		}
@@ -72,10 +72,10 @@ public class SoundControl extends SurfaceView implements SurfaceHolder.Callback{
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
-		Canvas canvas = holder.lockCanvas();//»ñÈ¡»­²¼
+		Canvas canvas = holder.lockCanvas();//èŽ·å–ç”»å¸ƒ
 		try{
 			synchronized(holder){
-				onDraw(canvas);//»æÖÆ
+				onDraw(canvas);//ç»˜åˆ¶
 			}			
 		}
 		catch(Exception e){

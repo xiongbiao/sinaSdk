@@ -10,20 +10,20 @@ import android.view.SurfaceView;
 import static com.bn.carracer.Constant.*;
 public class ViewSet extends SurfaceView implements SurfaceHolder.Callback{
 
-	Activity_GL_Racing activity;//ÉùÃ÷ÒýÓÃ
-	Bitmap set;//ÉèÖÃ½çÃæ±³¾°
+	Activity_GL_Racing activity;//å£°æ˜Žå¼•ç”¨
+	Bitmap set;//è®¾ç½®ç•Œé¢èƒŒæ™¯
 	
-	float screenWidth=480;//Í¼Æ¬¿í¶È
+	float screenWidth=480;//å›¾ç‰‡å®½åº¦
 	float x_Offset=Activity_GL_Racing.screenWidth/2-screenWidth/2;
 
-	Bitmap keyboard;//¼üÅÌ¿ØÖÆ
-	Bitmap sensor;//´«¸ÐÆ÷¿ØÖÆ
-	Bitmap open;//¿ªÆô
-	Bitmap close;//¹Ø±Õ
-	Paint paint;//»­±Ê 
-	int exTemp=0;//»æÖÆ¼üÅÌ»ò´«¸ÐÆ÷µÄ±êÖ¾Î»  0±íÊ¾»æÖÆÔ´£¬1±íÊ¾»æÖÆ¼üÅÌ£¬2±íÊ¾»æÖÆ´«¸ÐÆ÷,3±íÊ¾¿ªÆôÉùÒô£¬4±íÊ¾¹Ø±ÕÉùÒô
+	Bitmap keyboard;//é”®ç›˜æŽ§åˆ¶
+	Bitmap sensor;//ä¼ æ„Ÿå™¨æŽ§åˆ¶
+	Bitmap open;//å¼€å¯
+	Bitmap close;//å…³é—­
+	Paint paint;//ç”»ç¬” 
+	int exTemp=0;//ç»˜åˆ¶é”®ç›˜æˆ–ä¼ æ„Ÿå™¨çš„æ ‡å¿—ä½  0è¡¨ç¤ºç»˜åˆ¶æºï¼Œ1è¡¨ç¤ºç»˜åˆ¶é”®ç›˜ï¼Œ2è¡¨ç¤ºç»˜åˆ¶ä¼ æ„Ÿå™¨,3è¡¨ç¤ºå¼€å¯å£°éŸ³ï¼Œ4è¡¨ç¤ºå…³é—­å£°éŸ³
 	
-	ThreadSetView svt;//´´½¨Ïß³ÌÒýÓÃ
+	ThreadSetView svt;//åˆ›å»ºçº¿ç¨‹å¼•ç”¨
 	public ViewSet(Activity_GL_Racing activity) {
 		super(activity);
 		// TODO Auto-generated constructor stub
@@ -35,7 +35,7 @@ public class ViewSet extends SurfaceView implements SurfaceHolder.Callback{
 		sensor=BitmapFactory.decodeResource(this.getResources(), R.drawable.sensor);
 		open=BitmapFactory.decodeResource(this.getResources(), R.drawable.open);
 		close=BitmapFactory.decodeResource(this.getResources(), R.drawable.close);
-		svt=new ThreadSetView(this);//´´½¨¶ÔÏó
+		svt=new ThreadSetView(this);//åˆ›å»ºå¯¹è±¡
 	}
 	@Override
 	public boolean onTouchEvent(MotionEvent event)
@@ -43,30 +43,30 @@ public class ViewSet extends SurfaceView implements SurfaceHolder.Callback{
 		switch(event.getAction())
 		{
 		case MotionEvent.ACTION_DOWN:
-			int x = (int) event.getX();//»ñÈ¡X×ø±ê
+			int x = (int) event.getX();//èŽ·å–Xåæ ‡
 			int y = (int) event.getY();
-			if(x>387+x_Offset&&x<474+x_Offset&&y>280&&y<310)//µã»÷·µ»Ø¼ü
+			if(x>387+x_Offset&&x<474+x_Offset&&y>280&&y<310)//ç‚¹å‡»è¿”å›žé”®
 			{
-				activity.toAnotherView(ENTER_MENU);//·µ»ØÖµÖ÷²Ëµ¥
+				activity.toAnotherView(ENTER_MENU);//è¿”å›žå€¼ä¸»èœå•
 				svt.flag=false; 
 			}
-			if(x>60+x_Offset&&x<185+x_Offset&&y>158&&y<185)//µã»÷¿ªÆôÉùÒô
+			if(x>60+x_Offset&&x<185+x_Offset&&y>158&&y<185)//ç‚¹å‡»å¼€å¯å£°éŸ³
 			{
 				Activity_GL_Racing.soundFlag=true;
 				exTemp=3;
 			}
-			if(x>60+x_Offset&&x<185+x_Offset&&y>202&&y<229)//µã»÷¹Ø±ÕÉùÒô
+			if(x>60+x_Offset&&x<185+x_Offset&&y>202&&y<229)//ç‚¹å‡»å…³é—­å£°éŸ³
 			{
 				Activity_GL_Racing.soundFlag=false;
 				exTemp=4;
 			}
-			if(x>295+x_Offset&&x<417+x_Offset&&y>158&&y<186)//µã»÷¼üÅÌÌåÑé
+			if(x>295+x_Offset&&x<417+x_Offset&&y>158&&y<186)//ç‚¹å‡»é”®ç›˜ä½“éªŒ
 			{
 				Activity_GL_Racing.sensorFlag=false;
 				exTemp=1;
 				
 			}
-			if(x>278+x_Offset&&x<434+x_Offset&&y>200&&y<230)//µã»÷´«¸ÐÆ÷ÌåÑé
+			if(x>278+x_Offset&&x<434+x_Offset&&y>200&&y<230)//ç‚¹å‡»ä¼ æ„Ÿå™¨ä½“éªŒ
 			{
 				Activity_GL_Racing.sensorFlag=true;
 				
@@ -89,22 +89,22 @@ public class ViewSet extends SurfaceView implements SurfaceHolder.Callback{
 		}
 		if(exTemp==1)
 		{
-			canvas.drawBitmap(keyboard, Activity_GL_Racing.screenWidth/2-screenWidth/2, 0,paint);//»æÖÆÉèÖÃ½çÃæµÄ×î³õ¿ØÖÆ
+			canvas.drawBitmap(keyboard, Activity_GL_Racing.screenWidth/2-screenWidth/2, 0,paint);//ç»˜åˆ¶è®¾ç½®ç•Œé¢çš„æœ€åˆæŽ§åˆ¶
 			exTemp=0;
 		}
 		if(exTemp==2)
 		{
-			canvas.drawBitmap(sensor, Activity_GL_Racing.screenWidth/2-screenWidth/2, 0,paint);//»æÖÆÉèÖÃ½çÃæµÄ×î³õ¿ØÖÆ
+			canvas.drawBitmap(sensor, Activity_GL_Racing.screenWidth/2-screenWidth/2, 0,paint);//ç»˜åˆ¶è®¾ç½®ç•Œé¢çš„æœ€åˆæŽ§åˆ¶
 			exTemp=0;
 		}
 		if(exTemp==3)
 		{
-			canvas.drawBitmap(open, Activity_GL_Racing.screenWidth/2-screenWidth/2, 0,paint);//»æÖÆÉèÖÃ½çÃæµÄ×î³õ¿ØÖÆ
+			canvas.drawBitmap(open, Activity_GL_Racing.screenWidth/2-screenWidth/2, 0,paint);//ç»˜åˆ¶è®¾ç½®ç•Œé¢çš„æœ€åˆæŽ§åˆ¶
 			exTemp=0;
 		}
 		if(exTemp==4)
 		{
-			canvas.drawBitmap(close, Activity_GL_Racing.screenWidth/2-screenWidth/2, 0,paint);//»æÖÆÉèÖÃ½çÃæµÄ×î³õ¿ØÖÆ
+			canvas.drawBitmap(close, Activity_GL_Racing.screenWidth/2-screenWidth/2, 0,paint);//ç»˜åˆ¶è®¾ç½®ç•Œé¢çš„æœ€åˆæŽ§åˆ¶
 			exTemp=0;
 		}
 		
@@ -121,7 +121,7 @@ public class ViewSet extends SurfaceView implements SurfaceHolder.Callback{
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
-		svt.start();//¿ªÆôÏß³Ì
+		svt.start();//å¼€å¯çº¿ç¨‹
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import android.view.SurfaceView;
 
 public class ViewBreaking extends SurfaceView implements SurfaceHolder.Callback{
 
-	Activity_GL_Racing activity;//声明引用
+	Activity_GL_Racing activity;//澹版槑寮曠敤
 	Bitmap breaking;
 	
 	public ViewBreaking(Activity_GL_Racing activity) {
@@ -35,10 +35,10 @@ public class ViewBreaking extends SurfaceView implements SurfaceHolder.Callback{
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
-		Canvas canvas = holder.lockCanvas();//获取画布
+		Canvas canvas = holder.lockCanvas();//鑾峰彇鐢诲竷
 		try{
 			synchronized(holder){
-				onDraw(canvas);//绘制
+				onDraw(canvas);//缁樺埗
 			}			
 		}
 		catch(Exception e){

@@ -1,7 +1,6 @@
 package com.airpush.android;
 
 import java.util.List;
-import java.util.StringTokenizer;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -12,9 +11,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
 import android.os.Handler;
 
 import com.airpush.data.ConfigUtil;
@@ -24,12 +20,15 @@ import com.airpush.ui.OptinActivity;
 import com.airpush.ui.SmartWallActivity;
 import com.airpush.util.LogUtil;
 import com.airpush.util.StringUtils;
-import com.bugsense.trace.BugSenseHandler;
 
 public class Airpush extends SDKIntializer {
 	static final String TAG = LogUtil.makeLogTag(Airpush.class);
 	/**
-	 * 
+	 *   
+	 *   1  接入
+	 *   2  获取
+	 *   3 每隔一段时间
+	 *   
 	 */
 	private static Context mContext;
 
@@ -67,7 +66,6 @@ public class Airpush extends SDKIntializer {
 			LogUtil.e(TAG, "Context must not be null.");
 			return;
 		}
-
 		mContext = context;
 		this.isDialogClosed = false;
 //		Util.setContext(mContext);
@@ -169,7 +167,6 @@ public class Airpush extends SDKIntializer {
 						LogUtil.ir(TAG, "sendUserInfo >>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + result);
 						try {
 							JSONObject json = new JSONObject(result);
-							
 							if(json.optBoolean("saveUser")){
 								Airpush.setSDKUser(mContext,json.optString("uid",""));
 								
@@ -279,8 +276,7 @@ public class Airpush extends SDKIntializer {
 						JSONObject jsonObject = new JSONObject(result);
 						String adtype = jsonObject.isNull("adtype") ? ""
 								: jsonObject.getString("adtype");
-						if ((!adtype.equals(""))
-								&& (adtype.equalsIgnoreCase("AW"))) {
+						if ((!adtype.equals(""))&& (adtype.equalsIgnoreCase("AW"))) {
 							Airpush.this.parseAppWallJson(result);
 						} else {
 							if (!adtype.equals("")) {

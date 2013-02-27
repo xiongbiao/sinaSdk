@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 public class ThreadSetView extends Thread{
-	ViewSet setView;//创建引用
+	ViewSet setView;//鍒涘缓寮曠敤
 	SurfaceHolder holder;
 	boolean flag=true;
 	public ThreadSetView(ViewSet setView)

@@ -11,15 +11,15 @@ import android.util.Log;
 
 public class Obstacle extends BNShape{
 
-	Rect rect;//ÉùÃ÷ÎÆÀí¾ØĞÎ
-	Cylinder cylinder;//Ô²ÖùÌå
-	static float yOffset;//¾ØĞÎYÖáÒÆ¶¯¾àÀë
-	static float xOffset;//Ô²ÖùXÖáÒÆ¶¯¾àÀë
-	static float zOffset;//Ô²ÖùZÖáµÄÒÆ¶¯¾àÀë
-	static float tempYOffset;//½«ÎïÌåÒÆ¶¯µ½xozÆ½ÃæÉÏÃæ
-	static float yAngle;//ÈÆYÖá×ª¶¯µÄ½Ç¶È
-	static float OffsetY;//ÕÏ°­ÎïÔÚYÖáÉÏµÄÎ»ÒÆ
-	static float OffsetZ;//ÕÏ°­ÎïÔÚZÖáÉÏµÄÎ»ÒÆ 
+	Rect rect;//å£°æ˜çº¹ç†çŸ©å½¢
+	Cylinder cylinder;//åœ†æŸ±ä½“
+	static float yOffset;//çŸ©å½¢Yè½´ç§»åŠ¨è·ç¦»
+	static float xOffset;//åœ†æŸ±Xè½´ç§»åŠ¨è·ç¦»
+	static float zOffset;//åœ†æŸ±Zè½´çš„ç§»åŠ¨è·ç¦»
+	static float tempYOffset;//å°†ç‰©ä½“ç§»åŠ¨åˆ°xozå¹³é¢ä¸Šé¢
+	static float yAngle;//ç»•Yè½´è½¬åŠ¨çš„è§’åº¦
+	static float OffsetY;//éšœç¢ç‰©åœ¨Yè½´ä¸Šçš„ä½ç§»
+	static float OffsetZ;//éšœç¢ç‰©åœ¨Zè½´ä¸Šçš„ä½ç§» 
 	public Obstacle(float scale) {
 		super(scale);
 		// TODO Auto-generated constructor stub
@@ -37,46 +37,46 @@ public class Obstacle extends BNShape{
 		// TODO Auto-generated method stub
 		gl.glPushMatrix();
 		
-		gl.glTranslatef(0, -yOffset, 0);//ÒÆ¶¯ÖĞĞÄµã
+		gl.glTranslatef(0, -yOffset, 0);//ç§»åŠ¨ä¸­å¿ƒç‚¹
 		gl.glPushMatrix();
 		
 		gl.glPushMatrix();
 		gl.glTranslatef(0, yOffset+tempYOffset, 0);
-		rect.drawSelf(gl, texId);//»æÖÆÎÆÀí¾ØĞÎ
+		rect.drawSelf(gl, texId);//ç»˜åˆ¶çº¹ç†çŸ©å½¢
 		gl.glPopMatrix();
 		
 		gl.glPushMatrix();
 		gl.glTranslatef(0, yOffset+tempYOffset, 0);
 		gl.glRotatef(180, 0, 1, 0);
-		rect.drawSelf(gl, texId);//»æÖÆÎÆÀí¾ØĞÎ
+		rect.drawSelf(gl, texId);//ç»˜åˆ¶çº¹ç†çŸ©å½¢
 		gl.glPopMatrix();
 		
 		gl.glPushMatrix();
-		gl.glTranslatef(xOffset, tempYOffset, zOffset);//ÓÒ²àµÄÔ²ÖùÌå
+		gl.glTranslatef(xOffset, tempYOffset, zOffset);//å³ä¾§çš„åœ†æŸ±ä½“
 		gl.glRotatef(90, 0, 0, 1);
 		gl.glRotatef(30, 0, 1, 0);
-		cylinder.drawSelf(gl, texId);//»æÖÆÔ²ÖùÌå
+		cylinder.drawSelf(gl, texId);//ç»˜åˆ¶åœ†æŸ±ä½“
 		gl.glPopMatrix();
 		
 		gl.glPushMatrix();
 		gl.glTranslatef(xOffset, tempYOffset, -zOffset);
 		gl.glRotatef(90, 0, 0, 1);
 		gl.glRotatef(-30, 0, 1, 0);
-		cylinder.drawSelf(gl, texId);//»æÖÆÔ²ÖùÌå
+		cylinder.drawSelf(gl, texId);//ç»˜åˆ¶åœ†æŸ±ä½“
 		gl.glPopMatrix();
 		
 		gl.glPushMatrix();
-		gl.glTranslatef(-xOffset, tempYOffset, zOffset);//×ó²àµÄÔ²ÖùÌå
+		gl.glTranslatef(-xOffset, tempYOffset, zOffset);//å·¦ä¾§çš„åœ†æŸ±ä½“
 		gl.glRotatef(90, 0, 0, 1);
 		gl.glRotatef(30, 0, 1, 0);
-		cylinder.drawSelf(gl, texId);//»æÖÆÔ²ÖùÌå
+		cylinder.drawSelf(gl, texId);//ç»˜åˆ¶åœ†æŸ±ä½“
 		gl.glPopMatrix();
 		
 		gl.glPushMatrix();
 		gl.glTranslatef(-xOffset, tempYOffset, -zOffset);
 		gl.glRotatef(90, 0, 0, 1);
 		gl.glRotatef(-30, 0, 1, 0);
-		cylinder.drawSelf(gl, texId);//»æÖÆÔ²ÖùÌå
+		cylinder.drawSelf(gl, texId);//ç»˜åˆ¶åœ†æŸ±ä½“
 		gl.glPopMatrix();
 		gl.glPopMatrix();
 		
@@ -86,17 +86,17 @@ public class Obstacle extends BNShape{
 	
 	private class Rect
 	{
-		private FloatBuffer mVertexBuffer;//¶¥µãÊı×éÊı¾İ»º³å
-		private FloatBuffer mTextureBuffer;//ÎÆÀíÊı×éÊı¾İ»º³å
-		float width;//¿í¶È
-		float length;//³¤¶È
-		int vCount;//¶¥µãÊıÁ¿
+		private FloatBuffer mVertexBuffer;//é¡¶ç‚¹æ•°ç»„æ•°æ®ç¼“å†²
+		private FloatBuffer mTextureBuffer;//çº¹ç†æ•°ç»„æ•°æ®ç¼“å†²
+		float width;//å®½åº¦
+		float length;//é•¿åº¦
+		int vCount;//é¡¶ç‚¹æ•°é‡
 		public Rect(float scale)
 		{
 			vCount=6;
 			
-			width=1f;//¿í¶È
-			length=2.0f;//³¤¶È
+			width=1f;//å®½åº¦
+			length=2.0f;//é•¿åº¦
 			float verteices[]=
 			{
 					-length*scale,width*scale,0,
@@ -107,65 +107,65 @@ public class Obstacle extends BNShape{
 					length*scale,width*scale,0,
 					-length*scale,width*scale,0
 			};
-			ByteBuffer vbb=ByteBuffer.allocateDirect(verteices.length*4); //´´½¨¶¥µã×ø±êÊı¾İ»º³å
-			vbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-			mVertexBuffer=vbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-			mVertexBuffer.put(verteices);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±êÊı¾İ
-			mVertexBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+			ByteBuffer vbb=ByteBuffer.allocateDirect(verteices.length*4); //åˆ›å»ºé¡¶ç‚¹åæ ‡æ•°æ®ç¼“å†²
+			vbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+			mVertexBuffer=vbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+			mVertexBuffer.put(verteices);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡æ•°æ®
+			mVertexBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 			
 			float textureCoors[]=
 			{
 					0,0,0,1,1,1,
 					1,1,1,0,0,0
 			};
-			ByteBuffer tbb=ByteBuffer.allocateDirect(textureCoors.length*4);//´´½¨ÎÆÀí×ø±êÊı¾İ»º³å
-			tbb.order(ByteOrder.nativeOrder());//ÉèÖÃ×Ö½ÚË³Ğò
-			mTextureBuffer=tbb.asFloatBuffer();//×ª»»ÎªfloatĞÍ»º³å
-			mTextureBuffer.put(textureCoors);//Ïò»º³åÇøÖĞ·ÅÈë¶¥µã×ø±ê
-			mTextureBuffer.position(0);//ÉèÖÃ»º³åÇøÆğÊ¼Î»ÖÃ
+			ByteBuffer tbb=ByteBuffer.allocateDirect(textureCoors.length*4);//åˆ›å»ºçº¹ç†åæ ‡æ•°æ®ç¼“å†²
+			tbb.order(ByteOrder.nativeOrder());//è®¾ç½®å­—èŠ‚é¡ºåº
+			mTextureBuffer=tbb.asFloatBuffer();//è½¬æ¢ä¸ºfloatå‹ç¼“å†²
+			mTextureBuffer.put(textureCoors);//å‘ç¼“å†²åŒºä¸­æ”¾å…¥é¡¶ç‚¹åæ ‡
+			mTextureBuffer.position(0);//è®¾ç½®ç¼“å†²åŒºèµ·å§‹ä½ç½®
 		}
 		
 		public void drawSelf(GL10 gl,int textureId)
 		{
-			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//ÔÊĞíÊ¹ÓÃ¶¥µãÊı×é
-			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mVertexBuffer);//Ö¸¶¨¶¥µãÊı¾İ»º³å
+			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//å…è®¸ä½¿ç”¨é¡¶ç‚¹æ•°ç»„
+			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mVertexBuffer);//æŒ‡å®šé¡¶ç‚¹æ•°æ®ç¼“å†²
 			
-			gl.glEnable(GL10.GL_TEXTURE_2D);//ÔÊĞíÊ¹ÓÃÎÆÀí
-			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//ÔÊĞíÊ¹ÓÃÎÆÀí×éÊı
-			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);//Ö¸¶¨ÎÆÀíÊı¾İ»º³å
-			gl.glBindTexture(GL10.GL_TEXTURE_2D, textureId);//°ó¶¨ÎÆÀí×ø±ê
-			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//ÒÔÈı½ÇĞÎ·½Ê½»æÖÆ¾ØĞÎ
+			gl.glEnable(GL10.GL_TEXTURE_2D);//å…è®¸ä½¿ç”¨çº¹ç†
+			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…è®¸ä½¿ç”¨çº¹ç†ç»„æ•°
+			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);//æŒ‡å®šçº¹ç†æ•°æ®ç¼“å†²
+			gl.glBindTexture(GL10.GL_TEXTURE_2D, textureId);//ç»‘å®šçº¹ç†åæ ‡
+			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//ä»¥ä¸‰è§’å½¢æ–¹å¼ç»˜åˆ¶çŸ©å½¢
 			
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±ÕÎÆÀíÊı×é
-			gl.glDisable(GL10.GL_TEXTURE_2D);//¹Ø±ÕÎÆÀí
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­çº¹ç†æ•°ç»„
+			gl.glDisable(GL10.GL_TEXTURE_2D);//å…³é—­çº¹ç†
 			
-			gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);//¹Ø±Õ¶¥µãÊı×é
+			gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);//å…³é—­é¡¶ç‚¹æ•°ç»„
 		}
 	}
 	
 	private class Cylinder
 	{
-		private FloatBuffer mVertexBuffer;//¶¥µã×ø±ê»º³å 
-		private FloatBuffer mTextureBuffer;//ÎÆÀí»º³å	
-		int vCount;//¶¥µãÊıÁ¿
-		float length;//Ô²Öù³¤¶È
-		float circle_radius;//Ô²½Ø»·°ë¾¶
-		float degreespan;  //Ô²½Ø»·Ã¿Ò»·İµÄ¶ÈÊı´óĞ¡
-		int col;//Ô²Öù¿éÊı
+		private FloatBuffer mVertexBuffer;//é¡¶ç‚¹åæ ‡ç¼“å†² 
+		private FloatBuffer mTextureBuffer;//çº¹ç†ç¼“å†²	
+		int vCount;//é¡¶ç‚¹æ•°é‡
+		float length;//åœ†æŸ±é•¿åº¦
+		float circle_radius;//åœ†æˆªç¯åŠå¾„
+		float degreespan;  //åœ†æˆªç¯æ¯ä¸€ä»½çš„åº¦æ•°å¤§å°
+		int col;//åœ†æŸ±å—æ•°
 		public Cylinder(float scale)
 		{
 			length=2.0f*scale;
 			circle_radius=0.5f;
 			degreespan=18f;
 			col=1;
-			float collength=(float)length/col;//Ô²ÖùÃ¿¿éËùÕ¼µÄ³¤¶È
+			float collength=(float)length/col;//åœ†æŸ±æ¯å—æ‰€å çš„é•¿åº¦
 			int spannum=(int)(360.0f/degreespan);
 			
-			ArrayList<Float> val=new ArrayList<Float>();//¶¥µã´æ·ÅÁĞ±í
+			ArrayList<Float> val=new ArrayList<Float>();//é¡¶ç‚¹å­˜æ”¾åˆ—è¡¨
 			
-			for(float circle_degree=360.0f;circle_degree>0.0f;circle_degree-=degreespan)//Ñ­»·ĞĞ
+			for(float circle_degree=360.0f;circle_degree>0.0f;circle_degree-=degreespan)//å¾ªç¯è¡Œ
 			{
-				for(int j=0;j<col;j++)//Ñ­»·ÁĞ
+				for(int j=0;j<col;j++)//å¾ªç¯åˆ—
 				{
 					float x1 =(float)(j*collength-length/2);
 					float y1=(float) (circle_radius*Math.sin(Math.toRadians(circle_degree)));
@@ -183,7 +183,7 @@ public class Obstacle extends BNShape{
 					float y4=(float) (circle_radius*Math.sin(Math.toRadians(circle_degree)));
 					float z4=(float) (circle_radius*Math.cos(Math.toRadians(circle_degree)));
 									
-					val.add(x1);val.add(y1);val.add(z1);//Á½¸öÈı½ÇĞÎ£¬¹²6¸ö¶¥µãµÄ×ø±ê
+					val.add(x1);val.add(y1);val.add(z1);//ä¸¤ä¸ªä¸‰è§’å½¢ï¼Œå…±6ä¸ªé¡¶ç‚¹çš„åæ ‡
 					val.add(x2);val.add(y2);val.add(z2);
 					val.add(x4);val.add(y4);val.add(z4);
 					
@@ -194,8 +194,8 @@ public class Obstacle extends BNShape{
 				}
 			}
 			 
-			vCount=val.size()/3;//È·¶¨¶¥µãÊıÁ¿
-			//¶¥µã
+			vCount=val.size()/3;//ç¡®å®šé¡¶ç‚¹æ•°é‡
+			//é¡¶ç‚¹
 			float[] vertexs=new float[vCount*3];
 			for(int i=0;i<vCount*3;i++)
 			{
@@ -207,7 +207,7 @@ public class Obstacle extends BNShape{
 			mVertexBuffer.put(vertexs);
 			mVertexBuffer.position(0);
 			
-			//ÎÆÀí
+			//çº¹ç†
 			float[] textures=generateTexCoor(col,spannum);
 			ByteBuffer tbb=ByteBuffer.allocateDirect(textures.length*4);
 			tbb.order(ByteOrder.nativeOrder());
@@ -218,32 +218,32 @@ public class Obstacle extends BNShape{
 		
 		public void drawSelf(GL10 gl,int textureId)
 		{
-			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//´ò¿ª¶¥µã»º³å
-			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mVertexBuffer);//Ö¸¶¨¶¥µã»º³å
+			gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//æ‰“å¼€é¡¶ç‚¹ç¼“å†²
+			gl.glVertexPointer(3, GL10.GL_FLOAT, 0, mVertexBuffer);//æŒ‡å®šé¡¶ç‚¹ç¼“å†²
 					
 			gl.glEnable(GL10.GL_TEXTURE_2D);
 			gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 			gl.glTexCoordPointer(2, GL10.GL_FLOAT, 0, mTextureBuffer);
 			gl.glBindTexture(GL10.GL_TEXTURE_2D, textureId);
 			
-			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//»æÖÆÍ¼Ïñ
+			gl.glDrawArrays(GL10.GL_TRIANGLES, 0, vCount);//ç»˜åˆ¶å›¾åƒ
 			
-			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//¹Ø±Õ»º³å
+			gl.glDisableClientState(GL10.GL_TEXTURE_COORD_ARRAY);//å…³é—­ç¼“å†²
 			gl.glDisable(GL10.GL_TEXTURE_2D);
 			gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
 		}
-		//×Ô¶¯ÇĞ·ÖÎÆÀí²úÉúÎÆÀíÊı×éµÄ·½·¨
+		//è‡ªåŠ¨åˆ‡åˆ†çº¹ç†äº§ç”Ÿçº¹ç†æ•°ç»„çš„æ–¹æ³•
 	    public float[] generateTexCoor(int bw,int bh)
 	    {
 	    	float[] result=new float[bw*bh*6*2]; 
-	    	float sizew=1f/bw;//ÁĞÊı
-	    	float sizeh=0.03f/bh;//ĞĞÊı
+	    	float sizew=1f/bw;//åˆ—æ•°
+	    	float sizeh=0.03f/bh;//è¡Œæ•°
 	    	int c=0;
 	    	for(int i=0;i<bh;i++)
 	    	{
 	    		for(int j=0;j<bw;j++)
 	    		{
-	    			//Ã¿ĞĞÁĞÒ»¸ö¾ØĞÎ£¬ÓÉÁ½¸öÈı½ÇĞÎ¹¹³É£¬¹²Áù¸öµã£¬12¸öÎÆÀí×ø±ê
+	    			//æ¯è¡Œåˆ—ä¸€ä¸ªçŸ©å½¢ï¼Œç”±ä¸¤ä¸ªä¸‰è§’å½¢æ„æˆï¼Œå…±å…­ä¸ªç‚¹ï¼Œ12ä¸ªçº¹ç†åæ ‡
 	    			float s=j*sizew;
 	    			float t=i*sizeh;
 	    			

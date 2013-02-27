@@ -2,10 +2,10 @@ package com.bn.carracer;
 
 public class RotateUtil
 {
-	//·µ»ØÖµÎªĞı×ªºóµÄÏòÁ¿
+	//è¿”å›å€¼ä¸ºæ—‹è½¬åçš„å‘é‡
 	public static double[] pitchRotate(double angle,double[] gVector)
 	{
-		double[][] matrix=//ÈÆxÖáĞı×ª±ä»»¾ØÕó
+		double[][] matrix=//ç»•xè½´æ—‹è½¬å˜æ¢çŸ©é˜µ
 		{
 		   {1,0,0,0},
 		   {0,Math.cos(angle),Math.sin(angle),0},		   
@@ -20,10 +20,10 @@ public class RotateUtil
 		}		
 		return gVector;
 	}
-	//·µ»ØÖµÎªĞı×ªºóµÄÏòÁ¿
+	//è¿”å›å€¼ä¸ºæ—‹è½¬åçš„å‘é‡
 	public static double[] rollRotate(double angle,double[] gVector)
 	{
-		double[][] matrix=//ÈÆyÖáĞı×ª±ä»»¾ØÕó
+		double[][] matrix=//ç»•yè½´æ—‹è½¬å˜æ¢çŸ©é˜µ
 		{
 		   {Math.cos(angle),0,-Math.sin(angle),0},
 		   {0,1,0,0},
@@ -38,10 +38,10 @@ public class RotateUtil
 		}		
 		return gVector;
 	}		
-	//·µ»ØÖµÎªĞı×ªºóµÄÏòÁ¿
+	//è¿”å›å€¼ä¸ºæ—‹è½¬åçš„å‘é‡
 	public static double[] yawRotate(double angle,double[] gVector)
 	{
-		double[][] matrix=//ÈÆzÖáĞı×ª±ä»»¾ØÕó
+		double[][] matrix=//ç»•zè½´æ—‹è½¬å˜æ¢çŸ©é˜µ
 		{
 		   {Math.cos(angle),Math.sin(angle),0,0},		   
 		   {-Math.sin(angle),Math.cos(angle),0,0},
@@ -58,15 +58,15 @@ public class RotateUtil
 	}		
 	public static int[] getDirectionDot(double[] values)
 	{
-		double yawAngle=-Math.toRadians(values[0]);//»ñÈ¡YawÖáĞı×ª½Ç¶È»¡¶È
-		double pitchAngle=-Math.toRadians(values[1]);//»ñÈ¡PitchÖáĞı×ª½Ç¶È»¡¶È
-		double rollAngle=-Math.toRadians(values[2]);//»ñÈ¡RollÖáĞı×ª½Ç¶È»¡¶È				
+		double yawAngle=-Math.toRadians(values[0]);//è·å–Yawè½´æ—‹è½¬è§’åº¦å¼§åº¦
+		double pitchAngle=-Math.toRadians(values[1]);//è·å–Pitchè½´æ—‹è½¬è§’åº¦å¼§åº¦
+		double rollAngle=-Math.toRadians(values[2]);//è·å–Rollè½´æ—‹è½¬è§’åº¦å¼§åº¦				
 		double[] gVector={0,0,-100,1};		
-		//yawÖá
+		//yawè½´
 		gVector=RotateUtil.yawRotate(yawAngle,gVector);		
-		//pitchÖá
+		//pitchè½´
 		gVector=RotateUtil.pitchRotate(pitchAngle,gVector);			
-		//rollÖá
+		//rollè½´
 		gVector=RotateUtil.rollRotate(rollAngle,gVector);		
 		double mapX=gVector[0];
 		double mapY=gVector[1];				

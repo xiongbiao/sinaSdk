@@ -10,20 +10,20 @@ import android.view.SurfaceView;
 import static com.bn.carracer.Constant.*;
 public class ViewHelp extends SurfaceView implements SurfaceHolder.Callback{
 
-	Activity_GL_Racing activity;//ÉùÃ÷ÒýÓÃ
-	Paint paint;//»­±Ê
-	Bitmap helpOne;//µÚÒ»¸ö°ïÖú½çÃæ
-	Bitmap helpTwo;//µÚ¶þ¸ö°ïÖú½çÃæ
-	Bitmap helpThree;//µÚÈý¸ö°ïÖú½çÃæ
-	Bitmap helpFour;//µÚËÄ¸ö°ïÖú½çÃæ
-	Bitmap helpFive;//µÚÎå¸ö°ïÖú½çÃæ
-	Bitmap helpSix;//µÚÁù¸ö°ïÖú½çÃæ
-	Bitmap helpSeven;//µÚÆß¸ö°ïÖú½çÃæ
+	Activity_GL_Racing activity;//å£°æ˜Žå¼•ç”¨
+	Paint paint;//ç”»ç¬”
+	Bitmap helpOne;//ç¬¬ä¸€ä¸ªå¸®åŠ©ç•Œé¢
+	Bitmap helpTwo;//ç¬¬äºŒä¸ªå¸®åŠ©ç•Œé¢
+	Bitmap helpThree;//ç¬¬ä¸‰ä¸ªå¸®åŠ©ç•Œé¢
+	Bitmap helpFour;//ç¬¬å››ä¸ªå¸®åŠ©ç•Œé¢
+	Bitmap helpFive;//ç¬¬äº”ä¸ªå¸®åŠ©ç•Œé¢
+	Bitmap helpSix;//ç¬¬å…­ä¸ªå¸®åŠ©ç•Œé¢
+	Bitmap helpSeven;//ç¬¬ä¸ƒä¸ªå¸®åŠ©ç•Œé¢
 	
 	
-	static int viewFlag=0;//µÚ¼¸¸±°ïÖú½çÃæµÄ±êÖ¾Î»£¬0 ±íÊ¾µÚÒ»·ù°ïÖú½çÃæ£¬1±íÊ¾µÚ¶þ·ù°ïÖú½çÃæ£¬2±íÊ¾µÚÈý·ù°ïÖú½çÃæ
+	static int viewFlag=0;//ç¬¬å‡ å‰¯å¸®åŠ©ç•Œé¢çš„æ ‡å¿—ä½ï¼Œ0 è¡¨ç¤ºç¬¬ä¸€å¹…å¸®åŠ©ç•Œé¢ï¼Œ1è¡¨ç¤ºç¬¬äºŒå¹…å¸®åŠ©ç•Œé¢ï¼Œ2è¡¨ç¤ºç¬¬ä¸‰å¹…å¸®åŠ©ç•Œé¢
 	static ThreadHelpView hvt;
-	float screenWidth=480;//Í¼Æ¬¿í¶È
+	float screenWidth=480;//å›¾ç‰‡å®½åº¦
 	float x_Offset=Activity_GL_Racing.screenWidth/2-screenWidth/2;
 	public ViewHelp(Activity_GL_Racing activity) {
 		super(activity);
@@ -31,13 +31,13 @@ public class ViewHelp extends SurfaceView implements SurfaceHolder.Callback{
 		this.activity=activity;
 		paint=new Paint(); 
 		getHolder().addCallback(this);
-		helpOne=BitmapFactory.decodeResource(this.getResources(), R.drawable.helpone);//³õÊ¼»¯µÚÒ»ÕÅ°ïÖú½çÃæ
-		helpTwo=BitmapFactory.decodeResource(this.getResources(), R.drawable.helptwo);//³õÊ¼»¯µÚ¶þÕÅ°ïÖú½çÃæ
-		helpThree=BitmapFactory.decodeResource(this.getResources(), R.drawable.helpthree);//³õÊ¼»¯µÚÈýÕÅ°ïÖú½çÃæ
-		helpFour=BitmapFactory.decodeResource(this.getResources(), R.drawable.helpfour);//³õÊ¼»¯µÚËÄÕÅ°ïÖú½çÃæ
-		helpFive=BitmapFactory.decodeResource(this.getResources(), R.drawable.helpfive);//³õÊ¼»¯µÚÎåÕÅ°ïÖú½çÃæ
-		helpSix=BitmapFactory.decodeResource(this.getResources(), R.drawable.helpsix);//³õÊ¼»¯µÚÁùÕÅ°ïÖú½çÃæ
-		helpSeven=BitmapFactory.decodeResource(this.getResources(), R.drawable.helpseven);//³õÊ¼»¯µÚÆßÕÅ°ïÖú½çÃæ
+		helpOne=BitmapFactory.decodeResource(this.getResources(), R.drawable.helpone);//åˆå§‹åŒ–ç¬¬ä¸€å¼ å¸®åŠ©ç•Œé¢
+		helpTwo=BitmapFactory.decodeResource(this.getResources(), R.drawable.helptwo);//åˆå§‹åŒ–ç¬¬äºŒå¼ å¸®åŠ©ç•Œé¢
+		helpThree=BitmapFactory.decodeResource(this.getResources(), R.drawable.helpthree);//åˆå§‹åŒ–ç¬¬ä¸‰å¼ å¸®åŠ©ç•Œé¢
+		helpFour=BitmapFactory.decodeResource(this.getResources(), R.drawable.helpfour);//åˆå§‹åŒ–ç¬¬å››å¼ å¸®åŠ©ç•Œé¢
+		helpFive=BitmapFactory.decodeResource(this.getResources(), R.drawable.helpfive);//åˆå§‹åŒ–ç¬¬äº”å¼ å¸®åŠ©ç•Œé¢
+		helpSix=BitmapFactory.decodeResource(this.getResources(), R.drawable.helpsix);//åˆå§‹åŒ–ç¬¬å…­å¼ å¸®åŠ©ç•Œé¢
+		helpSeven=BitmapFactory.decodeResource(this.getResources(), R.drawable.helpseven);//åˆå§‹åŒ–ç¬¬ä¸ƒå¼ å¸®åŠ©ç•Œé¢
 		
 		hvt=new ThreadHelpView(this);
 	}
@@ -48,86 +48,86 @@ public class ViewHelp extends SurfaceView implements SurfaceHolder.Callback{
 		switch(event.getAction())
 		{
 		case MotionEvent.ACTION_DOWN:
-			int x = (int) event.getX();//»ñÈ¡X×ø±ê
-			int y = (int) event.getY();//»ñÈ¡Y×ø±ê
-			if(viewFlag==0)//µÚÒ»·ùÍ¼
+			int x = (int) event.getX();//èŽ·å–Xåæ ‡
+			int y = (int) event.getY();//èŽ·å–Yåæ ‡
+			if(viewFlag==0)//ç¬¬ä¸€å¹…å›¾
 			{
-				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//µã»÷ÏÂÒ»Ò³
+				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//ç‚¹å‡»ä¸‹ä¸€é¡µ
 				{
-					viewFlag=1;//¸Ä±ä±êÖ¾Î»½øÈëµÚ¶þ·ùÍ¼
+					viewFlag=1;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬äºŒå¹…å›¾
 				}
-				if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//µã»÷·µ»Ø
+				if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//ç‚¹å‡»è¿”å›ž
 				{
-					activity.toAnotherView(ENTER_MENU);//·µ»ØÖ÷²Ëµ¥
-					hvt.flag=false;//¹Ø±ÕÏß³Ì
+					activity.toAnotherView(ENTER_MENU);//è¿”å›žä¸»èœå•
+					hvt.flag=false;//å…³é—­çº¿ç¨‹
 				}
 				break;
 			}
-			if(viewFlag==1)//µÚ¶þ·ùÍ¼
+			if(viewFlag==1)//ç¬¬äºŒå¹…å›¾
 			{
-				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//µã»÷ÏÂÒ»Ò³
+				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//ç‚¹å‡»ä¸‹ä¸€é¡µ
 				{
-					viewFlag=2;//¸Ä±ä±êÖ¾Î»½øÈëµÚÈý·ùÍ¼
+					viewFlag=2;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬ä¸‰å¹…å›¾
 				}
-				if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//µã»÷·µ»Ø
+				if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//ç‚¹å‡»è¿”å›ž
 				{
-					viewFlag=0;//¸Ä±ä±êÖ¾Î»½øÈëµÚÒ»·ùÍ¼
+					viewFlag=0;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬ä¸€å¹…å›¾
 				}
 				break;
 			}
-			if(viewFlag==2)//µÚÈý·ùÍ¼
+			if(viewFlag==2)//ç¬¬ä¸‰å¹…å›¾
 			{
-				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//µã»÷ÏÂÒ»Ò³
+				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//ç‚¹å‡»ä¸‹ä¸€é¡µ
 				{
-					viewFlag=3;//¸Ä±ä±êÖ¾Î»½øÈëµÚËÄ·ùÍ¼
+					viewFlag=3;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬å››å¹…å›¾
 				}
-				if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//µã»÷·µ»Ø
+				if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//ç‚¹å‡»è¿”å›ž
 				{
-					viewFlag=1;//¸Ä±ä±êÖ¾Î»½øÈëµÚ¶þ·ùÍ¼
+					viewFlag=1;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬äºŒå¹…å›¾
 				}
 				break;
 			}
-			if(viewFlag==3)//µÚËÄ·ùÍ¼
+			if(viewFlag==3)//ç¬¬å››å¹…å›¾
 			{
-				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//µã»÷ÏÂÒ»Ò³
+				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//ç‚¹å‡»ä¸‹ä¸€é¡µ
 				{
-					viewFlag=4;//¸Ä±ä±êÖ¾Î»½øÈëµÚËÄ·ùÍ¼
+					viewFlag=4;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬å››å¹…å›¾
 				}
-				if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//µã»÷·µ»Ø
+				if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//ç‚¹å‡»è¿”å›ž
 				{
-					viewFlag=2;//¸Ä±ä±êÖ¾Î»½øÈëµÚ¶þ·ùÍ¼
+					viewFlag=2;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬äºŒå¹…å›¾
 				}
 				break;
 			}
-			if(viewFlag==4)//µÚÎå·ùÍ¼
+			if(viewFlag==4)//ç¬¬äº”å¹…å›¾
 			{
-				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//µã»÷ÏÂÒ»Ò³
+				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//ç‚¹å‡»ä¸‹ä¸€é¡µ
 				{
-					viewFlag=5;//¸Ä±ä±êÖ¾Î»½øÈëµÚËÄ·ùÍ¼
+					viewFlag=5;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬å››å¹…å›¾
 				}
-				if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//µã»÷·µ»Ø
+				if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//ç‚¹å‡»è¿”å›ž
 				{
-					viewFlag=3;//¸Ä±ä±êÖ¾Î»½øÈëµÚ¶þ·ùÍ¼
+					viewFlag=3;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬äºŒå¹…å›¾
 				}
 				break;
 			}
-			if(viewFlag==5)//µÚÁù·ùÍ¼
+			if(viewFlag==5)//ç¬¬å…­å¹…å›¾
 			{
-				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//µã»÷ÏÂÒ»Ò³
+				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//ç‚¹å‡»ä¸‹ä¸€é¡µ
 				{
-					viewFlag=6;//¸Ä±ä±êÖ¾Î»½øÈëµÚËÄ·ùÍ¼
+					viewFlag=6;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬å››å¹…å›¾
 				}
-				if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//µã»÷·µ»Ø
+				if(x>382+x_Offset&&x<470+x_Offset&&y>278&&y<305)//ç‚¹å‡»è¿”å›ž
 				{
-					viewFlag=4;//¸Ä±ä±êÖ¾Î»½øÈëµÚ¶þ·ùÍ¼
+					viewFlag=4;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬äºŒå¹…å›¾
 				}
 				break;
 			}
-			if(viewFlag==6)//µÚÆß·ùÍ¼
+			if(viewFlag==6)//ç¬¬ä¸ƒå¹…å›¾
 			{
-				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//µã»÷·µ»Ø
+				if(x>10+x_Offset&&x<97+x_Offset&&y>278&&y<304)//ç‚¹å‡»è¿”å›ž
 				{
-					viewFlag=5;//¸Ä±ä±êÖ¾Î»½øÈëµÚÈý·ùÍ¼
+					viewFlag=5;//æ”¹å˜æ ‡å¿—ä½è¿›å…¥ç¬¬ä¸‰å¹…å›¾
 				}
 				break;
 			}			
@@ -139,31 +139,31 @@ public class ViewHelp extends SurfaceView implements SurfaceHolder.Callback{
 	protected void onDraw(Canvas canvas)
 	{
 		super.onDraw(canvas);
-		if(viewFlag==0)//»æÖÆµÚÒ»·ùÍ¼
+		if(viewFlag==0)//ç»˜åˆ¶ç¬¬ä¸€å¹…å›¾
 		{
 			canvas.drawBitmap(helpOne,  Activity_GL_Racing.screenWidth/2-screenWidth/2,0, paint);
 		}
-		if(viewFlag==1)//»æÖÆµÚ¶þ·ùÍ¼
+		if(viewFlag==1)//ç»˜åˆ¶ç¬¬äºŒå¹…å›¾
 		{
 			canvas.drawBitmap(helpTwo,  Activity_GL_Racing.screenWidth/2-screenWidth/2,0, paint);
 		}
-		if(viewFlag==2)//»æÖÆµÚÈý·ùÍ¼
+		if(viewFlag==2)//ç»˜åˆ¶ç¬¬ä¸‰å¹…å›¾
 		{
 			canvas.drawBitmap(helpThree,  Activity_GL_Racing.screenWidth/2-screenWidth/2,0, paint);
 		}
-		if(viewFlag==3)//»æÖÆµÚËÄ·ùÍ¼
+		if(viewFlag==3)//ç»˜åˆ¶ç¬¬å››å¹…å›¾
 		{
 			canvas.drawBitmap(helpFour,  Activity_GL_Racing.screenWidth/2-screenWidth/2,0, paint);
 		}
-		if(viewFlag==4)//»æÖÆµÚÎå·ùÍ¼
+		if(viewFlag==4)//ç»˜åˆ¶ç¬¬äº”å¹…å›¾
 		{
 			canvas.drawBitmap(helpFive,  Activity_GL_Racing.screenWidth/2-screenWidth/2,0, paint);
 		}	
-		if(viewFlag==5)//»æÖÆµÚÁù·ùÍ¼
+		if(viewFlag==5)//ç»˜åˆ¶ç¬¬å…­å¹…å›¾
 		{
 			canvas.drawBitmap(helpSix,  Activity_GL_Racing.screenWidth/2-screenWidth/2,0, paint);
 		}
-		if(viewFlag==6)//»æÖÆµÚÆß·ùÍ¼
+		if(viewFlag==6)//ç»˜åˆ¶ç¬¬ä¸ƒå¹…å›¾
 		{
 			canvas.drawBitmap(helpSeven,  Activity_GL_Racing.screenWidth/2-screenWidth/2,0, paint);
 		}

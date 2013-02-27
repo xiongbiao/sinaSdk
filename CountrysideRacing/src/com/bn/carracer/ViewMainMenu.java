@@ -1,5 +1,9 @@
 package com.bn.carracer;
 
+import static com.bn.carracer.Constant.CHOOSE;
+import static com.bn.carracer.Constant.ENTER_ABOUT_VIEW;
+import static com.bn.carracer.Constant.ENTER_HELP_VIEW;
+import static com.bn.carracer.Constant.ENTER_SET_VIEW;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -7,87 +11,83 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import static com.bn.carracer.Constant.*;
-public class ViewMainMenu extends SurfaceView implements SurfaceHolder.Callback{
 
-	Activity_GL_Racing activity;//ÉùÃ÷ÒýÓÃ
-	Bitmap mainMenu;//ÉùÃ÷ÒýÓÃ
-	Paint paint;//´´½¨»­±Ê
-	float screenWidth=480;
-	float x_Offset=Activity_GL_Racing.screenWidth/2-screenWidth/2;
+public class ViewMainMenu extends SurfaceView implements SurfaceHolder.Callback {
+
+	Activity_GL_Racing activity;// å£°æ˜Žå¼•ç”¨
+	Bitmap mainMenu;// å£°æ˜Žå¼•ç”¨
+	Paint paint;// åˆ›å»ºç”»ç¬”
+	float screenWidth = 480;
+	float x_Offset = Activity_GL_Racing.screenWidth / 2 - screenWidth / 2;
+
 	public ViewMainMenu(Activity_GL_Racing activity) {
 		super(activity);
-		this.activity=activity;
+		this.activity = activity;
 		// TODO Auto-generated constructor stub
-		this.getHolder().addCallback(this);   	//ÉèÖÃÉúÃüÖÜÆÚ½Ó¿Ú
-		paint=new Paint();						//´´½¨»­±Ê
-		paint.setAntiAlias(true);				//´ò¿ª¿¹¾â³Ý
-		mainMenu=BitmapFactory.decodeResource(this.getResources(), R.drawable.mainmenu);//¼ÓÔØ²Ëµ¥Í¼Æ¬
+		this.getHolder().addCallback(this); // è®¾ç½®ç”Ÿå‘½å‘¨æœŸæŽ¥å£
+		paint = new Paint(); // åˆ›å»ºç”»ç¬”
+		paint.setAntiAlias(true); // æ‰“å¼€æŠ—é”¯é½¿
+		mainMenu = BitmapFactory.decodeResource(this.getResources(),R.drawable.mainmenu);// åŠ è½½èœå•å›¾ç‰‡
 	}
-	
-	//´¥ÃþÊÂ¼þ»Øµ÷·½·¨   
+
+	// è§¦æ‘¸äº‹ä»¶å›žè°ƒæ–¹æ³•
 	@Override
-	public boolean onTouchEvent(MotionEvent e)
-	{
-		float x=e.getX();//»ñÈ¡X×ø±ê
-		float y=e.getY();//»ñÈ¡Y×ø±ê
-		
-		switch(e.getAction())
-		{
-			case MotionEvent.ACTION_DOWN:
-				
-				if(x>5+x_Offset&&x<92+x_Offset&&y>285&&y<314)//µã»÷ÉèÖÃ°´Å¥
-				{
-					activity.toAnotherView(ENTER_SET_VIEW);//½øÈëÉèÖÃ½çÃæ 
-				}
-				if(x>100+x_Offset&&x<187+x_Offset&&y>285&&y<314)//µã»÷°ïÖú°´Å¥ 
-				{
-					activity.toAnotherView(ENTER_HELP_VIEW);//½øÈë°ïÖú½çÃæ
-				}
-				if(x>196+x_Offset&&x<283+x_Offset&&y>285&&y<314)//µã»÷¿ªÊ¼ÓÎÏ·°´Å¥
-				{
-					activity.toAnotherView(CHOOSE);//½øÈëÓÎÏ·Ñ¡Ôñ½çÃæ
-				}
-				if(x>292+x_Offset&&x<380+x_Offset&&y>285&&y<314)//µã»÷¹ØÓÚ°´Å¥
-				{
-					activity.toAnotherView(ENTER_ABOUT_VIEW);//½øÈë¹ØÓÚ½çÃæ
-				}
-				if(x>387+x_Offset&&x<474+x_Offset&&y>285&&y<314)//µã»÷ÍË³ö°´Å¥
-				{
-					System.exit(0);//ÍË³ö
-				}
+	public boolean onTouchEvent(MotionEvent e) {
+		float x = e.getX();// èŽ·å–Xåæ ‡
+		float y = e.getY();// èŽ·å–Yåæ ‡
+
+		switch (e.getAction()) {
+		case MotionEvent.ACTION_DOWN:
+
+			if (x > 5 + x_Offset && x < 92 + x_Offset && y > 285 && y < 314)// ç‚¹å‡»è®¾ç½®æŒ‰é’®
+			{
+				activity.toAnotherView(ENTER_SET_VIEW);// è¿›å…¥è®¾ç½®ç•Œé¢
+			}
+			if (x > 100 + x_Offset && x < 187 + x_Offset && y > 285 && y < 314)// ç‚¹å‡»å¸®åŠ©æŒ‰é’®
+			{
+				activity.toAnotherView(ENTER_HELP_VIEW);// è¿›å…¥å¸®åŠ©ç•Œé¢
+			}
+			if (x > 196 + x_Offset && x < 283 + x_Offset && y > 285 && y < 314)// ç‚¹å‡»å¼€å§‹æ¸¸æˆæŒ‰é’®
+			{
+				activity.toAnotherView(CHOOSE);// è¿›å…¥æ¸¸æˆé€‰æ‹©ç•Œé¢
+			}
+			if (x > 292 + x_Offset && x < 380 + x_Offset && y > 285 && y < 314)// ç‚¹å‡»å…³äºŽæŒ‰é’®
+			{
+				activity.toAnotherView(ENTER_ABOUT_VIEW);// è¿›å…¥å…³äºŽç•Œé¢
+			}
+			if (x > 387 + x_Offset && x < 474 + x_Offset && y > 285 && y < 314)// ç‚¹å‡»é€€å‡ºæŒ‰é’®
+			{
+				System.exit(0);// é€€å‡º
+			}
 			break;
 		}
 		return true;
 	}
-	
+
 	@Override
-	public void onDraw(Canvas canvas)
-	{
-		super.onDraw(canvas);		
-		canvas.drawBitmap(mainMenu,  Activity_GL_Racing.screenWidth/2-screenWidth/2,0, paint);
+	public void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
+		canvas.drawBitmap(mainMenu, Activity_GL_Racing.screenWidth / 2
+				- screenWidth / 2, 0, paint);
 	}
+
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		// TODO Auto-generated method stub
-		Canvas canvas = holder.lockCanvas();//»ñÈ¡»­²¼
-		try{
-			synchronized(holder){
-				onDraw(canvas);//»æÖÆ
-			}			
-		}
-		catch(Exception e){
+		Canvas canvas = holder.lockCanvas();// èŽ·å–ç”»å¸ƒ
+		try {
+			synchronized (holder) {
+				onDraw(canvas);// ç»˜åˆ¶
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally{
-			if(canvas != null){
+		} finally {
+			if (canvas != null) {
 				holder.unlockCanvasAndPost(canvas);
 			}
 		}
@@ -95,8 +95,5 @@ public class ViewMainMenu extends SurfaceView implements SurfaceHolder.Callback{
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
-		// TODO Auto-generated method stub
-		
 	}
-
 }
