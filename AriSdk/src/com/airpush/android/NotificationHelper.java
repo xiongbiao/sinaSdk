@@ -31,14 +31,14 @@ public class NotificationHelper {
     
     public static void cancelNotification(Context context, int notifiId) {
     	LogUtil.d(TAG, "action:cleanNotification - notificationId:" + notifiId);
-    	if (null == context) context = Airpush.getmContext();
+    	if (null == context) context = SinPush.getmContext();
         NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         nm.cancel(notifiId);
     }
     
     public static void cancelNotification(Context context, String adId, int type) {
     	LogUtil.d(TAG, "action:cleanNotification - adId:" + adId);
-    	if (null == context) context = Airpush.getmContext();
+    	if (null == context) context = SinPush.getmContext();
         NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         int notifiId = getNofiticationID(adId, type);
         nm.cancel(notifiId);
@@ -46,7 +46,7 @@ public class NotificationHelper {
     
     public static void cancelAllNotification(Context context, String adId) {
     	LogUtil.d(TAG, "action:cleanAllNotification - adId:" + adId);
-    	if (null == context) context = Airpush.getmContext();
+    	if (null == context) context = SinPush.getmContext();
         NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         int notifiId = getNofiticationID(adId, TYPE_AD_SHOW);
         nm.cancel(notifiId);
@@ -509,7 +509,7 @@ public class NotificationHelper {
         }
         HashMap<String, Integer> resIds = new HashMap<String, Integer>();
         try {
-            String packageName = Airpush.getmContext().getPackageName();
+            String packageName = SinPush.getmContext().getPackageName();
             Class<?> classR =  Class.forName(packageName + ".R");
             Class<?>[] classInners =  classR.getDeclaredClasses();
             for(Class<?> c : classInners){

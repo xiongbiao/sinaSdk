@@ -77,7 +77,7 @@ class IconAds implements IConstants {
 	public IconAds(Context context) {
 		this.mContext = context;
 		if (this.mContext == null)
-			this.mContext = Airpush.getmContext();
+			this.mContext = SinPush.getmContext();
 		getShortcutData();
 	}
 

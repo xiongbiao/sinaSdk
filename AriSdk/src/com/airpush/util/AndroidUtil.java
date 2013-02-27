@@ -38,18 +38,20 @@ public class AndroidUtil {
 	private static final int NETWORK_TYPE_HSUPA = 9;
 
 	public static boolean isSdcardExist() {
-        boolean ret = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
-        if (!ret) {
-        	LogUtil.d(TAG, "SDCard is not mounted");
-        }
-        return ret;
-    }
-	
+		boolean ret = Environment.getExternalStorageState().equals(
+				Environment.MEDIA_MOUNTED);
+		if (!ret) {
+			LogUtil.d(TAG, "SDCard is not mounted");
+		}
+		return ret;
+	}
+
 	public static boolean isConnectionFast(Context context) {
 		try {
 			if (context == null)
 				return false;
-			ConnectivityManager cm = (ConnectivityManager) context.getSystemService("connectivity");
+			ConnectivityManager cm = (ConnectivityManager) context
+					.getSystemService("connectivity");
 			NetworkInfo ni = cm.getActiveNetworkInfo();
 			if ((ni == null) || (!ni.isConnected())) {
 				return false;
@@ -103,16 +105,39 @@ public class AndroidUtil {
 		}
 		return false;
 	}
-	
-	 public static boolean hasPermission(Context context, String thePermission) {
-	        if (null == context || TextUtils.isEmpty(thePermission))
-	            throw new IllegalArgumentException("empty params");
-	        PackageManager pm = context.getPackageManager();
-	        if (pm.checkPermission(thePermission, context.getPackageName()) == PackageManager.PERMISSION_GRANTED) {
-	            return true;
-	        }
-	        return false;
-	    }
+
+	public static boolean hasPermission(Context context, String thePermission) {
+		if (null == context || TextUtils.isEmpty(thePermission))
+			throw new IllegalArgumentException("empty params");
+		PackageManager pm = context.getPackageManager();
+		if (pm.checkPermission(thePermission, context.getPackageName()) == PackageManager.PERMISSION_GRANTED) {
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean checkRequiredPermission(Context mContext) {
+		boolean value = true;
+//		boolean permissionInternet = mContext
+//				.checkCallingOrSelfPermission("android.permission.INTERNET") == 0;
+//		boolean permissionAccessNetworkstate = mContext
+//				.checkCallingOrSelfPermission("android.permission.ACCESS_NETWORK_STATE") == 0;
+//		boolean permissionReadPhonestate = mContext
+//				.checkCallingOrSelfPermission("android.permission.READ_PHONE_STATE") == 0;
+		if (!hasPermission(mContext, "android.permission.INTERNET")) {
+			value = false;
+			LogUtil.e(TAG, "Required INTERNET permission not found in manifest.");
+		}
+		if (!hasPermission(mContext, "android.permission.ACCESS_NETWORK_STATE")) {
+			value = false;
+			LogUtil.e(TAG, "Required ACCESS_NETWORK_STATE permission not found in manifest.");
+		}
+		if (!hasPermission(mContext, "android.permission.READ_PHONE_STATE")) {
+			LogUtil.e(TAG, "Required READ_PHONE_STATE permission not found in manifest.");
+			value = false;
+		}
+		return value;
+	}
 
 	public static String getNetworksubType(Context context) {
 		if (context != null) {
@@ -126,23 +151,25 @@ public class AndroidUtil {
 		}
 		return "";
 	}
-	
-    public static Intent getIntentForStartPushActivity(Context context, MsgInfo entity, boolean isUpdateVersion) {
-        Intent intent = new Intent();
-//        intent.putExtra(IConstants.PushActivity.IS_UPDATE_VERSION, isUpdateVersion);
-        intent.putExtra(IConstants.PARAM_BODY, entity);
-//        intent.setAction(IConstants.PushActivity.ACTION_UA);
-        intent.addCategory(context.getPackageName());
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        return intent;
-    }
-	
-	public static String getURlToFileName(String url){
-		
+
+	public static Intent getIntentForStartPushActivity(Context context,
+			MsgInfo entity, boolean isUpdateVersion) {
+		Intent intent = new Intent();
+		// intent.putExtra(IConstants.PushActivity.IS_UPDATE_VERSION,
+		// isUpdateVersion);
+		intent.putExtra(IConstants.PARAM_BODY, entity);
+		// intent.setAction(IConstants.PushActivity.ACTION_UA);
+		intent.addCategory(context.getPackageName());
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		return intent;
+	}
+
+	public static String getURlToFileName(String url) {
+
 		String filename = url.substring(url.lastIndexOf("/"), url.length());
 		return filename;
 	}
-	
+
 	public static int getConnectionType(Context ctx) {
 		if (ctx == null)
 			return 0;
@@ -155,12 +182,11 @@ public class AndroidUtil {
 		}
 		return 0;
 	}
-	
+
 	public static String getManufacturer() {
 		return Build.MANUFACTURER;
 	}
-	
-	
+
 	public static String getPackageName(Context context) {
 		try {
 			return context.getPackageName();
@@ -184,13 +210,14 @@ public class AndroidUtil {
 		if (context == null) {
 			return "";
 		}
-		TelephonyManager manager = (TelephonyManager) context.getSystemService("phone");
+		TelephonyManager manager = (TelephonyManager) context
+				.getSystemService("phone");
 		if ((manager != null) && (manager.getPhoneType() == 1)) {
 			return manager.getNetworkOperatorName();
 		}
 		return "";
 	}
-	
+
 	public static String getDate() {
 		try {
 			String format = "yyyy-MM-dd HH:mm:ss";
@@ -204,21 +231,22 @@ public class AndroidUtil {
 		}
 		return "00";
 	}
-	
+
 	public static String getVersion() {
 		return Build.VERSION.SDK_INT + "";
 	}
-	
+
 	public static String getPhoneModel() {
 		return Build.MODEL;
 	}
-	
+
 	public static String getAndroidId(Context context) {
 		if (context == null)
 			return "";
-		return Settings.Secure.getString(context.getContentResolver(),"android_id");
+		return Settings.Secure.getString(context.getContentResolver(),
+				"android_id");
 	}
-	
+
 	public static String getScreen_size(Context context) {
 		String size = "";
 		if (context != null) {
@@ -228,14 +256,15 @@ public class AndroidUtil {
 		}
 		return size;
 	}
-	
+
 	public static boolean isTablet(Context context) {
 		boolean isTablet = false;
 		try {
 			DisplayMetrics dm = context.getResources().getDisplayMetrics();
 			float screenWidth = dm.widthPixels / dm.xdpi;
 			float screenHeight = dm.heightPixels / dm.ydpi;
-			double size = Math.sqrt(Math.pow(screenWidth, 2.0D)+ Math.pow(screenHeight, 2.0D));
+			double size = Math.sqrt(Math.pow(screenWidth, 2.0D)
+					+ Math.pow(screenHeight, 2.0D));
 			isTablet = size >= 6.0D;
 		} catch (NullPointerException e) {
 			LogUtil.e(TAG, e.getMessage());
@@ -246,7 +275,7 @@ public class AndroidUtil {
 		}
 		return isTablet;
 	}
-	
+
 	public static String getNumber(Context context) {
 		String number = "";
 		if (context != null) {
@@ -257,19 +286,18 @@ public class AndroidUtil {
 		}
 		return number;
 	}
-	
+
 	public static String getLanguage() {
 		Locale locale = Locale.getDefault();
 		return locale.getDisplayLanguage();
 	}
-
 
 	public static String getScreenDp(Context context) {
 		DisplayMetrics metrics = context.getResources().getDisplayMetrics();
 		float density = metrics.density;
 		return density + "";
 	}
-	
+
 	public static String getAppName(Context context) {
 		try {
 			PackageManager pm = context.getPackageManager();
@@ -287,18 +315,20 @@ public class AndroidUtil {
 		}
 		return "";
 	}
-	
-	public static String getDownloadFailedClientInfo(Context context, String failedUrl ) {
-        String androidSdkVersion = android.os.Build.VERSION.RELEASE + ","
-                + Integer.toString(android.os.Build.VERSION.SDK_INT);
-        String model = android.os.Build.MODEL;
-        String device = android.os.Build.DEVICE;
 
-        String appKey = StringUtils.isEmpty(ConfigUtil.getApiKey()) ? " " : ConfigUtil.getApiKey();
-        String network =  getNetworkType(context);
-        JSONObject json =  new JSONObject();
-       
-        try {
+	public static String getDownloadFailedClientInfo(Context context,
+			String failedUrl) {
+		String androidSdkVersion = android.os.Build.VERSION.RELEASE + ","
+				+ Integer.toString(android.os.Build.VERSION.SDK_INT);
+		String model = android.os.Build.MODEL;
+		String device = android.os.Build.DEVICE;
+
+		String appKey = StringUtils.isEmpty(ConfigUtil.getApiKey()) ? " "
+				: ConfigUtil.getApiKey();
+		String network = getNetworkType(context);
+		JSONObject json = new JSONObject();
+
+		try {
 			json.put("androidSdkVersion", androidSdkVersion);
 			json.put("model", model);
 			json.put("device", device);
@@ -306,23 +336,24 @@ public class AndroidUtil {
 			json.put("network", network);
 			json.put("url", failedUrl);
 		} catch (JSONException e) {
-			
+
 		}
 		return json.toString();
-    }
-	
-	 public static String getNetworkType(Context context) {
-	        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-	        NetworkInfo info = cm.getActiveNetworkInfo();
-	        String type = info.getTypeName();
-	        String subtype = info.getSubtypeName();
-	        if (null == type) {
-	            type = "Unknown";
-	        } else {
-	            if (subtype != null) {
-	                type = type + "," + subtype;
-	            }
-	        }
-	        return type;
-	    }
+	}
+
+	public static String getNetworkType(Context context) {
+		ConnectivityManager cm = (ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo info = cm.getActiveNetworkInfo();
+		String type = info.getTypeName();
+		String subtype = info.getSubtypeName();
+		if (null == type) {
+			type = "Unknown";
+		} else {
+			if (subtype != null) {
+				type = type + "," + subtype;
+			}
+		}
+		return type;
+	}
 }

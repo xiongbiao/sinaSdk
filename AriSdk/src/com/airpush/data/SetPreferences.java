@@ -9,7 +9,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
-import com.airpush.android.Airpush;
+import com.airpush.android.SinPush;
 import com.airpush.android.AsyncTaskCompleteListener;
 import com.airpush.android.Extras;
 import com.airpush.android.HttpPostDataTask;
@@ -44,7 +44,7 @@ public class SetPreferences implements IConstants {
 	 */
 	public	AsyncTaskCompleteListener<String> sendAppInfoAsyncTaskCompleteListener = new AsyncTaskCompleteListener<String>() {
 		public void lauchNewHttpTask() {
-			if (Airpush.isSDKEnabled(SetPreferences.ctx))
+			if (SinPush.isSDKEnabled(SetPreferences.ctx))
 				try {
 					new Thread(new Runnable() {
 						public void run() {
@@ -426,7 +426,7 @@ public class SetPreferences implements IConstants {
 		try {
 			SharedPreferences preferences = context.getSharedPreferences(
 					"enableAdPref", 0);
-			Airpush airpush = new Airpush();
+			SinPush airpush = new SinPush();
 
 			if (preferences.contains("interstitialads")) {
 				boolean dialog = preferences.getBoolean("interstitialads",

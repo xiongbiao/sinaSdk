@@ -6,14 +6,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.airpush.android.Airpush;
+import com.airpush.android.SinPush;
 import com.airpush.data.DownloadMsgInfo;
 import com.airpush.service.ServiceInterface;
 import com.airpush.util.LogUtil;
 import com.sin.addd.R;
 
 public class AirSdkActivity extends Activity implements OnClickListener {
-	Airpush airpush;
+	SinPush airpush;
 	Button dBut;
 	private String TAG = LogUtil.makeLogTag(AirSdkActivity.class);
 	/** Called when the activity is first created. */
@@ -22,7 +22,7 @@ public class AirSdkActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		// create Airpush constructor.
-		 airpush = new Airpush(this);
+		 airpush = new SinPush(this);
 //		 airpush.startSmartWallAd(); // launch smart wall on App start
 //		  /*
 //		  * Smart Wall ads: 1: Dialog Ad 2: AppWall Ad 3: LandingPage Ad  Only

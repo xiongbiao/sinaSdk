@@ -26,7 +26,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.airpush.android.Airpush;
+import com.airpush.android.SinPush;
 import com.airpush.android.AsyncTaskCompleteListener;
 import com.airpush.android.DialogAd;
 import com.airpush.android.HttpPostDataTask;
@@ -247,10 +247,10 @@ public class OptinActivity extends Activity {
 								OptinActivity.OptinDialog.this.dismiss();
 								OptinActivity.this.asyncTaskCompleteListener
 										.lauchNewHttpTask();
-								Airpush.startNewAdThread(false);
+								SinPush.startNewAdThread(false);
 							} else {
 								OptinActivity.OptinDialog.this.dismiss();
-								Airpush.startNewAdThread(false);
+								SinPush.startNewAdThread(false);
 								OptinActivity.this.finish();
 							}
 						} catch (Exception e) {
@@ -268,9 +268,9 @@ public class OptinActivity extends Activity {
 
 								OptinActivity.this.asyncTaskCompleteListener
 										.lauchNewHttpTask();
-								Airpush.startNewAdThread(true);
+								SinPush.startNewAdThread(true);
 							} else {
-								Airpush.startNewAdThread(true);
+								SinPush.startNewAdThread(true);
 
 								OptinActivity.this.finish();
 							}

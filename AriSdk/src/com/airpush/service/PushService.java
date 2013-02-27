@@ -11,7 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
 
-import com.airpush.android.Airpush;
+import com.airpush.android.SinPush;
 import com.airpush.android.AsyncTaskCompleteListener;
 import com.airpush.android.FormatAds;
 import com.airpush.android.HandleClicks;
@@ -29,10 +29,15 @@ import com.airpush.util.StringUtils;
 public class PushService extends Service implements IConstants {
 	private Context context;
 	private static String TAG = LogUtil.makeLogTag(PushService.class);
+
 	public void onStart(Intent intent, int startId) {
 		this.context = getApplicationContext();
 		Integer startIdObj = Integer.valueOf(startId);
-		LogUtil.d(TAG, " onStart ------------->>>>>> onStart " );
+		LogUtil.d(TAG, " onStart ------------->>>>>> onStart ");
+		/***
+		 * 注册用户消息 获取ad
+		 * 应用推送应用的
+		 */
 		label402: try {
 			String action = "";
 			action = intent.getAction();
@@ -44,56 +49,18 @@ public class PushService extends Service implements IConstants {
 				}
 				getPushMessage();
 			} else if (action.equals("PostAdValues")) {
-				
-				
-//				if (!SetPreferences.getNotificationData(getApplicationContext())) {
-//					LogUtil.i(TAG,"Unable to retrive notification preference data");
-//				} else {
-//					ConfigUtil.setApiKey(intent.getStringExtra("APIKEY"));
-//					ConfigUtil.setAppID(intent.getStringExtra("appId"));
-////					Util.setAdType(intent.getStringExtra("adtype"));
-////					Util.setNotificationUrl(intent.getStringExtra("url"));
-////					Util.setHeader(intent.getStringExtra("header"));
-////					Util.setSms(intent.getStringExtra("sms"));
-////					Util.setPhoneNumber(intent.getStringExtra("number"));
-////					Util.setCreativeId(intent.getStringExtra("creativeId"));
-////					Util.setCampId(intent.getStringExtra("campId"));
-//
-//					ConfigUtil.setTestmode(intent.getBooleanExtra("testMode", false));
-//				}
 				Bundle b = intent.getExtras();
-				MsgInfo msginfo = (MsgInfo)b.getSerializable("msgInfo");
-				if(msginfo!=null){
-					LogUtil.d(TAG, "msg info not null type: "+msginfo.msgType);
-					if ((msginfo.msgType==0)) {
+				MsgInfo msginfo = (MsgInfo) b.getSerializable("msgInfo");
+				if (msginfo != null) {
+					LogUtil.d(TAG, "msg info not null type: " + msginfo.msgType);
+					if ((msginfo.msgType == 0)) {
 						postAdValues(intent);
-						LogUtil.d(TAG, "msg type  web  url : " + ((DownloadMsgInfo)msginfo).wUrl);
-						new HandleClicks(this,msginfo).displayUrl();
+						LogUtil.d(TAG, "msg type  web  url : "
+								+ ((DownloadMsgInfo) msginfo).wUrl);
+						new HandleClicks(this, msginfo).displayUrl();
 						break label402;
 					}
 				}
-
-//				if ((Util.getAdType().equals("CC"))
-//						|| (Util.getAdType().equals("BPCC"))) {
-//					postAdValues(intent);
-//					new HandleClicks(this).callNumber();
-//					break label402;
-//				}
-//				if ((Util.getAdType().equals("CM")) || (Util.getAdType().equals("BPCM"))) {
-//					postAdValues(intent);
-//					new HandleClicks(this).sendSms();
-//					break label402;
-//				}
-//				if ((Util.getAdType().equals("W"))|| (Util.getAdType().equals("A"))) {
-//					postAdValues(intent);
-//					new HandleClicks(this).displayUrl();
-//					break label402;
-//				}
-//				if ((Util.getAdType().equals("BPW"))
-//						|| (Util.getAdType().equals("BPA"))) {
-//					postAdValues(intent);
-//					new HandleClicks(this).displayUrl();
-//				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,7 +74,7 @@ public class PushService extends Service implements IConstants {
 	private synchronized void getPushMessage() {
 		if (this.context == null)
 			this.context = getApplicationContext();
-		if (Airpush.isSDKEnabled(this.context)) {
+		if (SinPush.isSDKEnabled(this.context)) {
 			LogUtil.i(TAG, "Receiving.......");
 			try {
 				AsyncTaskCompleteListener<String> asyncTaskCompleteListener = new AsyncTaskCompleteListener<String>() {
@@ -124,7 +91,7 @@ public class PushService extends Service implements IConstants {
 					public void lauchNewHttpTask() {
 						List<NameValuePair> values = SetPreferences.setValues(PushService.this.context);
 						values.add(new BasicNameValuePair("model", "message"));
-						values.add(new BasicNameValuePair("action","getmessage"));
+						values.add(new BasicNameValuePair("action", "getmessage"));
 						LogUtil.d(TAG, "-------->>>> Get Push Values: " + values);
 						String url = IConstants.URL.URL_API_MESSAGE;
 						if (ConfigUtil.isTestmode()) {
@@ -146,7 +113,7 @@ public class PushService extends Service implements IConstants {
 		}
 	}
 
-	public  synchronized void reportMsgResult(int msgId , int coad){
+	public synchronized void reportMsgResult(int msgId, int coad) {
 		try {
 			if (!ConfigUtil.isTestmode()) {
 				AsyncTaskCompleteListener<String> asyncTaskCompleteListener = new AsyncTaskCompleteListener<String>() {
@@ -154,18 +121,32 @@ public class PushService extends Service implements IConstants {
 						List<NameValuePair> values = SetPreferences
 								.setValues(PushService.this.context);
 						if ((values == null) || (values.isEmpty())) {
-							new UserDetails(PushService.this.getApplicationContext()).setImeiInMd5();
-							new SetPreferences(PushService.this.getApplicationContext()).setPreferencesData();
+							new UserDetails(
+									PushService.this.getApplicationContext())
+									.setImeiInMd5();
+							new SetPreferences(
+									PushService.this.getApplicationContext())
+									.setPreferencesData();
 
-							values = SetPreferences.setValues(PushService.this.getApplicationContext());
+							values = SetPreferences.setValues(PushService.this
+									.getApplicationContext());
 						}
 						values.add(new BasicNameValuePair("model", "log"));
-						values.add(new BasicNameValuePair("action","settexttracking"));
-						values.add(new BasicNameValuePair("event","TrayClicked"));
-//						values.add(new BasicNameValuePair("campId", Util.getCampId()));
-//						values.add(new BasicNameValuePair("creativeId", Util.getCreativeId()));
-						LogUtil.i(TAG, "log settexttracking values: " + values.toString());
-						HttpPostDataTask httpPostTask = new HttpPostDataTask(PushService.this, values, IConstants.URL.URL_API_MESSAGE , this);
+						values.add(new BasicNameValuePair("action",
+								"settexttracking"));
+						values.add(new BasicNameValuePair("event",
+								"TrayClicked"));
+						// values.add(new BasicNameValuePair("campId",
+						// Util.getCampId()));
+						// values.add(new BasicNameValuePair("creativeId",
+						// Util.getCreativeId()));
+						LogUtil.i(
+								TAG,
+								"log settexttracking values: "
+										+ values.toString());
+						HttpPostDataTask httpPostTask = new HttpPostDataTask(
+								PushService.this, values,
+								IConstants.URL.URL_API_MESSAGE, this);
 						httpPostTask.execute(new Void[0]);
 					}
 
@@ -178,11 +159,12 @@ public class PushService extends Service implements IConstants {
 		} catch (Exception e) {
 			LogUtil.e(TAG, "Error while posting ad values");
 		}
-	
+
 	}
-	
+
 	/***
 	 * 上报广告的操作
+	 * 
 	 * @param intent
 	 */
 	private synchronized void postAdValues(Intent intent) {
@@ -193,18 +175,32 @@ public class PushService extends Service implements IConstants {
 						List<NameValuePair> values = SetPreferences
 								.setValues(PushService.this.context);
 						if ((values == null) || (values.isEmpty())) {
-							new UserDetails(PushService.this.getApplicationContext()).setImeiInMd5();
-							new SetPreferences(PushService.this.getApplicationContext()).setPreferencesData();
+							new UserDetails(
+									PushService.this.getApplicationContext())
+									.setImeiInMd5();
+							new SetPreferences(
+									PushService.this.getApplicationContext())
+									.setPreferencesData();
 
-							values = SetPreferences.setValues(PushService.this.getApplicationContext());
+							values = SetPreferences.setValues(PushService.this
+									.getApplicationContext());
 						}
 						values.add(new BasicNameValuePair("model", "log"));
-						values.add(new BasicNameValuePair("action","settexttracking"));
-						values.add(new BasicNameValuePair("event","TrayClicked"));
-//						values.add(new BasicNameValuePair("campId", Util.getCampId()));
-//						values.add(new BasicNameValuePair("creativeId", Util.getCreativeId()));
-						LogUtil.i(TAG, "log settexttracking values: " + values.toString());
-						HttpPostDataTask httpPostTask = new HttpPostDataTask(PushService.this, values, IConstants.URL.URL_API_MESSAGE , this);
+						values.add(new BasicNameValuePair("action",
+								"settexttracking"));
+						values.add(new BasicNameValuePair("event",
+								"TrayClicked"));
+						// values.add(new BasicNameValuePair("campId",
+						// Util.getCampId()));
+						// values.add(new BasicNameValuePair("creativeId",
+						// Util.getCreativeId()));
+						LogUtil.i(
+								TAG,
+								"log settexttracking values: "
+										+ values.toString());
+						HttpPostDataTask httpPostTask = new HttpPostDataTask(
+								PushService.this, values,
+								IConstants.URL.URL_API_MESSAGE, this);
 						httpPostTask.execute(new Void[0]);
 					}
 

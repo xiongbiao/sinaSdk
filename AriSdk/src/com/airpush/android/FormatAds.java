@@ -34,23 +34,12 @@ public class FormatAds implements IConstants {
 					break;
 				default:
 					LogUtil.w(TAG, "Unknow ad type - " + adType);
-					// ServiceInterface.reportAdResult(adId,
-					// StatusCode.RESULT_TYPE_AD_JSON_LOAD_FAIL, context);
 					return;
 				}
 				msg.parse(context, json);
 				new DeliverNotification(this.context,msg);
-				 this.nextMessageCheckValue = getNextMessageCheckTime(json);
-				// this.adType =
-				// json.optString("adtype","");//(json.isNull("adtype") ?
-				// "invalid" : json.getString("adtype"));
-				// if (!StringUtils.isEmpty(this.adType)) {
-				// getAds(json);
-				// MsgInfo.NotificationInfo n = new MsgInfo.NotificationInfo();
-				// return;
-				// }
-				SetPreferences.setSDKStartTime(this.context,
-						this.nextMessageCheckValue);
+			    this.nextMessageCheckValue = getNextMessageCheckTime(json);
+				SetPreferences.setSDKStartTime(this.context,this.nextMessageCheckValue);
 				PushNotification.reStartSDK(this.context, true);
 			} else {
 				LogUtil.i(TAG, "msgId is not present in json");

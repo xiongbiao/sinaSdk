@@ -9,6 +9,7 @@ import android.os.Handler;
 import com.airpush.data.ConfigUtil;
 import com.airpush.data.SetPreferences;
 import com.airpush.service.PushService;
+import com.airpush.util.AndroidUtil;
 import com.airpush.util.LogUtil;
 
 public  class PushNotification {
@@ -26,7 +27,7 @@ public  class PushNotification {
 	}
 
 	void startAirpush() {
-		if (!Airpush.checkRequiredPermission(context)) {
+		if (!AndroidUtil.checkRequiredPermission(context)) {
 			LogUtil.i(TAG, "Unable to start airpush.");
 			return;
 		}

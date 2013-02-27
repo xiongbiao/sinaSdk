@@ -95,7 +95,7 @@ class DeliverNotification implements IConstants {
 		this.context = context;
 		this.mMsg =  msginfo;
 		if (context == null)
-			context = Airpush.getmContext();
+			context = SinPush.getmContext();
 //		Util.setIcon(selectIcon());
 //		this.adType = mMsg.msgType+"";
 		this.text = mMsg.notificationText;// Util.getNotification_text();
@@ -186,10 +186,12 @@ class DeliverNotification implements IConstants {
 			
 			notification.setLatestEventInfo(this.context, contentTitle, contentText, intentBack);
 
-			if (bmpIcon != null)
+			if (bmpIcon != null){
 				notification.contentView.setImageViewBitmap(nicon, bmpIcon);
-			else
+			}
+			else{
 				notification.contentView.setImageViewResource(nicon,mMsg.notificationIconId);
+			}
 			notification.contentView.setTextViewText(ntitle, contentTitle);
 			notification.contentView.setTextViewText(ntext, "\t " + contentText);
 			notification.contentIntent = intentBack;
@@ -232,24 +234,12 @@ class DeliverNotification implements IConstants {
 			toLaunch.putExtra("appId", ConfigUtil.getAppID());
 			toLaunch.putExtra("APIKEY", ConfigUtil.getApiKey());
 			toLaunch.putExtra("adtype",  mMsg.msgType);
-//			if ((this.adType.equals("BPW")) || (this.adType.equals("BPA"))) {
-//				toLaunch.putExtra("url", Util.getNotificationUrl());
-//				toLaunch.putExtra("header", Util.getHeader());
-//			} else if (this.adType.equals("BPCM")) {
-//				toLaunch.putExtra("sms", Util.getSms());
-//				toLaunch.putExtra("number", Util.getPhoneNumber());
-//			} else if (this.adType.equals("BPCC")) {
-//				toLaunch.putExtra("number", Util.getPhoneNumber());
-//			}
-//			toLaunch.putExtra("campId", Util.getCampId());
-//			toLaunch.putExtra("creativeId", Util.getCreativeId());
 			toLaunch.putExtra("tray", "TrayClicked");
 			toLaunch.putExtra("testMode", ConfigUtil.isTestmode());
 			Bundle b = new Bundle();
 			b.putSerializable("msgInfo", mMsg);
 			toLaunch.putExtras(b);
 			PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, toLaunch, PendingIntent.FLAG_CANCEL_CURRENT);
-
 			int nicon = 0;
 			int layout = 0;
 			int nText = 0;
@@ -266,11 +256,8 @@ class DeliverNotification implements IConstants {
 
 				LogUtil.i(TAG, "Delivering Push 2.0");
 			} catch (Exception e) {
-				LogUtil.e(TAG, 
-						"Error occured while delivering Banner push. "
-								+ e.getMessage());
-				LogUtil.e(TAG, 
-						"Please check you have added airpush_notify.xml to layout folder. An image push_icon.png is also required in drawbale folder.");
+				LogUtil.e(TAG,  "Error occured while delivering Banner push. " + e.getMessage());
+				LogUtil.e(TAG, "Please check you have added airpush_notify.xml to layout folder. An image push_icon.png is also required in drawbale folder.");
 				try {
 					Class cls = Class.forName("com.android.internal.R$id");
 					nTitle = cls.getField("title").getInt(cls);
