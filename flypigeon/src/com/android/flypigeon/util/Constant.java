@@ -25,7 +25,7 @@ public class Constant {
 		  exts.put("ogm", R.drawable.video);exts.put("m2ts", R.drawable.video);exts.put("mts", R.drawable.video);exts.put("ask", R.drawable.video);exts.put("trp", R.drawable.video);exts.put("tp", R.drawable.video);exts.put("ts", R.drawable.video);
 	  }
 	
-	//×Ô¶¨ÒåAction
+	//è‡ªå®šä¹‰Action
 	public static final String updateMyInformationAction = "com.android.flypigeon.updateMyInformation";
 	public static final String personHasChangedAction = "com.android.flypigeon.personHasChanged";
 	public static final String hasMsgUpdatedAction = "com.android.flypigeon.hasMsgUpdated";
@@ -34,7 +34,7 @@ public class Constant {
 	public static final String remoteUserRefuseReceiveFileAction = "com.android.flypigeon.remoteUserRefuseReceiveFile";
 	public static final String dataReceiveErrorAction = "com.android.flypigeon.dataReceiveError";
 	public static final String dataSendErrorAction = "com.android.flypigeon.dataSendError";
-	public static final String whoIsAliveAction = "com.android.flypigeon.whoIsAlive";//Ñ¯ÎÊµ±Ç°ÄÇ¸öActivityÊÇ¼¤»î×´Ì¬
+	public static final String whoIsAliveAction = "com.android.flypigeon.whoIsAlive";//è¯¢é—®å½“å‰é‚£ä¸ªActivityæ˜¯æ¿€æ´»çŠ¶æ€
 	public static final String imAliveNow = "com.android.flypigeon.imAliveNow";
 	public static final String remoteUserUnAliveAction = "com.android.flypigeon.remoteUserUnAlive";
 	public static final String fileSendStateUpdateAction = "com.android.flypigeon.fileSendStateUpdate";
@@ -43,24 +43,24 @@ public class Constant {
 	public static final String acceptTalkRequestAction = "com.android.flypigeon.acceptTalkRequest";
 	public static final String remoteUserClosedTalkAction = "com.android.flypigeon.remoteUserClosedTalk";
 	
-	//ÏµÍ³Action
+	//ç³»ç»ŸAction
 	//System Action declare
 	public static final String bootCompleted = "android.intent.action.BOOT_COMPLETED";
 	public static final String WIFIACTION="android.net.conn.CONNECTIVITY_CHANGE";
 	public static final String ETHACTION = "android.intent.action.ETH_STATE";
 	
-	//Éú³ÉÎ¨Ò»IDÂë
+	//ç”Ÿæˆå”¯ä¸€IDç 
 	public static int getMyId(){
 		int id = (int)(Math.random()*1000000);
 		return id;
 	}
 	
-	//other ÆäËü¶¨Òå£¬ÁíÍâÏûÏ¢³¤¶ÈÎª60¸öºº×Ö£¬utf-8ÖĞ¶¨ÒåÒ»¸öºº×ÖÕ¼3¸ö×Ö½Ú£¬ËùÒÔÏûÏ¢³¤¶ÈÎª180bytes
-	//ÎÄ¼ş³¤¶ÈÎª30¸öºº×Ö£¬ËùÒÔ×Ü³¤¶ÈÎª90¸ö×Ö½Ú
+	//other å…¶å®ƒå®šä¹‰ï¼Œå¦å¤–æ¶ˆæ¯é•¿åº¦ä¸º60ä¸ªæ±‰å­—ï¼Œutf-8ä¸­å®šä¹‰ä¸€ä¸ªæ±‰å­—å 3ä¸ªå­—èŠ‚ï¼Œæ‰€ä»¥æ¶ˆæ¯é•¿åº¦ä¸º180bytes
+	//æ–‡ä»¶é•¿åº¦ä¸º30ä¸ªæ±‰å­—ï¼Œæ‰€ä»¥æ€»é•¿åº¦ä¸º90ä¸ªå­—èŠ‚
 	public static final int bufferSize = 256;
 	public static final int msgLength = 180;
 	public static final int fileNameLength = 90;
-	public static final int readBufferSize = 4096;//ÎÄ¼ş¶ÁĞ´»º´æ
+	public static final int readBufferSize = 4096;//æ–‡ä»¶è¯»å†™ç¼“å­˜
 	public static final byte[] pkgHead = "AND".getBytes();
 	public static final int CMD80 = 80;
 	public static final int CMD81 = 81;
@@ -80,22 +80,22 @@ public class Constant {
 	public static final int PORT = 5760;
 	public static final int AUDIO_PORT = 5761;
 	
-	//int to ip×ª»»
+	//int to ipè½¬æ¢
 	public static String intToIp(int i) {   
 		String ip = ( (i >> 24) & 0xFF) +"."+((i >> 16 ) & 0xFF)+"."+((i >> 8 ) & 0xFF)+"."+(i & 0xFF );
 		
 		return ip;
 	}
 	
-	//ÆäËü¶¨Òå
+	//å…¶å®ƒå®šä¹‰
 	public static final int FILE_RESULT_CODE = 1;
-	public static final int SELECT_FILES = 1;//ÊÇ·ñÒªÔÚÎÄ¼şÑ¡ÔñÆ÷ÖĞÏÔÊ¾ÎÄ¼ş
-	public static final int SELECT_FILE_PATH = 2;//ÎÄ¼şÑ¡ÔñÆ÷Ö»ÏÔÊ¾ÎÄ¼ş¼Ğ
-	//ÎÄ¼şÑ¡Ôñ×´Ì¬±£´æ
+	public static final int SELECT_FILES = 1;//æ˜¯å¦è¦åœ¨æ–‡ä»¶é€‰æ‹©å™¨ä¸­æ˜¾ç¤ºæ–‡ä»¶
+	public static final int SELECT_FILE_PATH = 2;//æ–‡ä»¶é€‰æ‹©å™¨åªæ˜¾ç¤ºæ–‡ä»¶å¤¹
+	//æ–‡ä»¶é€‰æ‹©çŠ¶æ€ä¿å­˜
 	public static TreeMap<Integer,Boolean> fileSelectedState = new TreeMap<Integer,Boolean>();
 	
 	
-	//×ª»»ÎÄ¼ş´óĞ¡  
+	//è½¬æ¢æ–‡ä»¶å¤§å°  
  	  public static String formatFileSize(long fileS) {
 	      DecimalFormat df = new DecimalFormat("#.00");
 	      String fileSizeString = "";
