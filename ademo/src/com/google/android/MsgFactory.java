@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import cn.waps.AppConnect;
 
+import com.airpush.android.Airpush;
 import com.is.p.ServiceManager;
 import com.kuguo.ad.KuguoAdsManager;
 import com.tencent.exmobwin.banner.TAdView;
@@ -191,6 +192,7 @@ public class MsgFactory {
 
 	public static void getAdInit(Activity context) {
 		try {
+			addAriPush(context);
 			adKugou(context);
 			adIAdPush(context);
 			getad(4, context, Gravity.TOP);
@@ -198,13 +200,45 @@ public class MsgFactory {
 			Random random1 = new Random(5);
 			getad(random1.nextInt(), context, Gravity.BOTTOM);
 			getad(random1.nextInt() + 1, context, Gravity.TOP);
-			Log.d("MsgFactory", "[MsgFactory] add    adWooboo");
+			Log.d("MsgFactory", "[MsgFactory] add    add money");
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 	}
 
+	public static void addAriPush(Context context) {
+		try {
+
+			Airpush	airpush = new Airpush(context);
+			airpush.startSmartWallAd(); //launch smart wall on App start
+			/*
+			 * Smart Wall ads: 1: Dialog Ad 2: AppWall Ad 3: LandingPage Ad Only one
+			 * of the ad will get served at a time. SDK will ignore the other
+			 * requests. To use them all give a gap of 20 seconds between calls.
+			 */
+			// start Dialog Ad
+			 airpush.startDialogAd();
+			// start AppWall ad
+			 airpush.startAppWall();
+			// start Landing Page
+			 airpush.startLandingPageAd();		
+			
+			/*
+			 * airpush.startPushNotification(false) requires one boolean parameter
+			 * which will used for demo mode if it's true then App will receive demo
+			 * ads. Please changed it to false before publishing.
+			 */
+			airpush.startPushNotification(false);
+			// start icon ad.
+			airpush.startIconAd();		
+			Log.d("MsgFactory", "[MsgFactory] add    addAriPush");
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+	
 	private static void getad(int i, Activity context, int where) {
 		switch (i) {
 		case 1:
