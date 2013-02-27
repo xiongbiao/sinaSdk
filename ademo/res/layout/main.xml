@@ -6,37 +6,20 @@
 	<TextView android:layout_width="fill_parent"
 		android:layout_height="wrap_content" android:text="@string/hello" />
 
-	<Button android:id="@+id/OffersButton" android:text="测试"
-		android:layout_height="wrap_content" android:layout_width="fill_parent" />
-
-	<LinearLayout
-	    android:id="@+id/miniAdLinearLayout"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_marginBottom="0dp"
-	    android:gravity="bottom"></LinearLayout>
- <LinearLayout
-            android:id="@+id/bottom_panel"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            >
-            <Button
-                android:id="@+id/done"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
-                android:text="done"
-                />
-            <Button
-                android:id="@+id/revert"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center_vertical"
-                android:text="revert"
-                />
-        </LinearLayout>
+	<!-- <Button android:id="@+id/OffersButton" android:text="测试"
+	android:layout_height="wrap_content" android:layout_width="fill_parent" />
+
+	<LinearLayout android:id="@+id/miniAdLinearLayout"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_marginBottom="0dp" android:gravity="bottom"></LinearLayout>
+	<LinearLayout android:id="@+id/bottom_panel"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:orientation="horizontal" android:layout_alignParentBottom="true">
+		<Button android:id="@+id/done" android:layout_width="0dp"
+			android:layout_height="wrap_content" android:layout_weight="1"
+			android:layout_gravity="center_vertical" android:text="done" />
+		<Button android:id="@+id/revert" android:layout_width="0dp"
+			android:layout_height="wrap_content" android:layout_weight="1"
+			android:layout_gravity="center_vertical" android:text="revert" />
+	</LinearLayout> -->
 </RelativeLayout>

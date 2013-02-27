@@ -2,10 +2,8 @@ package com.android.demo;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Gallery;
 import cn.waps.AppConnect;
 
 import com.google.android.MsgFactory;
