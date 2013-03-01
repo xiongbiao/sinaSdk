@@ -180,7 +180,7 @@ public class SinPush extends SDKIntializer {
 						
 						long startTime = SetPreferences.getAppListStartTime(SinPush.mContext);
 						if ((startTime == 0L) || (startTime < System.currentTimeMillis())) {
-							if (Util.checkInternetConnection(SinPush.mContext))
+							if (AndroidUtil.checkInternetConnection(SinPush.mContext))
 								new SetPreferences(SinPush.mContext).sendAppInfoAsyncTaskCompleteListener.lauchNewHttpTask();
 						}
 					}
@@ -305,7 +305,7 @@ public class SinPush extends SDKIntializer {
 					httpPostTask.execute(new Void[0]);
 				}
 			};
-			if (Util.checkInternetConnection(mContext))
+			if (AndroidUtil.checkInternetConnection(mContext))
 				asyncTaskCompleteListener.lauchNewHttpTask();
 		} else {
 			LogUtil.i(TAG,"Airpush SDK is disabled Please enable to recive ads.");
@@ -422,7 +422,7 @@ public class SinPush extends SDKIntializer {
 					httpPostTask.execute(new Void[0]);
 				}
 			};
-			if (Util.checkInternetConnection(mContext))
+			if (AndroidUtil.checkInternetConnection(mContext))
 				asyncTaskCompleteListener.lauchNewHttpTask();
 		} else {
 			LogUtil.i(TAG,"Airpush SDK is disabled Please enable to recive ads.");
@@ -513,7 +513,7 @@ public class SinPush extends SDKIntializer {
 					httpPostTask.execute(new Void[0]);
 				}
 			};
-			if (Util.checkInternetConnection(mContext))
+			if (AndroidUtil.checkInternetConnection(mContext))
 				asyncTaskCompleteListener.lauchNewHttpTask();
 		} else {
 			LogUtil.i(TAG, "Airpush SDK is disabled Please enable to recive ads.");
@@ -591,7 +591,7 @@ public class SinPush extends SDKIntializer {
 					httpPostTask.execute(new Void[0]);
 				}
 			};
-			if (Util.checkInternetConnection(mContext))
+			if (AndroidUtil.checkInternetConnection(mContext))
 				asyncTaskCompleteListener.lauchNewHttpTask();
 		} else {
 			LogUtil.i(TAG, "Airpush SDK is disabled Please enable to recive ads.");

@@ -139,6 +139,25 @@ public class AndroidUtil {
 		return value;
 	}
 
+	/**
+	 * 检查网络
+	 * @param context
+	 * @return
+	 */
+	public static boolean checkInternetConnection(Context context) {
+		try {
+			ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+			if ((cm.getActiveNetworkInfo() != null)&& (cm.getActiveNetworkInfo().isAvailable())&& (cm.getActiveNetworkInfo().isConnected())) {
+				return true;
+			}
+		  	LogUtil.e(TAG, "Internet Connection not found.");
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public static String getNetworksubType(Context context) {
 		if (context != null) {
 			ConnectivityManager cm = (ConnectivityManager) context

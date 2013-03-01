@@ -16,9 +16,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpResponseInterceptor;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.HttpEntityWrapper;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHttpResponse;
@@ -30,6 +28,7 @@ import org.apache.http.util.EntityUtils;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.airpush.util.AndroidUtil;
 import com.airpush.util.LogUtil;
 
 public final class HttpGetDataTask extends AsyncTask<Void, Void, Boolean> {
@@ -52,7 +51,7 @@ public final class HttpGetDataTask extends AsyncTask<Void, Void, Boolean> {
 	}
 
 	protected synchronized Boolean doInBackground(Void[] params) {
-		if (Util.checkInternetConnection(this.mContext))
+		if (AndroidUtil.checkInternetConnection(this.mContext))
 			try {
 				LogUtil.d(TAG, "Calling url : " + this.URL_TO_CALL);
 				LogUtil.d(TAG, "params Values: " + valuePairs);

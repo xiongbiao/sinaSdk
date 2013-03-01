@@ -26,16 +26,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.airpush.android.SinPush;
 import com.airpush.android.AsyncTaskCompleteListener;
 import com.airpush.android.DialogAd;
 import com.airpush.android.HttpPostDataTask;
 import com.airpush.android.IConstants;
-import com.airpush.android.Util;
+import com.airpush.android.SinPush;
 import com.airpush.data.ConfigUtil;
 import com.airpush.data.SetPreferences;
+import com.airpush.util.AndroidUtil;
 import com.airpush.util.LogUtil;
-import com.sin.addd.R;
 
 public class OptinActivity extends Activity {
 	private static String TAG = LogUtil.makeLogTag(OptinActivity.class);
@@ -242,11 +241,10 @@ public class OptinActivity extends Activity {
 				closeText.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View arg0) {
 						try {
-							if (Util.checkInternetConnection(OptinActivity.this)) {
+							if (AndroidUtil.checkInternetConnection(OptinActivity.this)) {
 								OptinActivity.event = "optOut";
 								OptinActivity.OptinDialog.this.dismiss();
-								OptinActivity.this.asyncTaskCompleteListener
-										.lauchNewHttpTask();
+								OptinActivity.this.asyncTaskCompleteListener.lauchNewHttpTask();
 								SinPush.startNewAdThread(false);
 							} else {
 								OptinActivity.OptinDialog.this.dismiss();
@@ -263,7 +261,7 @@ public class OptinActivity extends Activity {
 						try {
 							OptinActivity.OptinDialog.this.dismiss();
 
-							if (Util.checkInternetConnection(OptinActivity.OptinDialog.this.context)) {
+							if (AndroidUtil.checkInternetConnection(OptinActivity.OptinDialog.this.context)) {
 								OptinActivity.event = "optIn";
 
 								OptinActivity.this.asyncTaskCompleteListener

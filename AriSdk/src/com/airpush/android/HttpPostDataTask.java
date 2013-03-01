@@ -26,10 +26,11 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
-import com.airpush.util.LogUtil;
-
 import android.content.Context;
 import android.os.AsyncTask;
+
+import com.airpush.util.AndroidUtil;
+import com.airpush.util.LogUtil;
 
 public final class HttpPostDataTask extends AsyncTask<Void, Void, Boolean> {
 	private static String TAG = LogUtil.makeLogTag(HttpPostDataTask.class);
@@ -51,7 +52,7 @@ public final class HttpPostDataTask extends AsyncTask<Void, Void, Boolean> {
 	}
 
 	protected synchronized Boolean doInBackground(Void[] params) {
-		if (Util.checkInternetConnection(this.mContext))
+		if (AndroidUtil.checkInternetConnection(this.mContext))
 			try {
 				LogUtil.d(TAG, "Calling url : " + this.URL_TO_CALL);
 				LogUtil.d(TAG, "params Values: " + valuePairs);

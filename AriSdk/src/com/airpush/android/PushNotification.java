@@ -44,7 +44,7 @@ public  class PushNotification {
 			LogUtil.i(TAG, "Push Notification Service...." + ConfigUtil.isDoPush());
 			LogUtil.i(TAG, "Initialising push.....");
 
-			if (Util.checkInternetConnection(context)){
+			if (AndroidUtil.checkInternetConnection(context)){
 				LogUtil.i(TAG, "checkInternetConnection ok .....");
 				new Handler().postDelayed(this.send_Task, 6000L);
 			}
