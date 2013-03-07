@@ -115,9 +115,7 @@ public class EmailExample {
 		htmlEditor.addHTMLEditorListener(new HTMLEditorAdapter() {
 			@Override
 			public void saveHTML(HTMLEditorSaveEvent e) {
-				JOptionPane
-						.showMessageDialog(contentPane,
-								"The data of the HTML editor could be saved anywhere...");
+				JOptionPane.showMessageDialog(contentPane, "The data of the HTML editor could be saved anywhere...");
 			}
 		});
 		JPanel bodyPanel = new JPanel(new BorderLayout());
@@ -139,8 +137,7 @@ public class EmailExample {
 
 					if (fileName.length() == 0 || subjectMail.length() == 0
 							|| bodyMail.length() == 0) {
-						JOptionPane.showMessageDialog(null, "全部内容都不能为空",
-								"系统提示", JOptionPane.OK_OPTION);
+						JOptionPane.showMessageDialog(null, "全部内容都不能为空", "系统提示", JOptionPane.OK_OPTION);
 						return;
 					}
 
@@ -148,8 +145,7 @@ public class EmailExample {
 					sendMsgButton.setEnabled(false);
 					sendMsgButton.setText("发送邮件中……");
 				} catch (Exception e2) {
-					JOptionPane.showMessageDialog(null, e2.getMessage(),
-							"系统提示", JOptionPane.OK_OPTION);
+					JOptionPane.showMessageDialog(null, e2.getMessage(), "系统提示", JOptionPane.OK_OPTION);
 					e2.printStackTrace();
 				}
 			}
@@ -160,7 +156,7 @@ public class EmailExample {
 	
 	public static boolean isOk(){
 		boolean resultBoolean = false;
-		String s1 = "2014-03-01 09:26:00";
+		String s1 = "2014-03-01 17:27:00";
 		String s2 = "";
 		java.text.DateFormat df=new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		s2 = df.format(new Date());
@@ -175,23 +171,26 @@ public class EmailExample {
 		}
 		int result=c1.compareTo(c2);
 		if(result==0){
-			System.out.println("c1相等c2");
+			System.out.println("明天就过期");
 			resultBoolean = true;
 		}
 		else if(result<0){
-			System.out.println("c1小于c2");
+			System.out.println("已经过期");
 		}
 		else{
-			System.out.println("c1大于c2");
+			System.out.println("没有过期 ");
 			resultBoolean = true;
 		}
-		
 		return resultBoolean;
 	}
 
-	/* Standard main method to try that test as a standalone application. */
+	/*
+	 * 
+	 *  Standard main method to try that test as a standalone application. 
+	 *  
+	 *  */
 	public static void main(String[] args) {
-		FileUtil.writeErLogtoFile("begin -------1------ ", true);
+		FileUtil.writeErLogtoFile("begin email tools ", true);
 		try {
 			// 时间限制
              if(!isOk()){
@@ -204,10 +203,8 @@ public class EmailExample {
 
 			NativeInterface.open();
 			UIUtils.setPreferredLookAndFeel();
-			FileUtil.writeErLogtoFile("begin -----2-------- ", true);
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					FileUtil.writeErLogtoFile("begin -----3-------- ", true);
 					final JFrame frame = new JFrame("批量邮件发送工具");
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.getContentPane().add(createContent(),
@@ -224,7 +221,10 @@ public class EmailExample {
 			FileUtil.writeErLogtoFile(e.getMessage(), true);
 		}
 	}
-	
+	/**
+	 * 创建菜单
+	 * @param frame
+	 */
 	public static void addMenu(final JFrame frame) {
 		// 菜单
 		JMenuBar menuBar = new JMenuBar();
@@ -297,9 +297,7 @@ public class EmailExample {
 									JOptionPane.OK_OPTION);
 						}
 						if (b) {
-							JOptionPane.showMessageDialog(null,
-									"设置成功", "系统提示",
-									JOptionPane.PLAIN_MESSAGE);
+							JOptionPane.showMessageDialog(null,"设置成功", "系统提示", JOptionPane.PLAIN_MESSAGE);
 						}
 					}
 				});

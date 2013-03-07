@@ -154,7 +154,7 @@ public class SendMail {
 			mimeMsg.setContent(mp);
 			mimeMsg.saveChanges();
 			System.out.println("正在发送邮件....");
-
+			FileUtil.writeErLogtoFile("正在发送邮件....", true);
 			Session mailSession = Session.getInstance(props, null);
 			mailSession.setDebug(true);
 			Transport transport = mailSession.getTransport("smtp");
@@ -162,10 +162,12 @@ public class SendMail {
 					password);
 			transport.sendMessage(mimeMsg, mimeMsg.getRecipients(Message.RecipientType.TO));
 			System.out.println("发送邮件成功！");
+			FileUtil.writeErLogtoFile("发送邮件成功！", true);
 			transport.close();
 			return true;
 		} catch (Exception e) {
 			System.out.println("邮件发送失败！" + e);
+			FileUtil.writeErLogtoFile("邮件发送失败！" + e.getMessage(), true);
 			return false;
 		}
 	}
@@ -231,7 +233,8 @@ public class SendMail {
 			System.out.println("进入发邮件");
 			System.out.println("发已经结束");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			FileUtil.writeErLogtoFile("发送邮件失败 错误  ： "+e.getMessage(), true);
 			throw e;
 		}
 		

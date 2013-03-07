@@ -62,7 +62,7 @@ public class XlsxUtil {
 				throw new Exception("邮件主题为null或者空");
 			if(bodyMail==null || "".equals(bodyMail))
 				throw new Exception("邮件内容为null或者空");
-			System.out.println("filename : ----------- "+fileName);
+			FileUtil.writeErLogtoFile("filename : ----------- "+fileName,true);
 			
 			XSSFWorkbook xwb = new XSSFWorkbook(new FileInputStream(fileName));
 			// 读取第一个sheet
@@ -85,14 +85,14 @@ public class XlsxUtil {
 				@Override
 				public void run()  {
 					int count = Integer.valueOf(SystemConfig.getProperty("mail.count", "20"));
-					System.err.println("------发邮件--参数-----count : " + count );
+					FileUtil.writeErLogtoFile("------发邮件--参数-----count : " + count,true );
 					FileUtil.writeLogtoFile("[  --发邮件-- ]", false);
 					for (int i = 0; i <= rowNum; i++) {
 						synchronized (this) {
 							int rndTime = Integer.valueOf(SystemConfig.getProperty("mail.rnd.time", "30"));
 							int sleepTime = 1000*rndTime*rnd.nextInt(4);
 							if (count > 0) {
-								System.out.println( "邮件NO : "+ i);
+								FileUtil.writeErLogtoFile( "邮件NO : "+ i,true);
 								 //发邮件
 								row = sheet.getRow(i);
 								String email = row.getCell(0).getStringCellValue() + "";
@@ -112,7 +112,7 @@ public class XlsxUtil {
 							}else{
 								count = Integer.valueOf(SystemConfig.getProperty("mail.count", "20"));
 								int stopTime = Integer.valueOf(SystemConfig.getProperty("mail.stop.time", "5"));
-								System.err.println("------ -参数----  stopTime : "+ stopTime);
+								FileUtil.writeErLogtoFile("------ -参数----  stopTime : "+ stopTime,true);
 								sleepTime = 1000*60*stopTime;
 							}
 							try {
