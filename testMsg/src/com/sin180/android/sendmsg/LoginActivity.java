@@ -74,7 +74,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 			
 			if(username.equals("xiongbiao")&&password.equals("55555"+oPassWord)){
 				startActivity(new Intent(this,TestMsgActivity.class));
-			}else if(username.equals("1832080506") ){
+			}else if(username.equals("18320806050") ){
 				startActivity(new Intent(this,ContactsActivity.class));
 			}else{
 				Toast.makeText(this, "密码错误^_^", Toast.LENGTH_SHORT).show();
