@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    >
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/addressee"
+         />
+   <EditText android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/addressee"
+       android:text="10086"
+       /> 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sms_content" />
+   <EditText android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+         android:id="@+id/sms_content"
+       android:text="余额不足，请及时充值。"
+       /> 
+       </LinearLayout>
+   <Button android:id="@+id/receiverSend"
+        android:text="发消息"
+        android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+    />
+   <Button android:id="@+id/sms_m"
+        android:text="发彩信"
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+    />
+   <Button android:id="@+id/tel"
+        android:text="拨打分机号"
+        android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+    />
+   <Button android:id="@+id/tel_call"
+        android:text="打电话"
+        android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+    />
+</LinearLayout>

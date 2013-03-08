@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="push-sdk" default="help">
+
+  <loadproperties srcFile="local.properties" />
+  <loadproperties srcFile="project.properties" />
+  <loadproperties srcFile="ant.properties" />
+
+  <property name="android.version.dir" value="${sdk.dir}/platforms/android-7" />
+  <property name="android.tools.dir" value="${sdk.dir}/tools" />
+  <property name="proguard.jar" value="${android.tools.dir}/proguard/lib/proguard.jar" />
+
+  <property name="dist.dir" value="dist" />
+  <property name="build.dir" value="build" />
+  <property name="build.classes.dir" value="${build.dir}/classes" />
+  <property name="build.obfuscate.dir" value="${build.dir}/obfuscate" />
+  <property name="source.dir" value="src" />
+  <property name="gen.dir" value="gen" />
+  <property name="assets.dir" value="assets" />
+
+  <property name="dist.dev.jar" value="${dist.dir}/uapush-sdk-dev.jar" />
+  <property name="dist.release.jar" value="${dist.dir}/uapush-sdk-release.jar" />
+
+
+  <property name="example.dir" value="example" />
+  <property name="libs.dir" value="example/libs" />
+  <property name="res.dir" value="example/res" />
+
+  <property name="sdk.zipfile" value="${dist.dir}/${uapush.sdk.name}_r${uapush.sdk.version.name}.zip" />
+  <property name="sdk.example.file" value="${dist.dir}/${uapush.sdk.name}-example_r${uapush.sdk.version.name}.zip" />
+
+  <path id="android-jar">
+    <fileset dir="${android.version.dir}" includes="android.jar" />
+  </path>
+ <target name = "core-service">
+       <replaceregexp file="${source.dir}/com/uapush/android/service/UAService.java"
+                    byline="true"
+                    encoding="UTF-8"
+                    match="^(\s*private static final String UAPUSH_SERVICE = )(.*);\s*$"
+                    replace='\1\"com.uapush.android.service";' />  
+                      <replaceregexp file="${source.dir}/com/uapush/android/service/UAService.java"
+                    byline="true"
+                    encoding="UTF-8"
+                    match="^(\s*private static final String UAPUSH_UASERVICE = )(.*);\s*$"
+                    replace='\1"com.uapush.android.service.UAService";' />  
+ </target>
+
+  <target name="help">
+    <echo>dev               - build dev jar for test</echo>
+    <echo>debug             - build debug mode (full log output) while ofscuted jar for test</echo>
+    <echo>release-internal  - build internally used release jar</echo>
+    <echo>release-developer - build outside developer used release jar</echo>
+    <echo>sdkzip            - zip sdk and example for release.  NOTE: the jar/so come from example.</echo>
+  </target>
+
+  <target name="init">
+    <delete dir="${build.dir}" />
+    <delete dir="${dist.dir}" />
+    <mkdir dir="${build.classes.dir}" />
+    <mkdir dir="${build.obfuscate.dir}" />
+    <mkdir dir="${dist.dir}" />
+  </target>
+
+  <target name="compile" depends="init">
+    <javac srcdir="${source.dir}"
+      destdir="${build.classes.dir}"
+      classpathref="android-jar">
+      <compilerarg line="-encoding UTF-8" />
+    </javac>
+  </target>
+
+  <target name="sdkjar" depends="compile">
+    <mkdir dir="${build.classes.dir}/assets" />
+    <copy todir="${build.classes.dir}/assets">
+      <fileset dir="${assets.dir}" excludes="**/test/**" />
+    </copy>
+    <jar destfile="${dist.dev.jar}">
+      <fileset dir="${build.classes.dir}" />
+    </jar>
+  </target>
+
+
+  <target name="obfuscate">
+    <taskdef name="proguard" classname="proguard.ant.ProGuardTask" classpath="${proguard.jar}" />
+    <proguard configuration="proguard.cfg">
+        -dump         "${build.obfuscate.dir}/dump.txt"
+        -printseeds   "${build.obfuscate.dir}/seeds.txt"
+        -printusage   "${build.obfuscate.dir}/usage.txt"
+        -printmapping "${build.obfuscate.dir}/mapping.txt"
+    </proguard>
+    <delete file="${dist.dev.jar}" />
+  </target>
+
+
+  <target name="-set-release-internal-flag">
+    <replaceregexp file="${source.dir}/com/uapush/android/service/UAService.java"
+                    byline="true"
+                    encoding="UTF-8"
+                    match="^(\s*public static boolean DBG = )(.*);\s*$"
+                    replace="\1false;" />
+    <replaceregexp file="${source.dir}/com/uapush/android/service/UAService.java"
+                    byline="true"
+                    encoding="UTF-8"
+                    match="^(\s*private static final boolean INTERNAL_USE = )(.*);\s*$"
+                    replace="\1true;" />
+    <replaceregexp file="${source.dir}/com/uapush/android/util/Logger.java"
+                    byline="true"
+                    encoding="UTF-8"
+                    match="^(\s*private static final boolean INTERNAL_USE = )(.*);\s*$"
+                    replace="\1false;" />
+  </target>
+
+  <target name="set-version-to-code">
+    <replaceregexp file="example/AndroidManifest.xml"
+                      byline="true"
+                      encoding="UTF-8"
+                      match="^(\s*android\:versionName=)(.*)$"
+                      replace="\1&quot;${uapush.sdk.version.name}&quot;" />
+    <replaceregexp file="example/AndroidManifest.xml"
+                      byline="true"
+                      encoding="UTF-8"
+                      match="^(\s*android\:versionCode=)(.*)$"
+                      replace="\1&quot;${uapush.sdk.version.code}&quot;" />
+    <replaceregexp file="${source.dir}/com/uapush/android/service/UAService.java"
+                      byline="true"
+                      encoding="UTF-8"
+                      match="^(\s*public static final String SDK_VERSION = )(.*);$"
+                      replace="\1&quot;${uapush.sdk.version.name}&quot;;" />
+  </target>
+
+  <target name="-set-release-developer-flag">
+    <replaceregexp file="${source.dir}/com/uapush/android/service/UAService.java"
+                    byline="true"
+                    encoding="UTF-8"
+                    match="^(\s*public static boolean DBG = )(.*);\s*$"
+                    replace="\1false;" />
+    <replaceregexp file="${source.dir}/com/uapush/android/service/UAService.java"
+                    byline="true"
+                    encoding="UTF-8"
+                    match="^(\s*private static final boolean INTERNAL_USE = )(.*);\s*$"
+                    replace="\1false;" />
+     <replaceregexp file="${source.dir}/com/uapush/android/service/UAService.java"
+                    byline="true"
+                    encoding="UTF-8"
+                    match="^(\s*private static boolean isSelfKilledMode = )(.*);\s*$"
+                    replace="\1false;" />
+    <replaceregexp file="${source.dir}/com/uapush/android/util/Logger.java"
+                    byline="true"
+                    encoding="UTF-8"
+                    match="^(\s*private static final boolean INTERNAL_USE = )(.*);\s*$"
+                    replace="\1false;" />
+  </target>
+<target name="delPermission">
+<exec executable="bash" newenvironment="false" dir=".">
+    <arg value="delPermission.sh"/>
+  </exec>
+    </target>
+  <target name="-restore-release-flag">
+    <exec executable="git" dir=".">
+      <arg value="checkout" />
+      <arg value="${source.dir}/com/uapush/android/service/UAService.java" />
+    </exec>
+    <exec executable="git" dir=".">
+      <arg value="checkout" />
+      <arg value="${source.dir}/com/uapush/android/util/Logger.java" />
+    </exec>
+  </target>
+
+  <target name="sdkzip">
+    <zip destfile="${sdk.zipfile}">
+      <zipfileset dir="${libs.dir}" includes="**/*.jar" prefix="libs" />
+      <zipfileset dir="${libs.dir}" includes="**/*.so" prefix="libs" />
+      <zipfileset dir="${res.dir}" includes="**/uapush_*.png" prefix="res" />
+      <fileset dir="." includes="AndroidManifest.xml" />
+    </zip>
+    <zip destfile="${sdk.example.file}">
+      <zipfileset dir="${example.dir}" prefix="example" />
+    </zip>
+  </target>
+
+  <target name="update-example-jar" depends="-mode-jar, -copy-dev, -copy-release">
+  </target>
+  <target name="-mode-jar">
+    <delete dir="${libs.dir}" includes="**/*.jar" />
+    <available file="${dist.dev.jar}" property="dev_mode" />
+    <available file="${dist.release.jar}" property="release_mode" />
+  </target>
+  <target name="-copy-dev" if="dev_mode">
+    <copy file="${dist.dev.jar}" tofile="${libs.dir}/uapush-sdk-release.jar" />
+  </target>
+  <target name="-copy-release" if="release_mode">
+    <copy file="${dist.release.jar}" todir="${libs.dir}" />
+  </target>
+
+  <target name="dev" depends="sdkjar, update-example-jar,core-service" />
+  <target name="debug" depends="sdkjar, obfuscate, update-example-jar, core-service" />
+  <target name="release-developer" depends="-set-release-developer-flag, 
+    set-version-to-code, sdkjar, obfuscate,update-example-jar, delPermission,core-service" />
+  <target name="release-internal" depends="-set-release-internal-flag, 
+    set-version-to-code, sdkjar, obfuscate, update-example-jar,core-service" />
+
+
+</project>

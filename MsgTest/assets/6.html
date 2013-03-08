@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf8">
+ <meta name="format-detection" content="telephone=no">
+ <meta http-equiv="x-rim-auto-match" content="none">
+<style type="text/css">
+	body {padding: 0;margin: 0;}
+	* {padding: 0;margin: 0;font-size:14px;font-family: 宋体;}h3 {background-color: #E6E6E6;padding: 0 0 0 15px;height: 32px;line-height: 32px;}.bd {line-height: 22px;padding: 10px 20px 15px;}.b {background-image: -webkit-linear-gradient(#79D71B, #4C8611);-webkit-border-radius: 10px;background-color: #70C519;height: 40px;width: 100px;display: block;text-decoration: none;color: black;text-align: center;margin-top: 10px;margin-left: 30px;}.c{display: block; padding-top: 8px; font: 22px bold;color:white;}
+	#bg{position: relative;}
+	#bg,#bg img{max-width:480px;height:600px;}
+</style>
+
+<script>
+	function clickButton(e, shouldClose, shouldCancelNotification) {
+		var actionid = e.getAttribute("data-actionid");
+		UAWeb.click(actionid, shouldClose, shouldCancelNotification);
+	}
+	function download(e) {
+		var actionid = e.getAttribute("data-actionid");
+		var url = e.href;
+		UAWeb.download(actionid, url);
+	}
+	window.onresize = window.onload = function() {
+		var w,h;
+		if (!!(window.attachEvent && !window.opera)) {
+			w = document.documentElement.clientWidth;
+		} else {
+			w = window.innerWidth;
+		}
+		var bgImg = document.getElementById('bg').getElementsByTagName('img')[0];
+		bgImg.width = w;
+	}
+	 
+</script>
+</head>
+
+<body>
+	<div id="bg">
+		<img src="1-1.jpg" />
+		<a target="" href="javascript:myjavascript.call('4000019911,11356')"
+			data-actionid="1040" class="b" style="position:absolute;top:72%;left:10%">
+			 <span class="c">&nbsp;&nbsp;10086&nbsp;&nbsp;</span>
+		</a>
+		
+		<a target=""  href="tel:4000019911,11356"
+			data-actionid="1040" class="b" style="position:absolute;top:12%;left:10%">
+			 <span class="c">&nbsp;&nbsp;10086999&nbsp;&nbsp;</span>
+		</a>
+		
+		<a style="position:absolute;top:85%;left:5%" href="tel:4000019911,11356">tel:4000019911,11356</a><br>
+	</div>
+</body></html>
