@@ -21,7 +21,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.airpush.android.DialogAd;
-import com.airpush.android.Util;
 import com.airpush.data.MsgInfo;
 import com.airpush.util.LogUtil;
 

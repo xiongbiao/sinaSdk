@@ -1,15 +1,13 @@
 package com.airpush.android;
 
-import org.json.JSONObject;
-
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.airpush.data.MsgInfo;
 import com.airpush.data.DownloadMsgInfo;
+import com.airpush.data.MsgInfo;
 import com.airpush.ui.AirSdkActivity;
 import com.airpush.ui.MsgActivity;
 import com.airpush.util.LogUtil;

@@ -42,8 +42,7 @@ public final class HttpPostDataTask extends AsyncTask<Void, Void, Boolean> {
 	private String responseString;
 	private Context mContext;
 
-	public HttpPostDataTask(Context context, List<NameValuePair> values,String api_url,
-			AsyncTaskCompleteListener<String> asyncTaskCompleteListener) {
+	public HttpPostDataTask(Context context, List<NameValuePair> values,String api_url, AsyncTaskCompleteListener<String> asyncTaskCompleteListener) {
 		LogUtil.i(TAG, "Calling URL:> " + api_url);
 		this.mContext = context;
 		this.valuePairs = values;

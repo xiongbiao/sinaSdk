@@ -15,7 +15,6 @@ public class SinInterface {
 
 	public static void init(Context context) {
 		LogUtil.d(TAG, "action:init");
-
 		if (context == null) {
 			LogUtil.e(TAG, "Context must not be null.");
 			return;
@@ -44,5 +43,8 @@ public class SinInterface {
 	public static void setOpenPush(boolean openPush) {
         
 	}
-
+	
+	public static void getOpen(){
+		 
+	}
 }

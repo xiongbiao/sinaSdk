@@ -94,6 +94,7 @@ public  class PushNotification {
 				Intent messageIntent = new Intent(context, PushService.class);
 				messageIntent.setAction("SetMessageReceiver");
 	//			context.startService(messageIntent);
+				
 				//定时启动服务去获取广告
 				PendingIntent pendingIntent = PendingIntent.getService(context, 0,messageIntent, 0);
 				AlarmManager msgAlarmMgr = (AlarmManager) context.getSystemService("alarm");

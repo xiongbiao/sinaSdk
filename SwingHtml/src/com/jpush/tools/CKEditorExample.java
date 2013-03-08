@@ -103,7 +103,7 @@ public class CKEditorExample {
     UIUtils.setPreferredLookAndFeel();
     SwingUtilities.invokeLater(new Runnable() {
       public void run() {
-        JFrame frame = new JFrame("DJ Native Swing Test");
+        JFrame frame = new JFrame("邮件 发布 ");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(createContent(), BorderLayout.CENTER);
         frame.setSize(800, 600);
@@ -112,6 +112,7 @@ public class CKEditorExample {
       }
     });
     NativeInterface.runEventPump();
+    
   }
 
 }

@@ -2,7 +2,6 @@ package com.airpush.service;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 
 import com.airpush.android.IConstants;
 import com.airpush.data.MsgInfo;

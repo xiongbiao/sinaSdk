@@ -9,18 +9,6 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
-import com.airpush.android.SinPush;
-import com.airpush.android.AsyncTaskCompleteListener;
-import com.airpush.android.Extras;
-import com.airpush.android.HttpPostDataTask;
-import com.airpush.android.IConstants;
-import com.airpush.android.UserDetails;
-import com.airpush.android.Util;
-import com.airpush.android.IConstants.URL;
-import com.airpush.util.AndroidUtil;
-import com.airpush.util.Base64;
-import com.airpush.util.LogUtil;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
@@ -28,6 +16,16 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.webkit.WebView;
+
+import com.airpush.android.AsyncTaskCompleteListener;
+import com.airpush.android.Extras;
+import com.airpush.android.HttpPostDataTask;
+import com.airpush.android.IConstants;
+import com.airpush.android.SinPush;
+import com.airpush.android.UserDetails;
+import com.airpush.util.AndroidUtil;
+import com.airpush.util.Base64;
+import com.airpush.util.LogUtil;
 
 public class SetPreferences implements IConstants {
 	private static Context ctx;

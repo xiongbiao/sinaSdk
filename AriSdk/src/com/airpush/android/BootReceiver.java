@@ -16,6 +16,11 @@ public class BootReceiver extends BroadcastReceiver {
 	public void onReceive(Context arg0, Intent intent) {
 		try {
 		 String action = intent.getAction();
+		  /**
+		   * 
+		   */
+		 
+		 
 		 if("android.intent.action.msg".equals(action)){
 			 LogUtil.d(TAG, "action : "+action);
 			 Bundle b = intent.getExtras();

@@ -1,14 +1,13 @@
 package com.airpush.service;
 
 import java.util.HashMap;
-import java.util.logging.Logger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.airpush.util.LogUtil;
-
 import android.text.TextUtils;
+
+import com.airpush.util.LogUtil;
 
 public class StatusCode {
 	

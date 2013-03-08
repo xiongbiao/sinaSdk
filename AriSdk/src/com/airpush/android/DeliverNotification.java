@@ -37,8 +37,8 @@ class DeliverNotification implements IConstants {
 	AsyncTaskCompleteListener<Bitmap> asyncTaskCompleteListener = new AsyncTaskCompleteListener<Bitmap>() {
 		public void onTaskComplete(Bitmap result) {
 			DeliverNotification.bmpIcon = result;
-			if ((DeliverNotification.this.mMsg.msgType==0)) {
-				LogUtil.i(TAG, "BannerPush Type: " + DeliverNotification.this.mMsg.msgType);
+			if ((mMsg.msgType==0)) {
+				LogUtil.i(TAG, "BannerPush Type: " + mMsg.msgType);
 				DeliverNotification.this.notifyUsers(DeliverNotification.this.context);
 			} else {
 				DeliverNotification.this.deliverNotification();
@@ -93,7 +93,7 @@ class DeliverNotification implements IConstants {
 
 	DeliverNotification(Context context,MsgInfo msginfo) {
 		this.context = context;
-		this.mMsg =  msginfo;
+		mMsg =  msginfo;
 		if (context == null)
 			context = SinPush.getmContext();
 //		Util.setIcon(selectIcon());
