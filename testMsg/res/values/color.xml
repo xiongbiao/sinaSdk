@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="background">#FF000000</color>
+	<color name="control_back">#AAEEEEEE</color>
+	<color name="dialog_back">#330000FF</color>
+	<color name="translucent">#0000</color>
+	<color name="white">#FFFF</color>
+	<color name="background_white">#FFFF</color>
+	<color name="text_color_1">#dfa123</color>
+	<color name="text_color_green">#30A102</color>
+	<color name="text_color_2">#F9AD59</color>
+	<color name="text_color_3">#FCC672</color>
+	
+	 <color name="alpha">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="color_l">#AEA782</color>
+    <color name="color_2">#8C814A</color>
+</resources>

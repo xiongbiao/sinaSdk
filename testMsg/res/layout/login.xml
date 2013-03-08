@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent"   android:background="#fff"
+	android:gravity="center">
+	 
+	<LinearLayout android:id="@+id/login_content"
+		android:layout_width="fill_parent" android:layout_height="0dip"
+		android:layout_weight="1" android:orientation="vertical"
+		android:gravity="center" android:padding="20dip">
+		<!-- name -->
+		<LinearLayout android:id="@+id/login_content_name_layer"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			style="@style/login_edit_layer"  >
+			<ImageView android:id="@+id/login_name_icon"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				 android:layout_marginRight="10dip" />
+			<EditText android:id="@+id/login_name" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" style="@style/login_name" 
+				android:text="18320806050"
+				/>
+		</LinearLayout>
+		<!-- password -->
+		<LinearLayout android:id="@+id/login_content_password_layer"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			style="@style/login_edit_layer" >
+			<ImageView android:id="@+id/login_password_icon"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				  android:layout_marginRight="10dip" />
+			<EditText android:id="@+id/login_password"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:text="xiongkk"
+				style="@style/login_password" />
+		</LinearLayout>
+
+		<!-- check box -->
+		<LinearLayout android:id="@+id/login_check_layer"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			style="@style/login_check_layer">
+			<CheckBox android:id="@+id/login_save_password"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_weight="1" style="@style/login_checkbox"
+				android:text="@string/login_save_password" />
+			<CheckBox android:id="@+id/login_auto_in"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				style="@style/login_checkbox" android:text="@string/login_auto_in" />
+		</LinearLayout>
+
+		<Button android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_margin="10dip"
+			android:id="@+id/login_in" android:text="@string/login_in"
+			  />
+		<Button android:id="@+id/login_registered"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_margin="10dip" android:text="@string/login_registered"
+			 />
+	</LinearLayout>
+	 
+</LinearLayout>
