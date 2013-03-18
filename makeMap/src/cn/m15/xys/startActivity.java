@@ -25,5 +25,13 @@ public class startActivity extends Activity {
 	    }
 	});
         
+        Button botton1 = (Button)findViewById(R.id.button1);
+        botton1.setOnClickListener(new OnClickListener() {
+	    @Override
+	    public void onClick(View arg0) {
+		 Intent intent = new Intent(mContext,MyDisplayActivity.class); 
+		 startActivity(intent);
+	    }
+	});
     }
 }

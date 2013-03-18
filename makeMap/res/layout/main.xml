@@ -31,5 +31,9 @@
         <Button android:id="@+id/button0"
             android:layout_width="fill_parent" android:layout_height="wrap_content"
             android:text="点击进入游戏世界 - 地图滚动"/>
+            
+           <Button android:id="@+id/button1"
+            android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:text="点击进图片滚动"/>  
     </LinearLayout>
 </ScrollView>
