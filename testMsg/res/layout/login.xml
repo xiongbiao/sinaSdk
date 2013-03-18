@@ -54,6 +54,13 @@
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:layout_margin="10dip" android:text="@string/login_registered"
 			 />
+		<WebView 
+		android:id="@+id/login_html"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:layout_margin="10dip" android:text="@string/login_registered"
+		
+		></WebView>	 
+		
 	</LinearLayout>
 	 
 </LinearLayout>
