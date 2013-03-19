@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">聊天工具</string>
+    <string name="app_name">X-Talk</string>
     <string name="setting">设置</string>
     <string name="about">关于</string>
     <string name="headicontitle">设置头像：</string>

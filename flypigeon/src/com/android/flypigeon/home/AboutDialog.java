@@ -9,6 +9,4 @@ public class AboutDialog extends Dialog {
 		super(context);
 		this.context = context;
 	}
-
-	
 }

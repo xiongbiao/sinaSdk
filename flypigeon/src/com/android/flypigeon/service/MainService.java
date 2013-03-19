@@ -44,6 +44,7 @@ import android.net.wifi.WifiManager;
 import android.os.Binder;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 public class MainService extends Service {
 	private ServiceBinder sBinder = new ServiceBinder();//服务绑定器
@@ -971,9 +972,17 @@ public class MainService extends Service {
 					sSocket = new ServerSocket(Constant.AUDIO_PORT);//监听音频端口
 					System.out.println("Audio Handler socket started ...");
 					while(!sSocket.isClosed() && null!=sSocket){
-						Socket socket = sSocket.accept();
-						socket.setSoTimeout(5000);
-						audioPlay(socket);
+						try{
+							Socket socket = sSocket.accept();
+							socket.setSoTimeout(5000);
+							audioPlay(socket);
+						}catch (Exception e) {
+							e.printStackTrace();
+						}finally{
+							if(sSocket!=null)	
+				               sSocket.close();					
+						}
+						
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -1052,6 +1061,7 @@ public class MainService extends Service {
 					OutputStream os = null;
 					AudioRecord recorder = null;
 					try {
+						Log.d(this.getClass().getName(), "ip address : " + person.ipAddress);
 						socket = new Socket(person.ipAddress, Constant.AUDIO_PORT);
 						socket.setSoTimeout(5000);
 						os = socket.getOutputStream();

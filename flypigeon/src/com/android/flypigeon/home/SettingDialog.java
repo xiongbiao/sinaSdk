@@ -167,7 +167,7 @@ public class SettingDialog extends Dialog implements OnItemSelectedListener,andr
 	
 	private void restoreData(){
 		EditText nikeName = (EditText)findViewById(R.id.nicke_name);
-		nikeName.setText(pre.getString("nickeName", " ‰»Îƒ„µƒÍ«≥∆"));
+		nikeName.setText(pre.getString("nickeName", "Â∞è‰∏â"));
 		headIconPos = pre.getInt("headIconPos", 0);
 		spin.setSelection(headIconPos);
 	}
