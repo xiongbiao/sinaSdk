@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="none" >
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center_horizontal" >
+
+            <LinearLayout
+                android:id="@+id/miniAdLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/RelativeLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/linearLayout"
+            android:gravity="center"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/PointsTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="18dip"
+                android:visibility="visible" />
+            <TextView
+                android:id="@+id/explain"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/explain"
+                android:visibility="gone" />
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+                <Button
+                    android:id="@+id/LoginButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/login"
+                    android:visibility="gone" />
+            </LinearLayout>
+             
+				
+			 <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+                <EditText android:id="@+id/msg_info" android:layout_width="fill_parent"
+				android:layout_height="200dp"  
+				android:text=""
+				/>
+            </LinearLayout>	
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+                
+              
+                <Button
+                    android:id="@+id/SendButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="发送消息"  />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+                <Button
+                    android:id="@+id/ImageButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="状态栏图片广告"  />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+
+                <Button
+                    android:id="@+id/SuspensionButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/SuspensionAd"
+                    android:visibility="gone"  />
+                <Button
+                    android:id="@+id/FullAdButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/fullAd"
+                    android:visibility="visible" />
+                <Button
+                    android:id="@+id/ViewButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/ViewAd"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+
+                <Button
+                    android:id="@+id/VideoAdButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/VideoAd"
+                    android:visibility="visible" />
+
+                <Button
+                    android:id="@+id/promptBoxBtn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/PromptBoxAd"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/SDKVersionView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/AdLinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/RelativeLayout01"
+            android:gravity="center_horizontal" />
+    </RelativeLayout>
+
+</ScrollView>

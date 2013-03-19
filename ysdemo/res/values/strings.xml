@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">演示版0.2.5</string>
+    
+    <string name="login">初始化</string>
+    <string name="fullAd">全屏广告</string>
+    <string name="ViewAd">View广告</string>
+    <string name="SuspensionAd">悬浮广告</string>
+    <string name="PromptBoxAd">提示框广告</string>
+    <string name="VideoAd">视频广告</string>
+    <string name="checkUpdate">广告</string>
+    <string name="explain">如果点击按钮长时间没有收\n 到广告，请点击初始化按钮\n  </string>
+    <string name="explain_full">全屏  </string>
+    
+</resources>

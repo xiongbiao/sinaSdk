@@ -18,6 +18,7 @@
 			<EditText android:id="@+id/login_name" android:layout_width="fill_parent"
 				android:layout_height="wrap_content" style="@style/login_name" 
 				android:text="18320806050"
+				
 				/>
 		</LinearLayout>
 		<!-- password -->
