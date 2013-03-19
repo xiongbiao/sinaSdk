@@ -39,7 +39,7 @@ public class MyDisplayActivity extends Activity {
 	        botton1.setOnClickListener(new OnClickListener() {
 		    @Override
 		    public void onClick(View arg0) {
-		    	dsv.SetMap(rSize, 1, 20);
+//		    	dsv.SetMap(rSize, 1, 20);
 		    	rSize = rSize + 60;
 		    }
 		});

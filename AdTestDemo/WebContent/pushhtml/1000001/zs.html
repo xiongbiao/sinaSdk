@@ -1,0 +1,64 @@
+<head>
+<head>
+<meta name="viewport"
+	content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="format-detection" content="telephone=no">
+<style type="text/css">
+body {
+	padding: 0;
+	margin: 0;
+}
+
+#bg {
+	position: relative;
+}
+
+#bg,#bg img {
+	max-width: 480px;
+	margin: 0px;
+}
+</style>
+
+<script type="text/javascript">
+	window.onresize = window.onload = function() {
+		var w, h;
+		if (!!(window.attachEvent && !window.opera)) {
+			w = document.documentElement.clientWidth;
+			h = document.documentElement.clientHeight;
+		} else {
+			w = window.innerWidth;
+			h = window.innerHeight;
+		}
+		h = h / w;
+		var ad = document.getElementById('ad');
+		ad.style.top = 178 * (w / 240) * 2.53;
+		ad.style.left = 30;
+		var bgImg = document.getElementById('img0');
+		bgImg.width = w;
+		bgImg.height = 95 * (w / 240);
+		var bgImg1 = document.getElementById('img1');
+		bgImg1.width = w;
+		bgImg1.height = 95 * (w / 240);
+		var bgImg2 = document.getElementById('img2');
+		bgImg2.width = w;
+		bgImg2.height = 95 * (w / 240);
+		var bgImg3 = document.getElementById('img3');
+		bgImg3.width = w;
+		bgImg3.height = 125 * (w / 240);
+	}
+</script>
+</head>
+<body>
+	<div id="bg">
+		<a style="top: 1964.61px; left: 30px;" id="ad" data-actionid="1040"
+			href="https://ccclub.cmbchina.com/mca/MPrecontract.aspx?cardsel=uc&WT.mc_id=L57ZDCM021303154"
+			target=""> <img src="zsfiles/1.jpg" id="img0" height="414"
+			width="1047"> <img src="zsfiles/2.jpg" id="img1" height="414"
+			width="1047"> <img src="zsfiles/3.gif" id="img2" height="414"
+			width="1047"> <img src="zsfiles/4.jpg" id="img3" height="414"
+			width="1047">
+		</a>
+	</div>
+</body>
+</html>

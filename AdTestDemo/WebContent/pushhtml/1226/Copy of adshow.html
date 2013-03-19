@@ -1,0 +1,263 @@
+<head>
+<head>
+<meta name="viewport"
+	content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="format-detection" content="telephone=no">
+<title>push网页介绍</title>
+<link href="mcss/webapp.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,textarea,select,optgroup,option,fieldset,legend,p,blockquote,th,td {
+    margin:0;
+    padding:0;
+    font-size:14px;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+fieldset,img {border: 0;}
+
+a img,img {-ms-interpolation-mode:bicubic;}
+
+/*头部样式*/
+.new_header {
+	height: 42px;
+	overflow: hidden;
+	/*font-weight:bold;*/
+	background-color: #F9F9F9;
+}
+
+.content-header {
+	box-shadow: 0 0 1em rgba(3, 0, 0, 0.28);
+	-webkit-box-shadow: 0 0 1em rgba(3, 0, 0, 0.28);
+	margin-bottom: 1em;
+}
+
+.new_header_title {
+	display: block;
+	font-size: 20px;
+	line-height: 43px;
+	color: #586473;
+	text-align: center;
+}
+
+/****/
+.content-page .recommend-area {
+	border-top: 1px solid #B8BBBD;
+	height: 300px;
+	/*height: 145px;   详情页换一换需求 by zhengqiang*/
+}
+
+/*content 描述 section="description"*/
+.content-page .description {
+	border-top: 1px solid #B8BBBD;
+	padding-bottom: 24px;
+}
+
+.comment-page .intro{
+    padding:0;
+}
+.intro{
+	position: relative;
+	z-index: 1000;
+    background:#fbfbfb;
+    padding:0 14px 14px 14px;
+}
+
+.sname{
+    color:#44464a;
+    font-size:18px;
+    font-weight:bold;
+    line-height:18px;
+}
+
+.icon{
+    float:left;
+    display:inline-block;
+    border-radius:5px;
+    position:relative;
+    top:5px;
+}
+.icon img{
+    width:54px;
+    height:54px;
+    border-radius:5px;
+}
+
+.first-release {
+	background: url(data:image/png;base64,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);
+	background-size:30px auto;
+    -webkit-background-size:30px auto;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+}
+
+.hide {
+    display:none;
+}
+
+.rec-list{
+    border-top:1px solid #B8BBBD;
+    background-color:#fbfbfb;
+    height:274px;
+    overflow:hidden;
+    width:100%;
+}
+
+
+.rec-item{
+    margin:16px 0 12px 0;
+    text-align:center;
+    width:285px;
+    overflow:hidden;
+}
+.rec-item img{
+    border-radius:5px;
+    height:240px;
+    vertical-align:middle;
+    width:260px;
+}
+.rec-item .sname{
+    color:#445162;
+    font-size:12px;
+    line-height:25px;
+    font-weight:normal;
+    position:relative;
+}
+
+</style> 
+
+</head>
+<body>
+	<div
+		style="z-index: 0; position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; visibility: hidden; display: -webkit-box; -webkit-box-orient: vertical;">
+	</div>
+	<header>
+		<div class="new_header content-header">
+			<span class="new_header_title" data-tpl="titlename">推荐应用</span>
+		</div>
+	</header>
+	<div class="content-page">
+		<div id="detail" class="">
+			<section class="intro" style="">
+				<div class="sname" data-type="sname">应用名称</div>
+				<section class="icon-brief">
+					<div class="icon">
+						<span data-type="firstRelease" class="first-release"></span><img
+							src="icon.png" alt="应用图标" data-type="iconhdpi">
+					</div>
+					<div class="brief">
+						<span class="score-star score10" data-type="display_score"><span
+							class="star1"></span><span class="star2"></span><span
+							class="star3"></span><span class="star4"></span><span
+							class="star5"></span></span> <br>类型：<span
+							data-type="all_download_pid">游戏</span><br>版本：<span
+							data-type="size">3.1</span><br>大小：<span data-type="size">3.1M</span>
+					</div>
+					<div class="btn-con">
+						<a class="download btn-normal"
+							href="http://mo.baidu.com/appsearch/highdownload/AppSearch_2262602_60.apk"
+							data-type="highdown_url" data-tj="">普通下载</a> <a class="btn-high"
+							href="http://mo.baidu.com/appsearch/highdownload/AppSearch_2262602_60.apk"
+							data-type="highdown_url" data-tj="">高速下载</a>
+					</div>
+					<div class="extra-panel">
+						<span class="" data-type="security"><span
+							class="security-icon"></span><span class="security-text">通过安全检测</span></span><span
+							class="" data-type="official"><span
+							class="detail-officialIcon">官</span><span
+							class="detail-officialText">官方版</span></span><span
+							class="extra-item incompatiable hide" data-type="incompatible">不兼容</span>
+					</div>
+				</section>
+			</section>
+			<div id="subDetail" class="">
+				<section class="recommend-area">
+					<div class="tab-recommend">应用图片</div>
+					<div class="rec-list"
+						style="-webkit-perspective: 1000px; -webkit-backface-visibility: hidden;">
+						<ul class="zepto-slider-silder" data-type="relate">
+							<li class="slideritem" data-pname="" data-vcode=""
+								data-signmd5="">
+								<div class="rec-item">
+									<img src="info.jpg" alt="app-icon" data-src="info.jpg">
+									<p class="sname">截图一</p>
+								</div>
+							</li>
+							<li class="slideritem" data-pname="" data-vcode=""
+								data-signmd5="">
+								<div class="rec-item">
+									<img src="info.jpg" alt="app-icon" data-src="info.jpg">
+									<p class="sname">截图2</p>
+								</div>
+							</li>
+							<li class="slideritem" data-pname="" data-vcode=""
+								data-signmd5="">
+								<div class="rec-item">
+									<img src="info.jpg" alt="app-icon" data-src="info.jpg">
+									<p class="sname">截图3</p>
+								</div>
+							</li>
+							<li class="slideritem" data-pname="" data-vcode=""
+								data-signmd5="">
+								<div class="rec-item">
+									<img src="info.jpg" alt="app-icon" data-src="info.jpg">
+									<p class="sname">截图4</p>
+								</div>
+							</li>
+							<li class="slideritem" data-pname="" data-vcode=""
+								data-signmd5="">
+								<div class="rec-item">
+									<img src="info.jpg" alt="app-icon" data-src="info.jpg">
+									<p class="sname">截图5</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="description">
+					<div class="des-title">应用介绍</div>
+					<div class="content-navdes-wrapper " data-block="manual_brief"
+						style="">
+						<div class="content-navdes-header clearfix">
+							<h2>火星评语</h2>
+							<div class="content-navdes-header-line"></div>
+						</div>
+						<div class="content-navdes-text">
+							<p data-type="manual_brief">选择恐惧综合症？它为您建立了绚丽的热门推荐品牌墙，专业的数据统计为您推荐更优质的商家，享受更劲爆的折扣！果断下载吧！</p>
+						</div>
+					</div>
+					<div class="content-navdes-wrapper" data-block="brief" style="">
+						<div class="content-navdes-header clearfix">
+							<h2>内容摘要</h2>
+							<div class="content-navdes-header-line"></div>
+						</div>
+						<div class="des-main">
+							<div class="des-indent des-short">
+								<div class="des-long-content">
+									<p data-type="brief_short">国内专业做电子优惠券的手机平台，商家提供的优惠券都是公司业务人员和商家洽谈以后提供的，真实、有效、力</p>
+								</div>
+								<div class="des-short-content">
+									<p data-type="brief">
+										国内专业做电子优惠券的手机平台，商家提供的优惠券都是公司业务人员和商家洽谈以后提供的，真实、有效、力度大。<br>开通了全国29个城市,集合餐饮、娱乐、购物等的上万张优惠券，展示即可，无需打印。更有百万元的现金抵价券供用户下载使用，优惠力度低至1折，最高消费可减免百元。更有众多知名品牌入驻：肯德基、必胜客、麦当劳、DQ、真功夫、永和大王、釜山料理、好乐迪、赛百味、满记甜品......<br>【功能及特色】<br>★连锁商户★
+										独家提供连锁商家地理信息,最及时的商家优惠券；<br>★周边优惠★
+										查找附近商户优惠券更方便，电话，地址，行车路线一应俱全；<br>★地图查找★
+										可以在地图上查找您将要去的地方周边的优惠券；<br>★专题活动★
+										每天提供吃饭“免单”，免费电影，1元买100元抵价券等各种活动；<br>★内容分享★
+										新浪微博、腾讯微博、人人网和好友分享您的省钱攻略；<br>★专属券包★ 方便管理你的折扣券及抵价券。
+									</p>
+									<p class="platform-version">
+										适配固件：<span data-type="platform_version">1.6</span>以上固件
+									</p>
+								</div>
+								<!-- <a id="desmore" class ="hide"></a> -->
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+		</div>
+	</div>
+</body>
