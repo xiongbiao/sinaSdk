@@ -1,0 +1,142 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HomeActivity" >
+
+    <VideoView
+        android:id="@+id/ad_view"
+        android:layout_width="720px"
+        android:layout_height="405px" />
+
+    <LinearLayout
+        android:layout_width="720px"
+        android:layout_height="470px"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="360px"
+            android:layout_height="470px"
+            android:background="#5672B7" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8px"
+                    android:paddingRight="4px"
+                    android:text="@string/language"
+                    android:textSize="10sp" />
+
+                <Spinner
+                    android:id="@+id/language_picker"
+                    android:layout_width="76px"
+                    android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
+                    android:padding="0px" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="4px"
+                    android:text="@string/city"
+                    android:textSize="10sp" />
+
+                <Spinner
+                    android:id="@+id/city_picker"
+                    android:layout_width="110px"
+                    android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
+                    android:padding="0px" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/weather"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/date_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#7E5CA9"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/button_maps"
+                    style="@style/Menu"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#7E5CAA"
+                    android:text="@string/maps" />
+
+                <Button
+                    android:id="@+id/button_coupons"
+                    style="@style/Menu"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#C23A00"
+                    android:text="@string/coupons" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/button_ads"
+                    style="@style/Menu"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#E48600"
+                    android:text="@string/ads" />
+
+                <Button
+                    android:id="@+id/button_games"
+                    style="@style/Menu"
+                    android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#8CA62F"
+                    android:text="@string/games" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="405px"
+        android:scaleType="fitXY"
+        android:src="@drawable/logo" />
+
+</LinearLayout>

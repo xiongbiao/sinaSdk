@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	function onClick(id) {
+		Android.onClick(id);
+	}
+</script>
+<style type="text/css">
+body {
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+}
+
+#t2 {
+    position: absolute;
+    left: 442px;
+    top: 40px;
+    width: 180px;
+    height: 140px;
+}
+</style>
+</head>
+<body>
+    <img id="map" src="airport.jpg" />
+    <div id="t2" onClick="onClick(this.id);"></div>
+</body>
+</html>

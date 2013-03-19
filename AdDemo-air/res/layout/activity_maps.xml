@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MapsActivity" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="8px"
+        android:paddingTop="8px"
+        android:scaleType="centerCrop"
+        android:text="@string/airport_name" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1" >
+
+        <WebView
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        
+        <Button
+            android:id="@+id/button_map_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30px"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="50px"
+            android:layout_marginBottom="50px"
+            android:background="#AA3A5F8B"
+            android:text="@string/go_back" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/suroundings"
+        android:layout_width="wrap_content"
+        android:layout_height="405px"
+        android:entries="@array/suroundings" >
+    </ListView>
+
+</LinearLayout>
