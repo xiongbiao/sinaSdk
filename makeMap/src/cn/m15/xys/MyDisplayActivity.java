@@ -44,7 +44,7 @@ public class MyDisplayActivity extends Activity {
 		    }
 		});
 //	        addContentView(view, params)
-	    	setContentView(dsw);
+	    	setContentView(dsv);
 	}
 
 	public	class DisplaySurfaceView  extends SurfaceView implements Callback, Runnable{
