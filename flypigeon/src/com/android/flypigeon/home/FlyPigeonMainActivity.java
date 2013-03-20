@@ -398,8 +398,7 @@ public class FlyPigeonMainActivity extends Activity implements View.OnClickListe
 		public void onReceive(Context context, Intent intent) {
 			if(intent.getAction().equals(Constant.updateMyInformationAction)){
 				getMyInfomation();
-			}else if(intent.getAction().equals(Constant.dataReceiveErrorAction) 
-					|| intent.getAction().equals(Constant.dataSendErrorAction)){
+			}else if(intent.getAction().equals(Constant.dataReceiveErrorAction) || intent.getAction().equals(Constant.dataSendErrorAction)){
 				Toast.makeText(FlyPigeonMainActivity.this, intent.getExtras().getString("msg"), Toast.LENGTH_SHORT).show();
 			}else if(intent.getAction().equals(Constant.fileReceiveStateUpdateAction)){//收到来自服务层的文件接收状态通知
 				if(!isPaused){
